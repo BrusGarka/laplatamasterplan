@@ -168,3 +168,67 @@ export function formatCompact(value: number): string {
   if (value >= 1_000) return `R$ ${(value / 1_000).toFixed(0)}k`;
   return formatBRL(value);
 }
+
+// ============================================================
+// FASE 2 — Hold & Compound (sem aportes, juro real 6% a.a.)
+// ============================================================
+
+export const TAXA_REAL_ANUAL = 0.06;
+export const IR_EFETIVO = 0.12; // mix isentos + tributados
+export const TAXA_RETIRADA = 0.045; // 4.5% a.a. SWR
+
+export const IF_MINIMA_RENDA = 12_000; // R$/mês
+export const IF_ALVO_RENDA = 15_000;   // R$/mês
+export const IF_MINIMA_MONTANTE = 3_640_000;
+export const IF_ALVO_MONTANTE = 4_550_000;
+
+export interface Phase2YearData {
+  ano: number;
+  idade: number;
+  patrimonio: number;
+  rendimentoAnual: number;
+  rendaBrutaMes: number;
+  rendaLiquidaMes: number;
+  marco?: string;
+}
+
+/** Projeta Fase 2: hold sem aportes com taxa real */
+export function gerarProjecaoFase2(
+  patrimonioInicial: number,
+  idadeInicial: number,
+  anoInicial: number,
+  anosHorizonte: number = 25,
+  taxaRealAnual: number = TAXA_REAL_ANUAL
+): Phase2YearData[] {
+  const tabela: Phase2YearData[] = [];
+  let patrimonio = patrimonioInicial;
+
+  for (let i = 0; i <= anosHorizonte; i++) {
+    const ano = anoInicial + i;
+    const idade = idadeInicial + i;
+    const rendimentoAnual = patrimonio * taxaRealAnual;
+    const rendaBrutaMes = (patrimonio * TAXA_RETIRADA) / 12;
+    const rendaLiquidaMes = rendaBrutaMes * (1 - IR_EFETIVO);
+
+    let marco: string | undefined;
+    if (rendaLiquidaMes >= IF_ALVO_RENDA && !tabela.some(d => d.marco === "IF Alvo R$15k")) {
+      marco = "IF Alvo R$15k";
+    } else if (rendaLiquidaMes >= IF_MINIMA_RENDA && !tabela.some(d => d.marco === "IF Mínima R$12k")) {
+      marco = "IF Mínima R$12k";
+    }
+
+    tabela.push({
+      ano,
+      idade,
+      patrimonio: Math.round(patrimonio),
+      rendimentoAnual: Math.round(rendimentoAnual),
+      rendaBrutaMes: Math.round(rendaBrutaMes),
+      rendaLiquidaMes: Math.round(rendaLiquidaMes),
+      marco,
+    });
+
+    patrimonio += rendimentoAnual;
+  }
+
+  return tabela;
+}

@@ -4,6 +4,7 @@ import { gerarProjecaoPadrao, META } from "@/lib/financial-engine";
 import { StatsGrid } from "@/components/StatsGrid";
 import { ProjectionTable } from "@/components/ProjectionTable";
 import { ProjectionCharts } from "@/components/ProjectionCharts";
+import { Phase2Dashboard } from "@/components/Phase2Dashboard";
 import { Simulator } from "@/components/Simulator";
 import { Shield } from "lucide-react";
 
@@ -57,6 +58,13 @@ const Index = () => {
 
         {/* Table */}
         <ProjectionTable data={projecao} />
+
+        {/* === FASE 2 === */}
+        <Phase2Dashboard
+          patrimonioFase1={final2033.saldoFinal}
+          idadeFimFase1={final2033.idade}
+          anoFimFase1={final2033.ano}
+        />
 
         {/* Simulator */}
         <Simulator />
