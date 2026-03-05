@@ -147,52 +147,6 @@ export function Phase2Dashboard({ patrimonioFase1, idadeFimFase1, anoFimFase1 }:
           </BarChart>
         </ResponsiveContainer>
       </div>
-
-      {/* Timeline Table */}
-      <div className="stat-glow rounded-lg overflow-hidden">
-        <div className="p-5 border-b border-border">
-          <h3 className="text-sm font-semibold">Marcos da Independência</h3>
-          <p className="text-xs text-muted-foreground mt-1">Patrimônio crescendo sem aportes</p>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="bg-secondary/50">
-                <th className="text-left p-3 text-xs uppercase tracking-wider text-muted-foreground font-medium">Ano</th>
-                <th className="text-left p-3 text-xs uppercase tracking-wider text-muted-foreground font-medium">Idade</th>
-                <th className="text-right p-3 text-xs uppercase tracking-wider text-muted-foreground font-medium">Patrimônio</th>
-                <th className="text-right p-3 text-xs uppercase tracking-wider text-muted-foreground font-medium">Rendimento/Ano</th>
-                <th className="text-right p-3 text-xs uppercase tracking-wider text-muted-foreground font-medium">Renda Líq./Mês</th>
-                <th className="text-left p-3 text-xs uppercase tracking-wider text-muted-foreground font-medium">Marco</th>
-              </tr>
-            </thead>
-            <tbody>
-              {projecao.filter((_, i) => i % 2 === 0 || projecao[i].marco).map((row) => (
-                <tr
-                  key={row.ano}
-                  className={`
-                    border-b border-border/50 transition-colors hover:bg-secondary/30
-                    ${row.marco ? "bg-accent/5 border-l-2 border-l-accent" : ""}
-                  `}
-                >
-                  <td className="p-3 font-mono font-semibold">{row.ano}</td>
-                  <td className="p-3 text-muted-foreground">{row.idade}</td>
-                  <td className="p-3 text-right font-mono">{formatCompact(row.patrimonio)}</td>
-                  <td className="p-3 text-right font-mono text-primary">{formatCompact(row.rendimentoAnual)}</td>
-                  <td className="p-3 text-right font-mono font-semibold">{formatBRL(row.rendaLiquidaMes)}</td>
-                  <td className="p-3">
-                    {row.marco && (
-                      <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded font-semibold">
-                        🎯 {row.marco}
-                      </span>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
     </motion.div>
   );
 }
