@@ -101,6 +101,70 @@ export function gerarProjecaoPadrao(): YearData[] {
   return tabela;
 }
 
+export interface UnifiedYearData {
+  ano: number;
+  idade: number;
+  saldoInicial: number;
+  aporteAnual: number;
+  pmtMes: number;
+  rendimentoTotal: number;
+  saldoFinal: number;
+  pctMeta: number;
+  fase: 1 | 2;
+  rendaLiquidaMes?: number;
+  marco?: string;
+}
+
+/** Gera projeção unificada Fase 1 (2024-2033) + Fase 2 (2034-2058) */
+export function gerarProjecaoUnificada(): UnifiedYearData[] {
+  const fase1 = gerarProjecaoPadrao();
+  const tabela: UnifiedYearData[] = fase1.map(d => ({
+    ...d,
+    fase: 1 as const,
+  }));
+
+  const ultimo = fase1[fase1.length - 1];
+  let patrimonio = ultimo.saldoFinal;
+  let ifMinimaFound = false;
+  let ifAlvoFound = false;
+
+  for (let i = 1; i <= 25; i++) {
+    const ano = ultimo.ano + i;
+    const idade = ultimo.idade + i;
+    const rendimento = Math.round(patrimonio * TAXA_REAL_ANUAL);
+    const saldoFinal = patrimonio + rendimento;
+    const rendaLiquidaMes = Math.round(((patrimonio * TAXA_RETIRADA) / 12) * (1 - IR_EFETIVO));
+
+    let marco: string | undefined;
+    if (!ifMinimaFound && rendaLiquidaMes >= IF_MINIMA_RENDA) {
+      marco = "IF Mínima R$12k";
+      ifMinimaFound = true;
+    }
+    if (!ifAlvoFound && rendaLiquidaMes >= IF_ALVO_RENDA) {
+      marco = "IF Alvo R$15k";
+      ifAlvoFound = true;
+    }
+
+    tabela.push({
+      ano,
+      idade,
+      saldoInicial: patrimonio,
+      aporteAnual: 0,
+      pmtMes: 0,
+      rendimentoTotal: rendimento,
+      saldoFinal,
+      pctMeta: Math.round((saldoFinal / META) * 1000) / 10,
+      fase: 2,
+      rendaLiquidaMes,
+      marco,
+    });
+
+    patrimonio = saldoFinal;
+  }
+
+  return tabela;
+}
+
 /** Simulação custom: dado saldo inicial, aporte mensal e taxa, projeta N anos */
 export function simularProjecao(
   saldoInicial: number,

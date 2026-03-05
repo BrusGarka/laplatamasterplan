@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
-import { gerarProjecaoPadrao, META } from "@/lib/financial-engine";
+import { gerarProjecaoPadrao, gerarProjecaoUnificada, META } from "@/lib/financial-engine";
 import { StatsGrid } from "@/components/StatsGrid";
 import { ProjectionTable } from "@/components/ProjectionTable";
 import { ProjectionCharts } from "@/components/ProjectionCharts";
@@ -9,10 +9,11 @@ import { Simulator } from "@/components/Simulator";
 import { Shield } from "lucide-react";
 
 const Index = () => {
-  const projecao = useMemo(() => gerarProjecaoPadrao(), []);
-  const atual = projecao.find((d) => d.ano === 2026);
-  const final2033 = projecao[projecao.length - 1];
-  const anoMeta = projecao.find((d) => d.saldoFinal >= META);
+  const projecaoFase1 = useMemo(() => gerarProjecaoPadrao(), []);
+  const projecaoUnificada = useMemo(() => gerarProjecaoUnificada(), []);
+  const atual = projecaoFase1.find((d) => d.ano === 2026);
+  const final2033 = projecaoFase1[projecaoFase1.length - 1];
+  const anoMeta = projecaoFase1.find((d) => d.saldoFinal >= META);
   const anosRestantes = anoMeta ? anoMeta.ano - 2026 : 99;
 
   return (
@@ -32,7 +33,7 @@ const Index = () => {
               <h1 className="text-2xl font-bold tracking-tight">Master Plan Financeiro 360°</h1>
             </div>
             <p className="text-sm text-muted-foreground ml-12">
-              Planejamento Patrimonial Estratégico • 2024–2033
+              Planejamento Patrimonial Estratégico • Fase 1 & 2
             </p>
           </div>
           <div className="hidden md:flex items-center gap-4 text-xs text-muted-foreground">
@@ -54,12 +55,12 @@ const Index = () => {
         />
 
         {/* Charts */}
-        <ProjectionCharts data={projecao} />
+        <ProjectionCharts data={projecaoFase1} />
 
-        {/* Table */}
-        <ProjectionTable data={projecao} />
+        {/* Unified Table */}
+        <ProjectionTable data={projecaoUnificada} />
 
-        {/* === FASE 2 === */}
+        {/* Phase 2 Charts */}
         <Phase2Dashboard
           patrimonioFase1={final2033.saldoFinal}
           idadeFimFase1={final2033.idade}
