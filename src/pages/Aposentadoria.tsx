@@ -1,67 +1,52 @@
-import { useMemo } from "react";
-import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Landmark } from "lucide-react";
-import { Phase2Dashboard } from "@/components/Phase2Dashboard";
-import { gerarProjecaoPadrao } from "@/lib/financial-engine";
+
+const IDADE_INICIAL = 30;
+const ANO_INICIAL = 2024;
+const IDADE_INSS = 65;
+const ANO_BENEFICIO = ANO_INICIAL + (IDADE_INSS - IDADE_INICIAL);
 
 export default function Aposentadoria() {
-  const projecaoFase1 = useMemo(() => gerarProjecaoPadrao(), []);
-  const final2033 = projecaoFase1.length > 0 ? projecaoFase1[projecaoFase1.length - 1] : null;
-
-  if (!final2033) {
-    return (
-      <div className="min-h-screen gradient-mesh flex items-center justify-center">
-        <p className="text-muted-foreground">Carregando projeção...</p>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen gradient-mesh">
-      <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
-        <motion.header
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-3"
-        >
+      <div className="max-w-2xl mx-auto px-4 py-8 space-y-6">
+        <header className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
             <Landmark className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Aposentadoria — Fase 2</h1>
+            <h1 className="text-2xl font-bold tracking-tight">Aposentadoria INSS</h1>
             <p className="text-sm text-muted-foreground">
-              Pós-meta patrimonial: sustentabilidade, gastos esperados e drawdown
+              Expectativa de benefício pelo regime geral
             </p>
           </div>
-        </motion.header>
-
-        <Phase2Dashboard
-          patrimonioFase1={final2033.saldoFinal}
-          idadeFimFase1={final2033.idade}
-          anoFimFase1={final2033.ano}
-        />
+        </header>
 
         <Card>
           <CardHeader>
-            <CardTitle>Sobre a Fase 2</CardTitle>
-            <CardDescription>
-              Após atingir a meta do Master Plan, a Fase 2 considera apenas os rendimentos do
-              patrimônio (sem novos aportes). A taxa de retirada (SWR) e a expectativa de vida
-              definem se o patrimônio é suficiente para manter o padrão desejado.
-            </CardDescription>
+            <CardTitle>Seu benefício estimado</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-sm text-muted-foreground">
-            <p>
-              <strong className="text-foreground">SWR (Safe Withdrawal Rate):</strong> percentual
-              retirado do patrimônio por ano. Valores entre 3,5% e 4,5% são usados em planejamentos
-              conservadores para evitar esgotar o capital.
-            </p>
-            <p>
-              <strong className="text-foreground">Independência financeira:</strong> quando a renda
-              passiva (rendimentos do patrimônio) cobre seus gastos, você deixa de depender de
-              salário ativo.
-            </p>
+          <CardContent className="space-y-4">
+            <div className="grid gap-2 text-sm">
+              <p>
+                <span className="text-muted-foreground">Ano em que completa 65 anos (início do benefício):</span>{" "}
+                <strong className="text-foreground">{ANO_BENEFICIO}</strong>
+              </p>
+              <p>
+                <span className="text-muted-foreground">Valor:</span>{" "}
+                <strong className="text-foreground">1 salário mínimo</strong>
+                <span className="text-muted-foreground"> (estimativa em 2026: ~R$ 1.550–1.600)</span>
+              </p>
+            </div>
+
+            <div className="border-t pt-4 text-sm text-muted-foreground space-y-2">
+              <p className="font-medium text-foreground">Por que só 1 salário mínimo?</p>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Nenhuma aposentadoria do INSS pode ser menor que o salário mínimo vigente; com contribuição baixa, o valor é corrigido para o piso.</li>
+                <li>Requisitos: 65 anos de idade e pelo menos 20 anos de contribuição. Sem os 20 anos ao completar 65, não há benefício até completar o tempo.</li>
+                <li>No caso de sócio que recebe pró-labore de 1 salário mínimo e o restante como distribuição de lucros (que não gera contribuição ao INSS), a média de salários considerada pelo INSS fica em 1 salário mínimo, então o benefício calculado é o piso.</li>
+              </ul>
+            </div>
           </CardContent>
         </Card>
       </div>
