@@ -1,5 +1,20 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  arrayMove,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -24,6 +39,7 @@ import { Pencil, Trash2, Zap, Check, X } from "lucide-react";
 import { formatBRL, formatBRLForInput, parseBRL } from "@/lib/utils";
 import { useContasFixas, useSaveContasFixas } from "@/hooks/use-caixa";
 import type { Lancamento, TipoLancamento } from "@/types/caixa";
+import { SortableTableRow } from "./SortableTableRow";
 
 const TIPOS: TipoLancamento[] = ["giro", "entrada", "fixo", "poupança", "variavel"];
 
@@ -46,7 +62,22 @@ export function ContasFixasTemplateCard() {
     debitoAutomatico: false,
   });
 
-  const ordenados = [...contas].sort((a, b) => (a.dia ?? 99) - (b.dia ?? 99));
+  const ordenados = useMemo(() => [...contas], [contas]);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    const oldIndex = ordenados.findIndex((l) => l.id === active.id);
+    const newIndex = ordenados.findIndex((l) => l.id === over.id);
+    if (oldIndex === -1 || newIndex === -1) return;
+    const newOrdenados = arrayMove(ordenados, oldIndex, newIndex);
+    saveMutation.mutate(newOrdenados);
+  };
 
   const handleSaveEdit = () => {
     if (!editingId || !editForm?.item?.trim()) return;
@@ -134,9 +165,15 @@ export function ContasFixasTemplateCard() {
         </CardHeader>
         <CardContent>
           <div className="rounded-md border">
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
             <Table>
               <TableHeader>
                 <TableRow>
+                  <TableHead className="w-10"></TableHead>
                   <TableHead>Tipo</TableHead>
                   <TableHead>Item</TableHead>
                   <TableHead className="text-right w-32 min-w-[7rem]">Valor</TableHead>
@@ -149,17 +186,25 @@ export function ContasFixasTemplateCard() {
                 {ordenados.length === 0 ? (
                   <TableRow>
                     <TableCell
-                      colSpan={6}
+                      colSpan={7}
                       className="text-center py-8 text-muted-foreground"
                     >
                       Nenhuma conta fixa cadastrada. Adicione na linha abaixo.
                     </TableCell>
                   </TableRow>
                 ) : (
-                  ordenados.map((l) => {
+                  <SortableContext
+                    items={ordenados.map((l) => l.id)}
+                    strategy={verticalListSortingStrategy}
+                  >
+                  {ordenados.map((l) => {
                     const isEditing = editingId === l.id && editForm;
                     return (
-                      <TableRow key={l.id} className={isEditing ? "bg-muted/50" : ""}>
+                      <SortableTableRow
+                        key={l.id}
+                        id={l.id}
+                        className={isEditing ? "bg-muted/50" : ""}
+                      >
                         <TableCell>
                           {isEditing && editForm ? (
                             <Select
@@ -312,11 +357,13 @@ export function ContasFixasTemplateCard() {
                             )}
                           </div>
                         </TableCell>
-                      </TableRow>
+                      </SortableTableRow>
                     );
-                  })
+                  })}
+                  </SortableContext>
                 )}
                 <TableRow className="bg-muted/30">
+                  <TableCell className="w-10" />
                   <TableCell>
                     <Select
                       value={inline.tipo}
@@ -411,6 +458,7 @@ export function ContasFixasTemplateCard() {
                 </TableRow>
               </TableBody>
             </Table>
+            </DndContext>
           </div>
         </CardContent>
       </Card>

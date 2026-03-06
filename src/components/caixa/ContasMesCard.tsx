@@ -1,5 +1,20 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  arrayMove,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
@@ -29,6 +44,7 @@ import { useLancamentos, useSaveLancamentos } from "@/hooks/use-caixa";
 import { toast } from "sonner";
 import { getLancamentosMes } from "@/services/caixa-service";
 import type { Lancamento, TipoLancamento } from "@/types/caixa";
+import { SortableTableRow } from "./SortableTableRow";
 
 const TIPOS: TipoLancamento[] = ["giro", "entrada", "fixo", "poupança", "variavel"];
 
@@ -67,10 +83,34 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
     return lancamentos.filter((l) => l.tipo === filtroTipo);
   }, [lancamentos, filtroTipo]);
 
-  const ordenados = useMemo(
-    () => [...filtrados].sort((a, b) => (a.dia ?? 99) - (b.dia ?? 99)),
-    [filtrados]
+  const ordenados = useMemo(() => [...filtrados], [filtrados]);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    const oldIndex = ordenados.findIndex((l) => l.id === active.id);
+    const newIndex = ordenados.findIndex((l) => l.id === over.id);
+    if (oldIndex === -1 || newIndex === -1) return;
+    const newFiltrados = arrayMove(ordenados, oldIndex, newIndex);
+    if (filtroTipo === "todos") {
+      saveMutation.mutate(newFiltrados);
+    } else {
+      const filteredIds = new Set(newFiltrados.map((l) => l.id));
+      const filteredIndices = lancamentos
+        .map((l, i) => (filteredIds.has(l.id) ? i : -1))
+        .filter((i) => i >= 0);
+      const newLancamentos = [...lancamentos];
+      newFiltrados.forEach((item, i) => {
+        newLancamentos[filteredIndices[i]] = item;
+      });
+      saveMutation.mutate(newLancamentos);
+    }
+  };
 
   const pagas = lancamentos.filter((l) => l.executado).length;
   const total = lancamentos.length;
@@ -235,31 +275,45 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
               </div>
             )}
             <div className="rounded-md border">
-              <Table>
-                <TableHeader>
-                  <TableRow>
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-10" />
                     <TableHead>Tipo</TableHead>
                     <TableHead>Item</TableHead>
                     <TableHead className="text-right w-32 min-w-[7rem]">Valor</TableHead>
                     <TableHead className="w-16">Dia</TableHead>
-                    <TableHead className="w-12"></TableHead>
-                    <TableHead className="w-20"></TableHead>
+                    <TableHead className="w-12" />
+                    <TableHead className="w-20" />
                     <TableHead className="w-12">Pago</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {ordenados.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                      <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
                         Nenhum lançamento.
                       </TableCell>
                     </TableRow>
                   ) : (
-                    ordenados.map((l) => {
-                      const isEditing = editingId === l.id && editForm;
-                      return (
-                        <TableRow key={l.id} className={isEditing ? "bg-muted/50" : ""}>
-                          <TableCell>
+                    <SortableContext
+                      items={ordenados.map((l) => l.id)}
+                      strategy={verticalListSortingStrategy}
+                    >
+                      {ordenados.map((l) => {
+                        const isEditing = editingId === l.id && editForm;
+                        return (
+                          <SortableTableRow
+                            key={l.id}
+                            id={l.id}
+                            className={isEditing ? "bg-muted/50" : ""}
+                          >
+                            <TableCell>
                             {isEditing && editForm ? (
                               <Select
                                 value={editForm.tipo}
@@ -416,11 +470,13 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                               />
                             )}
                           </TableCell>
-                        </TableRow>
+                        </SortableTableRow>
                       );
-                    })
+                    })}
+                    </SortableContext>
                   )}
                   <TableRow className="bg-muted/30">
+                      <TableCell className="w-10" />
                       <TableCell>
                         <Select
                           value={inline.tipo}
@@ -509,6 +565,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                     </TableRow>
                 </TableBody>
               </Table>
+              </DndContext>
             </div>
           </CardContent>
         </Card>
