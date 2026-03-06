@@ -13,7 +13,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Shield, Settings, TrendingUp, Wallet, User } from "lucide-react";
+import { Shield, Settings, LayoutDashboard, FileText, Wallet, User, Building2, Scale } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface LayoutProps {
@@ -22,9 +22,14 @@ interface LayoutProps {
 
 const menuItems = [
   {
+    title: "Dashboard",
+    url: "/",
+    icon: LayoutDashboard,
+  },
+  {
     title: "Master Plan",
     url: "/master-plan",
-    icon: TrendingUp,
+    icon: FileText,
   },
   {
     title: "Parâmetros",
@@ -35,6 +40,16 @@ const menuItems = [
     title: "Investimentos",
     url: "/investimentos",
     icon: Wallet,
+  },
+  {
+    title: "Patrimônio",
+    url: "/patrimonio",
+    icon: Building2,
+  },
+  {
+    title: "Dívidas",
+    url: "/dividas",
+    icon: Scale,
   },
   {
     title: "Premissas",
@@ -68,8 +83,9 @@ export function Layout({ children }: LayoutProps) {
                 <SidebarMenu>
                   {menuItems.map((item) => {
                     const Icon = item.icon;
-                    const isActive = location.pathname === item.url || 
-                      (item.url === "/master-plan" && (location.pathname === "/" || location.pathname === "/master-plan"));
+                    const isActive =
+                      location.pathname === item.url ||
+                      (item.url === "/" && location.pathname === "/dashboard");
                     return (
                       <SidebarMenuItem key={item.url}>
                         <SidebarMenuButton

@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Plan Financeiro 360° — Confidencial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #080C14;
+    --bg2:       #0E1420;
+    --bg3:       #141C2C;
+    --bg4:       #1A2438;
+    --border:    #1E2D45;
+    --gold:      #C9A84C;
+    --gold-lt:   #E8C96A;
+    --gold-dim:  rgba(201,168,76,0.12);
+    --gold-glow: rgba(201,168,76,0.06);
+    --teal:      #1BA8B5;
+    --teal-dim:  rgba(27,168,181,0.12);
+    --red:       #D94F3D;
+    --red-dim:   rgba(217,79,61,0.12);
+    --green:     #27A869;
+    --green-dim: rgba(39,168,105,0.12);
+    --orange:    #D4803A;
+    --orange-dim:rgba(212,128,58,0.12);
+    --text:      #D8E2F0;
+    --text-2:    #8A9BB8;
+    --text-3:    #4A5A74;
+    --navy:      #1B2A4A;
+    --sidebar-w: 260px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    display: flex;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-logo {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-logo .firm {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .sidebar-logo .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .sidebar-meta {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 12px;
+  }
+
+  .meta-label { color: var(--text-3); font-weight: 500; }
+  .meta-val   { color: var(--text-2); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+
+  .sidebar-nav { padding: 16px 0; flex: 1; }
+
+  .nav-section {
+    padding: 6px 24px 2px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 24px;
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--text-2);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .nav-item:hover, .nav-item.active {
+    color: var(--gold);
+    background: var(--gold-glow);
+    border-left-color: var(--gold);
+  }
+
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+
+  .nav-item:hover .nav-dot, .nav-item.active .nav-dot { background: var(--gold); }
+
+  .sidebar-footer {
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-3);
+    line-height: 1.5;
+  }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    min-width: 0;
+    padding: 0 0 80px;
+  }
+
+  /* ── COVER ── */
+  #cover {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(27,168,181,0.04) 0%, transparent 50%),
+      linear-gradient(160deg, #080C14 0%, #0E1420 50%, #0A1020 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 80px 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+
+  #cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .cover-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .cover-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 82px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 4px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  .cover-h1 span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .cover-sub {
+    font-size: 14px;
+    color: var(--text-3);
+    letter-spacing: 1px;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .cover-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    max-width: 700px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.65s forwards;
+  }
+
+  .cover-cell {
+    background: var(--bg2);
+    padding: 18px 22px;
+  }
+
+  .cover-cell .lbl {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 4px;
+  }
+
+  .cover-cell .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .confidential-badge {
+    margin-top: 48px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .confidential-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 64px 72px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header {
+    margin-bottom: 40px;
+  }
+
+  .pillar-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .section-subtitle {
+    font-size: 15px;
+    color: var(--text-2);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-top: 16px;
+    width: 200px;
+  }
+
+  /* ── H2 / H3 ── */
+  h2.sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--teal);
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3.sub {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 24px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  p.body {
+    color: var(--text-2);
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  /* ── ALERTS ── */
+  .alert {
+    display: flex;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: 2px;
+    margin: 20px 0;
+    font-size: 13.5px;
+    line-height: 1.7;
+    border-left: 3px solid;
+  }
+
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+
+  .alert.warning  { background: var(--orange-dim); border-color: var(--orange); color: #E8C080; }
+  .alert.danger   { background: var(--red-dim);    border-color: var(--red);    color: #F08080; }
+  .alert.success  { background: var(--green-dim);  border-color: var(--green);  color: #80D4A8; }
+  .alert.info     { background: var(--teal-dim);   border-color: var(--teal);   color: #80D8E0; }
+  .alert.gold     { background: var(--gold-dim);   border-color: var(--gold);   color: var(--gold-lt); }
+
+  /* ── TABLES ── */
+  .tbl-wrap { overflow-x: auto; margin: 20px 0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  thead tr { background: var(--bg4); }
+
+  thead th {
+    padding: 11px 14px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+    white-space: nowrap;
+  }
+
+  thead th.r { text-align: right; }
+  thead th.c { text-align: center; }
+
+  tbody tr:nth-child(even) { background: rgba(255,255,255,0.015); }
+  tbody tr:hover           { background: var(--gold-glow); }
+
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-2);
+    vertical-align: middle;
+  }
+
+  tbody td.r  { text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  tbody td.c  { text-align: center; }
+  tbody td.b  { font-weight: 600; color: var(--text); }
+  tbody td.g  { color: var(--green); font-weight: 600; }
+  tbody td.rd { color: var(--red);   font-weight: 600; }
+  tbody td.gd { color: var(--gold);  font-weight: 600; }
+  tbody td.tl { color: var(--teal);  font-weight: 600; }
+  tbody td.mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+  tr.hit td { background: rgba(39,168,105,0.06) !important; }
+  tr.hit td.b { color: var(--green); }
+  tr.hist td { background: rgba(27,42,74,0.4) !important; color: var(--text-3) !important; }
+  tr.hist td.mono { color: var(--text-3) !important; }
+
+  tr.action-row td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .pbar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 160px;
+  }
+
+  .pbar {
+    flex: 1;
+    height: 4px;
+    background: var(--bg4);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .pbar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pbar-fill.hit { background: linear-gradient(90deg, var(--green), var(--gold-lt)); }
+
+  .pbar-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    min-width: 46px;
+    text-align: right;
+  }
+
+  .pbar-pct.hit { color: var(--green); }
+
+  /* ── KPI CARDS ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin: 24px 0;
+  }
+
+  .kpi-card {
+    background: var(--bg2);
+    padding: 22px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kpi-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .kpi-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 8px;
+  }
+
+  .kpi-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .kpi-desc {
+    font-size: 12px;
+    color: var(--text-3);
+  }
+
+  /* ── BUCKETS ── */
+  .buckets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .bucket {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .bucket:hover { border-color: var(--gold); }
+
+  .bucket-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--border);
+    position: absolute;
+    top: 10px; right: 16px;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .bucket-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .bucket-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .bucket-detail {
+    font-size: 12px;
+    color: var(--text-3);
+    margin-bottom: 6px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .bucket-detail span:first-child { color: var(--text-3); min-width: 60px; }
+  .bucket-detail span:last-child  { color: var(--text-2); }
+
+  .b1 .bucket-tag { color: var(--teal); }
+  .b2 .bucket-tag { color: var(--gold); }
+  .b3 .bucket-tag { color: var(--text-2); }
+  .b1 { border-top: 2px solid var(--teal); }
+  .b2 { border-top: 2px solid var(--gold); }
+  .b3 { border-top: 2px solid var(--text-3); }
+
+  /* ── ACTION PLAN ── */
+  .timeline { position: relative; margin: 24px 0; }
+
+  .timeline-phase {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    margin-bottom: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .phase-30  { background: rgba(217,79,61,0.15);  color: var(--red);    border-left: 3px solid var(--red); }
+  .phase-90  { background: rgba(212,128,58,0.15); color: var(--orange); border-left: 3px solid var(--orange); }
+  .phase-365 { background: rgba(27,42,74,0.6);    color: var(--teal);   border-left: 3px solid var(--teal); }
+
+  .action-item {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    gap: 0;
+    align-items: start;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    transition: background 0.15s;
+  }
+
+  .action-item:hover { background: var(--gold-glow); }
+
+  .action-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    padding-top: 2px;
+  }
+
+  .action-text { color: var(--text-2); line-height: 1.6; padding-right: 16px; }
+  .action-text b { color: var(--text); }
+
+  .impact-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    align-self: start;
+    margin-top: 2px;
+  }
+
+  .impact-critico { background: rgba(217,79,61,0.2);  color: var(--red);    }
+  .impact-alto    { background: rgba(212,128,58,0.2); color: var(--orange); }
+  .impact-medio   { background: rgba(27,168,181,0.2); color: var(--teal);   }
+
+  /* ── FINAL NOTE ── */
+  #final-note {
+    padding: 64px 72px;
+    background: linear-gradient(135deg, var(--bg2) 0%, var(--bg) 100%);
+    border-top: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #final-note::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 300px;
+    color: var(--border);
+    position: absolute;
+    top: -40px; left: 40px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .final-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.5;
+    max-width: 700px;
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  .final-quote span { color: var(--gold); }
+
+  .disclaimer {
+    font-size: 11px;
+    color: var(--text-3);
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 32px;
+  }
+
+  /* ── TWO-COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  .col-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+
+  .col-card .col-head {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .col-card.red-head .col-head  { color: var(--red); }
+  .col-card.green-head .col-head{ color: var(--green); }
+
+  .col-item {
+    font-size: 13px;
+    color: var(--text-2);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    line-height: 1.5;
+  }
+
+  /* ── BULLET LIST ── */
+  .bullet-list { list-style: none; padding: 0; margin: 12px 0; }
+
+  .bullet-list li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    color: var(--text-2);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .bullet-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar       { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+  /* ── OBSERVER ANIMATION ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ SIDEBAR ══════════════ -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="firm">Multi-Family Office</div>
+    <div class="title">Master Plan<br>Financeiro 360°</div>
+  </div>
+  <div class="sidebar-meta">
+    <div class="meta-row"><span class="meta-label">Cliente</span><span class="meta-val">CTO · 32a · Casado</span></div>
+    <div class="meta-row"><span class="meta-label">Patrimônio</span><span class="meta-val">R$ 224k</span></div>
+    <div class="meta-row"><span class="meta-label">Renda Liq.</span><span class="meta-val">R$ 25k/mês</span></div>
+    <div class="meta-row"><span class="meta-label">Aporte</span><span class="meta-val">R$ 9.117/mês</span></div>
+    <div class="meta-row"><span class="meta-label">Referência</span><span class="meta-val">Jan/2026</span></div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section">Relatório</div>
+    <a class="nav-item" href="#cover"><div class="nav-dot"></div>Sumário Executivo</a>
+    <div class="nav-section">Pilares</div>
+    <a class="nav-item" href="#p1"><div class="nav-dot"></div>P1 · Paradoxo Conservador</a>
+    <a class="nav-item" href="#p2"><div class="nav-dot"></div>P2 · Engenharia R$ 1MM</a>
+    <a class="nav-item" href="#p3"><div class="nav-dot"></div>P3 · Roadmap IF</a>
+    <a class="nav-item" href="#p4"><div class="nav-dot"></div>P4 · Tributação & Blindagem</a>
+    <a class="nav-item" href="#p5"><div class="nav-dot"></div>P5 · Pontos Cegos</a>
+    <div class="nav-section">Ação</div>
+    <a class="nav-item" href="#action"><div class="nav-dot"></div>Action Plan</a>
+  </div>
+  <div class="sidebar-footer">
+    ⚠ Documento Confidencial<br>Uso exclusivo do cliente<br>Revisão anual recomendada
+  </div>
+</nav>
+
+<!-- ══════════════ MAIN ══════════════ -->
+<main id="main">
+
+<!-- ── COVER ── -->
+<section id="cover" class="section" style="padding:80px 80px 60px; min-height:100vh; display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid var(--border); background: radial-gradient(ellipse at 15% 60%, rgba(201,168,76,0.05) 0%, transparent 55%), radial-gradient(ellipse at 85% 20%, rgba(27,168,181,0.04) 0%, transparent 50%), var(--bg);">
+  <div class="cover-eyebrow">Multi-Family Office · Wealth Management</div>
+  <h1 class="cover-h1">Master Plan<br><span>Financeiro</span> 360°</h1>
+  <p class="cover-sub">Planejamento Patrimonial Estratégico · 2024 – 2060</p>
+
+  <div class="cover-grid fade-in">
+    <div class="cover-cell"><div class="lbl">Perfil</div><div class="val">CTO / Sócio · 32 anos</div></div>
+    <div class="cover-cell"><div class="lbl">Renda Líquida</div><div class="val">R$ 25.000/mês</div></div>
+    <div class="cover-cell"><div class="lbl">Patrimônio Inv.</div><div class="val">R$ 224k + R$ 150k</div></div>
+    <div class="cover-cell"><div class="lbl">Aporte Mensal</div><div class="val">R$ 9.117/mês</div></div>
+    <div class="cover-cell"><div class="lbl">Meta Médio Prazo</div><div class="val">R$ 1MM real · 2031</div></div>
+    <div class="cover-cell"><div class="lbl">Meta IF</div><div class="val">R$ 15k/mês · ~2043</div></div>
+  </div>
+
+  <div class="confidential-badge">Documento Confidencial — Uso Exclusivo do Cliente</div>
+
+  <div style="margin-top:48px; display:grid; grid-template-columns:repeat(5,1fr); gap:16px; max-width:700px;" class="fade-in">
+    <div style="font-size:11px;color:var(--text-3);padding:12px 0; border-top:1px solid var(--border);">
+      <div style="color:var(--gold);font-weight:600;margin-bottom:4px;">PILAR 1</div>Paradoxo Conservador
+    </div>
+    <div style="font-size:11px;color:var(--text-3);padding:12px 0; border-top:1px solid var(--border);">
+      <div style="color:var(--gold);font-weight:600;margin-bottom:4px;">PILAR 2</div>Engenharia R$ 1MM
+    </div>
+    <div style="font-size:11px;color:var(--text-3);padding:12px 0; border-top:1px solid var(--border);">
+      <div style="color:var(--gold);font-weight:600;margin-bottom:4px;">PILAR 3</div>Roadmap IF
+    </div>
+    <div style="font-size:11px;color:var(--text-3);padding:12px 0; border-top:1px solid var(--border);">
+      <div style="color:var(--gold);font-weight:600;margin-bottom:4px;">PILAR 4</div>Tributação & Blindagem
+    </div>
+    <div style="font-size:11px;color:var(--text-3);padding:12px 0; border-top:1px solid var(--border);">
+      <div style="color:var(--gold);font-weight:600;margin-bottom:4px;">PILAR 5</div>Pontos Cegos IF
+    </div>
+  </div>
+
+  <div class="alert warning fade-in" style="margin-top:32px; max-width:700px;">
+    <span class="alert-icon">⚠️</span>
+    <span><b>Diagnóstico inicial:</b> Sua carteira atual é classificada como <b>HIGH YIELD disfarçada de conservadora</b>. Crédito Privado com prazo médio 20+ anos representa risco de marcação a mercado e concentração de crédito que contradiz o perfil declarado.</span>
+  </div>
+</section>
+
+<!-- ══ PILAR 1 ══ -->
+<section id="p1" class="section">
+  <div class="section-header fade-in">
+    <div class="pillar-tag">Pilar 1</div>
+    <h1 class="section-title">O Paradoxo Conservador</h1>
+    <p class="section-subtitle">Diagnóstico de Risco da Carteira Atual</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <h2 class="sub fade-in">1.1 Radiografia da Carteira Atual</h2>
+  <p class="body fade-in">A carteira foi categorizada em três blocos funcionais. Abaixo, o inventário completo com avaliação de risco individual:</p>
+
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr>
+        <th>Classe</th><th>Ativo</th><th>Montante</th><th>Taxa</th><th>Vencimento</th><th class="c">Risco</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="b">Liquidez</td><td>Fundos DI (XP, Occam, SVN)</td><td class="mono">R$ 41.000</td><td class="mono">CDI ~100%</td><td>D+0 a D+5</td><td class="c g">BAIXO</td></tr>
+        <tr><td class="b">Soberano</td><td>NTN-B 2035 (Tesouro IPCA+)</td><td class="mono">Incluso R$ 192k</td><td class="mono">IPCA + ~5-6%</td><td>2035</td><td class="c gd">MÉDIO</td></tr>
+        <tr><td class="b" style="color:var(--red)">Crédito Privado</td><td>CDB C6 (IPCA+ 8%)</td><td class="mono">Incluso R$ 192k</td><td class="mono">IPCA + 8%</td><td>Longo prazo</td><td class="c rd">ALTO*</td></tr>
+        <tr><td class="b" style="color:var(--red)">CRA Isento</td><td>FS Bio, Minerva, Seara, Jalles</td><td class="mono">Incluso R$ 192k</td><td class="mono">IPCA+8% / Pré 14%</td><td>Até 2055–2065</td><td class="c rd">ALTO*</td></tr>
+        <tr><td class="b">Debêntures</td><td>Igua, Simpar, Aegea</td><td class="mono">Incluso R$ 192k</td><td class="mono">IPCA+ / CDI+</td><td>Médio/Longo</td><td class="c gd">MÉDIO</td></tr>
+        <tr><td class="b" style="color:var(--red)">Cambial</td><td>CRA Seara (Dólar PTAX + 5,3%)</td><td class="mono">Incluso R$ 192k</td><td class="mono">USD PTAX +5,3%</td><td>Longo prazo</td><td class="c rd">MUITO ALTO</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="body" style="font-size:12px;color:var(--text-3);">* Risco de Crédito (Default) e Marcação a Mercado. FGC não cobre CRA, Debêntures.</p>
+
+  <h2 class="sub fade-in">1.2 O Paradoxo: Conservador x High Yield</h2>
+  <p class="body fade-in">Existe uma contradição estrutural crítica entre o perfil declarado (conservador, baixa ansiedade) e a composição real da carteira.</p>
+
+  <h3 class="sub fade-in">Risco 1 — Marcação a Mercado (MTM)</h3>
+  <p class="body fade-in">Ativos de renda fixa com vencimentos muito longos (2035–2065) sofrem variações significativas de preço conforme as taxas de juros oscilam. Mesmo que o investidor não veja essa variação no extrato de crédito privado, ela existe e pode gerar perdas relevantes se houver necessidade de liquidação antecipada.</p>
+
+  <div class="alert danger fade-in">
+    <span class="alert-icon">🔴</span>
+    <span><b>Cenário de Risco MTM:</b> Se a taxa de juros real subir de 6% para 8% a.a., um título IPCA+6% com vencimento em 2055 pode sofrer desvalorização de <b>25–35%</b> no preço de mercado. Em R$ 100.000 investidos, isso representa perda temporária de R$ 25.000–35.000 no extrato.</span>
+  </div>
+
+  <h3 class="sub fade-in">Risco 2 — Risco de Crédito (Default)</h3>
+  <p class="body fade-in">CRAs e Debêntures são ativos de crédito privado emitidos por empresas. Diferente de Tesouro Direto (risco soberano) ou CDBs cobertos pelo FGC, esses papéis não possuem garantia governamental.</p>
+
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>Emissor</th><th>Setor</th><th class="c">Cobertura FGC</th><th class="c">Risco Default</th></tr></thead>
+      <tbody>
+        <tr><td>C6 Bank (CDB)</td><td>Financeiro</td><td class="c g">SIM — até R$ 250k</td><td class="c g">BAIXO</td></tr>
+        <tr><td>Minerva Foods (CRA)</td><td>Frigorífico/Export.</td><td class="c rd">NÃO</td><td class="c gd">MÉDIO</td></tr>
+        <tr><td>Seara (CRA c/ USD)</td><td>Frigorífico/JBS</td><td class="c rd">NÃO</td><td class="c gd">MÉDIO</td></tr>
+        <tr><td>FS Bio (CRA)</td><td>Sucroalcooleiro</td><td class="c rd">NÃO</td><td class="c rd">MÉDIO-ALTO</td></tr>
+        <tr><td>Simpar / Aegea (Deb.)</td><td>Infraestrutura</td><td class="c rd">NÃO</td><td class="c gd">MÉDIO</td></tr>
+        <tr><td>Jalles Machado (CRA)</td><td>Sucroalcooleiro</td><td class="c rd">NÃO</td><td class="c rd">MÉDIO-ALTO</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sub fade-in">1.3 Veredicto: Qual é a Carteira Real?</h2>
+  <div class="two-col fade-in">
+    <div class="col-card green-head">
+      <div class="col-head">Carteira Declarada</div>
+      <div class="col-item">Perfil Conservador de Renda Fixa</div>
+      <div class="col-item">Baixa volatilidade percebida</div>
+      <div class="col-item">Ativos com garantia governamental</div>
+      <div class="col-item">Vencimentos adequados ao horizonte</div>
+    </div>
+    <div class="col-card red-head">
+      <div class="col-head">Carteira Real</div>
+      <div class="col-item" style="color:var(--red);font-weight:600;">High Yield com Crédito Privado de Alto Prazo</div>
+      <div class="col-item">Volatilidade MTM oculta (não exibida na XP/SVN)</div>
+      <div class="col-item">&gt;60% sem cobertura FGC</div>
+      <div class="col-item">Vencimentos até 2065 — iliquidez estrutural</div>
+    </div>
+  </div>
+
+  <h2 class="sub fade-in">1.4 Alocação Recomendada vs. Atual</h2>
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>Classe de Ativo</th><th class="c">Atual</th><th class="c">Ideal Conservador</th><th>Observação</th></tr></thead>
+      <tbody>
+        <tr><td>Liquidez (D+0 a D+5)</td><td class="c">~17%</td><td class="c g">15–20%</td><td class="g">OK — manter faixa atual</td></tr>
+        <tr><td>Tesouro IPCA+ (soberano)</td><td class="c">~5–10%</td><td class="c tl">30–40%</td><td class="tl">SUBPONDERADO — aumentar gradualmente</td></tr>
+        <tr><td>Crédito Privado Isento (CRA/CRI/Deb.)</td><td class="c">~55%</td><td class="c rd">20–25%</td><td class="rd">SOBREPONDERADO — reduzir prazo médio</td></tr>
+        <tr><td>CDB / LCI / LCA (FGC)</td><td class="c">&lt;5%</td><td class="c tl">15–20%</td><td class="tl">SUBPONDERADO — aumentar via novos aportes</td></tr>
+        <tr><td>Exposição Cambial (USD)</td><td class="c">~3–5%</td><td class="c gd">5–10%</td><td>Pequena hedge cambial pode ser benéfica</td></tr>
+        <tr><td>Ações / FIIs / Internacionais</td><td class="c">0%</td><td class="c gd">0–10%</td><td>Opcional — médio prazo para diversificação</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ PILAR 2 ══ -->
+<section id="p2" class="section">
+  <div class="section-header fade-in">
+    <div class="pillar-tag">Pilar 2</div>
+    <h1 class="section-title">Engenharia do R$ 1 Milhão</h1>
+    <p class="section-subtitle">Projeção Matemática 2024 – 2035</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <h2 class="sub fade-in">2.1 Premissas do Modelo</h2>
+  <div class="kpi-grid fade-in">
+    <div class="kpi-card"><div class="kpi-label">Patrimônio Inicial</div><div class="kpi-val">R$ 224k</div><div class="kpi-desc">Jan/2026 — saldo real</div></div>
+    <div class="kpi-card"><div class="kpi-label">Aporte Mensal</div><div class="kpi-val">R$ 9.117</div><div class="kpi-desc">Cresce por IPCA 4,5%/ano</div></div>
+    <div class="kpi-card"><div class="kpi-label">Retorno Nominal</div><div class="kpi-val">10,77%</div><div class="kpi-desc">IPCA 4,5% + Juro Real 6%</div></div>
+    <div class="kpi-card"><div class="kpi-label">Meta Real</div><div class="kpi-val">R$ 1MM</div><div class="kpi-desc">Corrigido pelo IPCA</div></div>
+  </div>
+
+  <h2 class="sub fade-in">2.2 Projeção Anual de Acumulação</h2>
+  <p class="body fade-in">Modelo com aportes mensais e capitalização mensal. Anos 2024–2025 estimados por engenharia reversa, ancorados no saldo real de R$ 224k.</p>
+
+  <div class="tbl-wrap fade-in">
+    <table id="projection-table">
+      <thead><tr>
+        <th>Ano</th><th class="c">Idade</th><th class="r">Saldo Inicial</th><th class="r">Aporte Anual</th>
+        <th class="r">PMT/Mês</th><th class="r">Rendimento</th><th class="r">Saldo Final</th><th>% Meta</th>
+      </tr></thead>
+      <tbody>
+        <tr class="hist"><td>2024</td><td class="c">30</td><td class="r mono">R$ 0</td><td class="r mono">R$ 100.000</td><td class="r mono">R$ 8.333</td><td class="r mono">R$ 4.845</td><td class="r mono b">R$ 104.845</td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" data-w="10.2"></div></div><div class="pbar-pct">10,2%</div></div></td></tr>
+        <tr class="hist"><td>2025 ✦</td><td class="c">31</td><td class="r mono">R$ 104.845</td><td class="r mono">R$ 105.500</td><td class="r mono">R$ 8.792</td><td class="r mono">R$ 13.655</td><td class="r mono b">R$ 224.000</td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" data-w="21.1"></div></div><div class="pbar-pct">21,1%</div></div></td></tr>
+        <tr><td>2026</td><td class="c">32</td><td class="r mono">R$ 224.000</td><td class="r mono">R$ 109.400</td><td class="r mono">R$ 9.117</td><td class="r mono">R$ 29.425</td><td class="r mono b">R$ 362.825</td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" data-w="33.2"></div></div><div class="pbar-pct">33,2%</div></div></td></tr>
+        <tr><td>2027</td><td class="c">33</td><td class="r mono">R$ 362.825</td><td class="r mono">R$ 114.323</td><td class="r mono">R$ 9.527</td><td class="r mono">R$ 44.615</td><td class="r mono b">R$ 521.764</td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" data-w="45.7"></div></div><div class="pbar-pct">45,7%</div></div></td></tr>
+        <tr><td>2028</td><td class="c">34</td><td class="r mono">R$ 521.764</td><td class="r mono">R$ 119.468</td><td class="r mono">R$ 9.956</td><td class="r mono">R$ 61.982</td><td class="r mono b">R$ 703.214</td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" data-w="59.0"></div></div><div class="pbar-pct">59,0%</div></div></td></tr>
+        <tr><td>2029</td><td class="c">35</td><td class="r mono">R$ 703.214</td><td class="r mono">R$ 124.844</td><td class="r mono">R$ 10.404</td><td class="r mono">R$ 81.785</td><td class="r mono b">R$ 909.843</td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" data-w="73.0"></div></div><div class="pbar-pct">73,0%</div></div></td></tr>
+        <tr><td>2030</td><td class="c">36</td><td class="r mono">R$ 909.843</td><td class="r mono">R$ 130.462</td><td class="r mono">R$ 10.872</td><td class="r mono">R$ 104.311</td><td class="r mono b">R$ 1.144.616</td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" data-w="87.9"></div></div><div class="pbar-pct">87,9%</div></div></td></tr>
+        <tr class="hit"><td><b>2031 ✅</b></td><td class="c"><b>37</b></td><td class="r mono">R$ 1.144.616</td><td class="r mono">R$ 136.333</td><td class="r mono">R$ 11.361</td><td class="r mono">R$ 129.881</td><td class="r mono b g">R$ 1.410.830</td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill hit" data-w="100"></div></div><div class="pbar-pct hit">103,7%</div></div></td></tr>
+        <tr><td>2032</td><td class="c">38</td><td class="r mono">R$ 1.410.830</td><td class="r mono">R$ 142.468</td><td class="r mono">R$ 11.872</td><td class="r mono">R$ 158.849</td><td class="r mono b">R$ 1.712.147</td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill hit" data-w="100"></div></div><div class="pbar-pct hit">120,4%</div></div></td></tr>
+        <tr><td>2033</td><td class="c">39</td><td class="r mono">R$ 1.712.147</td><td class="r mono">R$ 148.879</td><td class="r mono">R$ 12.407</td><td class="r mono">R$ 191.612</td><td class="r mono b">R$ 2.052.637</td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill hit" data-w="100"></div></div><div class="pbar-pct hit">138,1%</div></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="body" style="font-size:12px;color:var(--text-3);">✦ Anos 2024–2025: histórico estimado por engenharia reversa, ancorado no saldo real de R$ 224k (jan/2026). Modelo: aportes mensais (PMT = aporte anual ÷ 12), capitalização mensal à taxa nominal de 10,77% a.a.</p>
+
+  <div class="alert success fade-in">
+    <span class="alert-icon">✅</span>
+    <span><b>Conclusão crítica:</b> Com aportes mensais crescendo por IPCA e base de R$ 224k, você atinge R$ 1MM real em <b>2031 (37 anos)</b> — 2 anos antes da meta original. Em 2033, o patrimônio nominal projetado é de <b>R$ 1,98MM</b>.</span>
+  </div>
+
+  <h2 class="sub fade-in">2.3 Cenários de Sensibilidade</h2>
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>Cenário de Aporte</th><th class="c">Taxa Real 4%</th><th class="c">Taxa Real 6%</th><th class="c">Taxa Real 8%</th><th class="c">Taxa Real 10%</th></tr></thead>
+      <tbody>
+        <tr><td>R$ 7k/mês (–23%)</td><td class="c mono">~7,5 anos</td><td class="c mono">~6,2 anos</td><td class="c mono">~5,5 anos</td><td class="c mono">~5,0 anos</td></tr>
+        <tr><td class="b gd">R$ 9,1k/mês (atual)</td><td class="c mono">~6,2 anos</td><td class="c mono gd b">~5,3 anos</td><td class="c mono">~4,7 anos</td><td class="c mono">~4,2 anos</td></tr>
+        <tr><td>R$ 12k/mês (+32%)</td><td class="c mono">~5,2 anos</td><td class="c mono">~4,4 anos</td><td class="c mono">~4,0 anos</td><td class="c mono">~3,6 anos</td></tr>
+        <tr><td>R$ 15k/mês (+65%)</td><td class="c mono">~4,3 anos</td><td class="c mono">~3,8 anos</td><td class="c mono">~3,4 anos</td><td class="c mono">~3,1 anos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert info fade-in">
+    <span class="alert-icon">ℹ️</span>
+    <span><b>Alavanca principal:</b> Cada R$ 1.000 adicional/mês de aporte reduz o tempo para a meta em aproximadamente 4–6 meses. Uma negociação salarial ou monetização de equity pode ser o maior acelerador patrimonial da sua vida.</span>
+  </div>
+</section>
+
+<!-- ══ PILAR 3 ══ -->
+<section id="p3" class="section">
+  <div class="section-header fade-in">
+    <div class="pillar-tag">Pilar 3</div>
+    <h1 class="section-title">Roadmap para Aposentadoria</h1>
+    <p class="section-subtitle">Montante de Liberdade e Renda Passiva Perpétua</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <h2 class="sub fade-in">3.1 Cálculo do Montante de Liberdade</h2>
+
+  <div class="kpi-grid fade-in">
+    <div class="kpi-card"><div class="kpi-label">Renda Alvo (hoje)</div><div class="kpi-val">R$ 15k</div><div class="kpi-desc">Líquido/mês em valores atuais</div></div>
+    <div class="kpi-card"><div class="kpi-label">Montante Necessário</div><div class="kpi-val">R$ 4,55MM</div><div class="kpi-desc">Base — taxa retirada 4,5%</div></div>
+    <div class="kpi-card"><div class="kpi-label">Com Margem 20%</div><div class="kpi-val">R$ 5,46MM</div><div class="kpi-desc">Recomendado — inclui imprevistos</div></div>
+    <div class="kpi-card"><div class="kpi-label">Janela IF</div><div class="kpi-val">~2043</div><div class="kpi-desc">49 anos — IF mínima possível</div></div>
+  </div>
+
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>Parâmetro</th><th class="r">Cenário Mínimo (R$ 12k)</th><th class="r">Cenário Alvo (R$ 15k)</th><th>Metodologia</th></tr></thead>
+      <tbody>
+        <tr><td>Renda líquida mensal desejada</td><td class="r mono">R$ 12.000/mês</td><td class="r mono b">R$ 15.000/mês</td><td>Valor de hoje (corrigir por IPCA)</td></tr>
+        <tr><td>Renda anual necessária</td><td class="r mono">R$ 144.000</td><td class="r mono b">R$ 180.000</td><td>12 × renda mensal</td></tr>
+        <tr><td>Alíquota efetiva de IR (carteira mista)</td><td class="r mono">~12%</td><td class="r mono">~12%</td><td>~50% isento + 50% a 15%</td></tr>
+        <tr><td>Renda bruta necessária (÷ 0,88)</td><td class="r mono">R$ 163.636/ano</td><td class="r mono b">R$ 204.545/ano</td><td>Para gerar renda líquida alvo</td></tr>
+        <tr><td>Taxa real de retorno sustentável</td><td class="r mono">4,5% a.a.</td><td class="r mono">4,5% a.a.</td><td>Conservador pós-aposentadoria</td></tr>
+        <tr><td class="b gd">Montante de Liberdade (÷ 4,5%)</td><td class="r mono gd b">R$ 3,64MM</td><td class="r mono g b">R$ 4,55MM</td><td class="b">Meta de acumulação total</td></tr>
+        <tr><td class="b">Com margem de segurança 20%</td><td class="r mono gd b">R$ 4,36MM</td><td class="r mono g b">R$ 5,46MM</td><td class="b tl">RECOMENDADO — inclui imprevistos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sub fade-in">3.2 Evolução Patrimonial por Décadas</h2>
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>Ano</th><th class="c">Idade</th><th class="r">Patrimônio</th><th class="r">Aporte Anual</th><th>Fase</th><th class="r">Renda Passiva</th><th>Marco</th></tr></thead>
+      <tbody>
+        <tr><td>2026</td><td class="c">32</td><td class="r mono b">R$ 346k</td><td class="r mono">R$ 109k</td><td>Acumulação</td><td class="r mono">R$ 1.7k/mês</td><td style="color:var(--text-3);font-size:12px;">Início do plano</td></tr>
+        <tr><td>2028</td><td class="c">34</td><td class="r mono b">R$ 615k</td><td class="r mono">R$ 109k</td><td>Acumulação</td><td class="r mono">R$ 3.1k/mês</td><td style="color:var(--text-3);font-size:12px;">60% da meta R$ 1MM</td></tr>
+        <tr class="hit"><td><b>2031</b></td><td class="c"><b>37</b></td><td class="r mono b g">R$ 1,08MM</td><td class="r mono">R$ 109k</td><td>Acumulação</td><td class="r mono">R$ 5.4k/mês</td><td class="g b" style="font-size:12px;">META R$ 1MM REAL ✅</td></tr>
+        <tr><td>2033</td><td class="c">39</td><td class="r mono b">R$ 1,44MM</td><td class="r mono">R$ 109k</td><td>Aceleração</td><td class="r mono">R$ 7.2k/mês</td><td style="color:var(--text-3);font-size:12px;">Rever aporte</td></tr>
+        <tr><td>2038</td><td class="c">44</td><td class="r mono b">R$ 2,7MM</td><td class="r mono">R$ 130k*</td><td>Aceleração</td><td class="r mono">R$ 13.5k/mês</td><td style="color:var(--gold);font-size:12px;">Renda quase suficiente</td></tr>
+        <tr style="background:rgba(201,168,76,0.06)"><td class="gd b">2043</td><td class="c gd b">49</td><td class="r mono gd b">R$ 4,1MM</td><td class="r mono">R$ 150k*</td><td class="gd">Transição</td><td class="r mono gd">R$ 20.5k/mês</td><td class="gd b" style="font-size:12px;">INDEPENDÊNCIA POSSÍVEL 🏖</td></tr>
+        <tr><td>2048</td><td class="c">54</td><td class="r mono b">R$ 5,9MM</td><td class="r mono" style="color:var(--text-3)">Opcional</td><td>Renda Passiva</td><td class="r mono">R$ 29.5k/mês</td><td style="color:var(--teal);font-size:12px;">IF Confortável</td></tr>
+        <tr><td>2053</td><td class="c">59</td><td class="r mono b">R$ 8,4MM</td><td class="r mono" style="color:var(--text-3)">Zero</td><td>Renda Passiva</td><td class="r mono">R$ 42k/mês</td><td style="color:var(--text-3);font-size:12px;">Legado / Sucessão</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert success fade-in">
+    <span class="alert-icon">✅</span>
+    <span><b>Janela de Independência Financeira:</b> Com o ritmo atual e base jan/2026, a IF mínima (R$ 12k) é alcançável aos <b>49–51 anos</b>. A IF confortável (R$ 15k+) aos <b>53–55 anos</b>. Antecipação de 3–5 anos possível com aumento de aportes e/ou monetização de equity.</span>
+  </div>
+
+  <h2 class="sub fade-in">3.3 Estratégia de Descumulação (Fase Renda)</h2>
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>Classe</th><th class="c">% Alocação</th><th>Objetivo</th><th>Veículos Sugeridos</th></tr></thead>
+      <tbody>
+        <tr><td class="b">Tesouro IPCA+ (soberano)</td><td class="c">35–40%</td><td>Core inflacionado</td><td class="mono" style="font-size:12px;">NTN-B vários vencimentos</td></tr>
+        <tr><td class="b">LCI / LCA / CRI / CRA</td><td class="c">20–25%</td><td>Isenção fiscal</td><td class="mono" style="font-size:12px;">Emissores AAA, prazo médio</td></tr>
+        <tr><td class="b">FIIs de Tijolo</td><td class="c">10–15%</td><td>Renda mensal isenta</td><td class="mono" style="font-size:12px;">KNRI, HGLG, XPML</td></tr>
+        <tr><td class="b">Renda Fixa Internacional</td><td class="c">10–15%</td><td>Hedge cambial</td><td class="mono" style="font-size:12px;">ETFs de bonds USD</td></tr>
+        <tr><td class="b">CDB FGC (reserva)</td><td class="c">10%</td><td>Segurança total</td><td class="mono" style="font-size:12px;">Bancos médios + FGC</td></tr>
+        <tr><td class="b">Caixa / Liquidez</td><td class="c">5–10%</td><td>Flexibilidade</td><td class="mono" style="font-size:12px;">Fundo DI / Selic</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ PILAR 4 ══ -->
+<section id="p4" class="section">
+  <div class="section-header fade-in">
+    <div class="pillar-tag">Pilar 4</div>
+    <h1 class="section-title">Eficiência Tributária & Blindagem</h1>
+    <p class="section-subtitle">Proteção Patrimonial para CTO & Sócio</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <h2 class="sub fade-in">4.1 Mapa de Isenção Tributária</h2>
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>Ativo</th><th class="c">Isenção IR</th><th>Taxa Típica</th><th>Equiv. CDB (IR 15%)</th><th>Equiv. CDB (IR 22,5%)</th><th class="c">FGC?</th></tr></thead>
+      <tbody>
+        <tr><td>CDB / Tesouro Selic</td><td class="c rd">NÃO</td><td class="mono" style="font-size:12px;">CDI / IPCA+</td><td class="mono" style="font-size:12px;">Base</td><td class="mono" style="font-size:12px;">Base</td><td class="c g">SIM</td></tr>
+        <tr><td class="b">LCI / LCA</td><td class="c g">SIM (PF)</td><td class="mono" style="font-size:12px;">CDI 88–95%</td><td class="mono g" style="font-size:12px;">CDI 103%</td><td class="mono g" style="font-size:12px;">CDI 113%</td><td class="c g">SIM</td></tr>
+        <tr><td class="b">CRI / CRA</td><td class="c g">SIM (PF)</td><td class="mono" style="font-size:12px;">IPCA + 7–9%</td><td class="mono g" style="font-size:12px;">IPCA + 8,2%</td><td class="mono g" style="font-size:12px;">IPCA + 9,5%</td><td class="c rd">NÃO</td></tr>
+        <tr><td class="b">Debêntures Incentivadas</td><td class="c g">SIM (PF)</td><td class="mono" style="font-size:12px;">IPCA + 6–8%</td><td class="mono g" style="font-size:12px;">IPCA + 7%</td><td class="mono g" style="font-size:12px;">IPCA + 8,2%</td><td class="c rd">NÃO</td></tr>
+        <tr><td class="b">FII (proventos)</td><td class="c g">SIM (PF)</td><td class="mono" style="font-size:12px;">7–9% a.a.</td><td style="font-size:12px;">Yield bruto direto</td><td style="font-size:12px;">Yield bruto direto</td><td class="c rd">NÃO</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sub fade-in">4.2 Estratégia Tributária — CTO & Sócio</h2>
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>Estratégia</th><th>Mecanismo</th><th>Benefício Fiscal</th><th>Quando Usar</th></tr></thead>
+      <tbody>
+        <tr><td class="b">Holding PF → PJ</td><td style="font-size:13px;">Integralizar cotas em holding patrimonial</td><td style="font-size:13px;color:var(--green);">Postergação de IR; planejamento sucessório</td><td style="font-size:13px;">Antes de qualquer M&A ou rodada</td></tr>
+        <tr><td class="b">Venda de Cotas vs. Ativos</td><td style="font-size:13px;">Vender cotas da empresa (não ativos)</td><td style="font-size:13px;color:var(--green);">IR máx. 22,5% vs. até 34% na PJ</td><td style="font-size:13px;">Estruturação pré-deal</td></tr>
+        <tr><td class="b">Isenção R$ 20k/mês</td><td style="font-size:13px;">Vendas ações/FIIs ≤ R$ 20k/mês</td><td style="font-size:13px;color:var(--green);">Zero IR em resgates programados</td><td style="font-size:13px;">Resgates mensais programados</td></tr>
+        <tr><td class="b">Stock Options</td><td style="font-size:13px;">Tributação na alienação (não na outorga)</td><td style="font-size:13px;color:var(--green);">Diferimento do fato gerador</td><td style="font-size:13px;">Negociar em vesting/exercise</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sub fade-in">4.3 Auditoria de Proteção — Lacunas Críticas</h2>
+  <div class="alert danger fade-in">
+    <span class="alert-icon">🔴</span>
+    <span><b>Alerta crítico:</b> Identificamos 3 lacunas de proteção que representam riscos EXISTENCIAIS ao patrimônio de um CTO casado e sócio. Devem ser resolvidas nos próximos 30–90 dias.</span>
+  </div>
+
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>#</th><th>Lacuna</th><th>Risco se Não Mitigado</th><th>Solução Recomendada</th><th class="c">Urgência</th></tr></thead>
+      <tbody>
+        <tr><td class="b rd">1</td><td class="b rd">Ausência de Seguro de Vida</td><td style="font-size:13px;">Cônjuge perde renda principal. Patrimônio insuficiente para substituir renda.</td><td style="font-size:13px;">Seguro Vida mínimo R$ 1,5MM. Cotações: Zurich, Porto Seguro, Icatu.</td><td class="c rd b">30 dias</td></tr>
+        <tr><td class="b gd">2</td><td class="b gd">Ausência de Seguro DIT (Invalidez)</td><td style="font-size:13px;">Acidente/doença elimina 100% da renda de CTO. INSS não cobre adequadamente.</td><td style="font-size:13px;">DIT cobrindo R$ 20–25k/mês (renda bruta) até 65 anos.</td><td class="c gd b">60 dias</td></tr>
+        <tr><td class="b tl">3</td><td class="b tl">Ausência de Pacto Antenupcial</td><td style="font-size:13px;">Comunhão parcial: participação societária e investimentos entram na meação em divórcio.</td><td style="font-size:13px;">Avaliar Separação Total via pacto antenupcial ou holding familiar.</td><td class="c tl b">90 dias</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sub fade-in">4.4 O Imóvel Herdado — Venda vs. Locação</h2>
+  <div class="two-col fade-in">
+    <div class="col-card green-head">
+      <div class="col-head">Vender a Parte (R$ 150k)</div>
+      <div class="col-item">R$ 150k a IPCA+6% = ~R$ 9k/ano de renda passiva</div>
+      <div class="col-item" style="color:var(--green)">Custo de oportunidade positivo vs. imóvel</div>
+      <div class="col-item">GCAP 15% — possivelmente isento (único imóvel)</div>
+      <div class="col-item" style="color:var(--red)">Requer diálogo com pai e co-herdeiros</div>
+    </div>
+    <div class="col-card">
+      <div class="col-head" style="color:var(--text-2)">Manter e Locar (Futuro)</div>
+      <div class="col-item">~0,3–0,5% do valor/mês = R$ 900–1.500 bruto</div>
+      <div class="col-item" style="color:var(--red)">Retorno real de imóvel &lt; renda fixa historicamente</div>
+      <div class="col-item" style="color:var(--red)">Aluguel tributado tabela progressiva (até 27,5%)</div>
+      <div class="col-item">Neutro no curto prazo enquanto pai ocupa</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PILAR 5 ══ -->
+<section id="p5" class="section">
+  <div class="section-header fade-in">
+    <div class="pillar-tag">Pilar 5 — Lâmina</div>
+    <h1 class="section-title">Pontos Cegos da IF</h1>
+    <p class="section-subtitle">A Renda Passiva é Realmente Líquida? O Que o Plano Não Mostra</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="alert danger fade-in">
+    <span class="alert-icon">🔴</span>
+    <span><b>Alerta estratégico:</b> O número R$ 15.000/mês do Pilar 3 é uma meta em <b>valores de hoje</b>. Ele ignora três realidades que, somadas, podem exigir um corpus <b>2,3× maior</b> do que o calculado. Esta lâmina desmonta cada ilusão.</span>
+  </div>
+
+  <h2 class="sub fade-in">Ponto Cego 1 — O IR que Corrói os Saques</h2>
+  <p class="body fade-in">Nenhum saque de renda passiva é automaticamente isento. Veja o impacto real sobre a meta de R$ 15.000 líquidos mensais:</p>
+
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>Composição da Carteira na IF</th><th class="c">Alíquota Efetiva</th><th class="r">Saque Bruto Necessário</th><th class="r">Custo IR/Ano</th><th>Veículos Isentos</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--red)">100% tributável (Tesouro/CDB)</td><td class="c rd">15%</td><td class="r mono rd b">R$ 17.647/mês</td><td class="r mono rd">R$ 32.082/ano</td><td style="color:var(--red)">Nenhum</td></tr>
+        <tr><td>50% isento + 50% tributável</td><td class="c gd">~7,5%</td><td class="r mono gd b">R$ 16.216/mês</td><td class="r mono">R$ 14.597/ano</td><td>LCI/LCA ou FII parcial</td></tr>
+        <tr style="background:rgba(39,168,105,0.06)"><td class="g b">70% isento + 30% tributável ← ALVO</td><td class="c g">~4,5%</td><td class="r mono g b">R$ 15.707/mês</td><td class="r mono g">R$ 8.484/ano</td><td class="g">LCI+LCA+FII+CRI+CRA</td></tr>
+        <tr><td>100% isento (teórico)</td><td class="c g">0%</td><td class="r mono g b">R$ 15.000/mês</td><td class="r mono g">R$ 0/ano</td><td style="color:var(--text-3)">Somente isentos (difícil 100%)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert success fade-in">
+    <span class="alert-icon">✅</span>
+    <span><b>Conclusão IR:</b> Com 70% isentos, o custo tributário cai para ~R$ 8,5k/ano vs R$ 32k/ano com 100% tributável. Diferença de R$ 23,5k/ano composta por 20 anos = <b>~R$ 700k de patrimônio adicional</b>. Esta é uma das maiores alavancas do plano.</span>
+  </div>
+
+  <h2 class="sub fade-in">Ponto Cego 2 — A Ilusão Monetária do Corpus</h2>
+  <p class="body fade-in">O Montante de Liberdade de R$ 4,55MM está em valores de hoje. Em 2043, o mundo financeiro será completamente diferente em termos nominais:</p>
+
+  <div class="kpi-grid fade-in">
+    <div class="kpi-card"><div class="kpi-label">R$ 15k hoje equivale a</div><div class="kpi-val" style="color:var(--red);font-size:26px;">R$ 34.618</div><div class="kpi-desc">Nominal em 2043 (IPCA 4,5%/ano, 19 anos)</div></div>
+    <div class="kpi-card"><div class="kpi-label">Corpus R$ 4,55MM hoje equivale a</div><div class="kpi-val" style="color:var(--red);font-size:26px;">R$ 10,5MM</div><div class="kpi-desc">Nominal necessário em 2043</div></div>
+    <div class="kpi-card"><div class="kpi-label">IPCA Acumulado 2024→2043</div><div class="kpi-val" style="color:var(--orange);font-size:26px;">+130%</div><div class="kpi-desc">4,5%/ano por 19 anos</div></div>
+  </div>
+
+  <div class="alert info fade-in">
+    <span class="alert-icon">ℹ️</span>
+    <span><b>Por que não é um problema com carteira bem estruturada:</b> Tesouro IPCA+ e CRAs/CRIs corrigem o principal pela inflação automaticamente. FIIs repassam inflação nos contratos de aluguel. O risco real é ter tudo em CDI nominal — quando a Selic cai, o corpus para de crescer em termos reais.</span>
+  </div>
+
+  <h2 class="sub fade-in">Ponto Cego 3 — Risco de Sequência de Retornos</h2>
+  <p class="body fade-in">O risco mais subestimado da fase de renda passiva. Dois investidores com o mesmo retorno médio em 30 anos, mas com anos ruins em datas diferentes, chegam a patrimônios finais completamente distintos.</p>
+
+  <div class="two-col fade-in">
+    <div class="col-card red-head">
+      <div class="col-head">Aposentado A — Anos ruins no INÍCIO</div>
+      <div class="col-item">Ano 1: –15% (choque), saca R$ 200k de R$ 4MM → corpus cai para R$ 3,2MM</div>
+      <div class="col-item">Anos 2–5: recuperação, mas corpus já menor → rendimento absoluto menor</div>
+      <div class="col-item" style="color:var(--red);font-weight:600;">Resultado 30 anos: corpus esgotado antes do prazo</div>
+    </div>
+    <div class="col-card green-head">
+      <div class="col-head">Aposentado B — Anos ruins no FINAL</div>
+      <div class="col-item">Ano 1: +18%, corpus vai a R$ 4,52MM antes do saque → almofada maior</div>
+      <div class="col-item">Anos 2–5: bons retornos, corpus cresce — quando vêm anos ruins, está muito maior</div>
+      <div class="col-item" style="color:var(--green);font-weight:600;">Resultado 30 anos: corpus ainda robusto ou maior</div>
+    </div>
+  </div>
+
+  <p class="body fade-in" style="margin-top:16px;"><b style="color:var(--text)">Mitigações práticas:</b></p>
+  <ul class="bullet-list fade-in">
+    <li>Reserva de liquidez de 12–18 meses em Tesouro Selic D+1 — nos anos ruins, saca da reserva sem vender ativos desvalorizados</li>
+    <li>Regra do "Bucketing": Balde 1 = 2 anos em DI; Balde 2 = 5 anos em IPCA médio; Balde 3 = corpus longo IPCA+</li>
+    <li>Não ter 100% em renda variável ou ativos com MTM — renda fixa indexada protege contra este risco</li>
+  </ul>
+
+  <h2 class="sub fade-in">Ponto Cego 4 — A Cadência Ideal de Saques</h2>
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>Cadência</th><th class="r">Reserva em DI</th><th class="c">Eventos IR/Ano</th><th class="r">Rend. da Reserva</th><th>Vantagem Principal</th><th class="c">Recomendação</th></tr></thead>
+      <tbody>
+        <tr><td>Mensal</td><td class="r mono">R$ 15k</td><td class="c">12</td><td class="r mono">~R$ 134</td><td style="font-size:13px;">Conforto psicológico — idêntico ao salário</td><td class="c rd b">NÃO</td></tr>
+        <tr style="background:rgba(39,168,105,0.07)"><td class="g b">Trimestral ✅</td><td class="r mono g">R$ 45k</td><td class="c g b">4</td><td class="r mono g">~R$ 1.166</td><td style="font-size:13px;color:var(--green)">Melhor equilíbrio: poucos eventos fiscais + reserva rende CDI</td><td class="c g b">IDEAL</td></tr>
+        <tr><td>Semestral</td><td class="r mono">R$ 90k</td><td class="c">2</td><td class="r mono">~R$ 4.723</td><td style="font-size:13px;">Menor burocracia, mas imobiliza capital alto</td><td class="c gd b">ACEITÁVEL</td></tr>
+        <tr><td>Anual</td><td class="r mono">R$ 180k</td><td class="c">1</td><td class="r mono">~R$ 19.386</td><td style="font-size:13px;">R$ 180k em DI sub-rende vs. corpus principal</td><td class="c rd b">NÃO</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sub fade-in">A "Máquina de Salário" — Os 3 Baldes</h2>
+  <p class="body fade-in">A melhor arquitetura combina ritmo de saque com eficiência fiscal e proteção contra os riscos acima:</p>
+
+  <div class="buckets fade-in">
+    <div class="bucket b1">
+      <div class="bucket-num">1</div>
+      <div class="bucket-tag">Balde 1 · Liquidez</div>
+      <div class="bucket-name">Reserva de Liquidez<br>(Salário)</div>
+      <div class="bucket-detail"><span>Veículo:</span><span>Tesouro Selic (D+1)</span></div>
+      <div class="bucket-detail"><span>Tamanho:</span><span>3–5% do corpus (~3 meses)</span></div>
+      <div class="bucket-detail"><span>IR:</span><span>15% só sobre rendimentos</span></div>
+      <div class="bucket-detail"><span>Função:</span><span>Pagar contas mensais</span></div>
+    </div>
+    <div class="bucket b2">
+      <div class="bucket-num">2</div>
+      <div class="bucket-tag">Balde 2 · Renda Isenta</div>
+      <div class="bucket-name">Dividendo Mensal<br>(Motor Isento)</div>
+      <div class="bucket-detail"><span>Veículo:</span><span>FIIs + LCI/LCA + CRI/CRA</span></div>
+      <div class="bucket-detail"><span>Tamanho:</span><span>30–40% do corpus</span></div>
+      <div class="bucket-detail"><span>IR:</span><span style="color:var(--green);font-weight:600;">ZERO — maior eficiência</span></div>
+      <div class="bucket-detail"><span>Função:</span><span>Abastecer Balde 1 mensalmente</span></div>
+    </div>
+    <div class="bucket b3">
+      <div class="bucket-num">3</div>
+      <div class="bucket-tag">Balde 3 · Corpus</div>
+      <div class="bucket-name">Motor do<br>Crescimento</div>
+      <div class="bucket-detail"><span>Veículo:</span><span>Tesouro IPCA+ 2045/2055</span></div>
+      <div class="bucket-detail"><span>Tamanho:</span><span>55–65% do corpus</span></div>
+      <div class="bucket-detail"><span>IR:</span><span>15% venda trimestral parcial</span></div>
+      <div class="bucket-detail"><span>Função:</span><span>Crescer acima da inflação</span></div>
+    </div>
+  </div>
+
+  <div class="alert info fade-in">
+    <span class="alert-icon">ℹ️</span>
+    <span><b>Fluxo operacional ideal:</b> (1) FIIs e LCI/LCA pagam mensalmente → Balde 1 se abastece sozinho. (2) A cada trimestre: verificar se o Balde 1 tem 3 meses cheios; se não, resgatar do Balde 3. (3) Uma vez por ano: rebalancear os três baldes e revisar as proporções.</span>
+  </div>
+
+  <h2 class="sub fade-in">Resumo dos Pontos Cegos</h2>
+  <div class="tbl-wrap fade-in">
+    <table>
+      <thead><tr><th>Ponto Cego</th><th>Se Ignorado</th><th>Se Mitigado</th><th class="c">Prioridade</th></tr></thead>
+      <tbody>
+        <tr><td class="b">IR sobre saques</td><td style="font-size:13px;color:var(--red);">Precisa R$ 17.647 bruto p/ ter R$ 15k líquido</td><td style="font-size:13px;color:var(--green);">Com 70% isentos: apenas R$ 15.707 bruto</td><td class="c gd b">ALTA</td></tr>
+        <tr><td class="b">Ilusão monetária</td><td style="font-size:13px;color:var(--red);">R$ 4,55MM hoje vira R$ 10,5MM nominal em 2043</td><td style="font-size:13px;color:var(--green);">IPCA+: corpus cresce nominalmente com a inflação</td><td class="c rd b">CRÍTICA</td></tr>
+        <tr><td class="b">Sequência de retornos</td><td style="font-size:13px;color:var(--red);">Anos ruins no início podem esgotar o corpus</td><td style="font-size:13px;color:var(--green);">Reserva 12–18 meses Selic + estratégia 3 Baldes</td><td class="c gd b">ALTA</td></tr>
+        <tr><td class="b">Cadência de saque</td><td style="font-size:13px;color:var(--red);">Mensal: 12 eventos IR + custo operacional alto</td><td style="font-size:13px;color:var(--green);">Trimestral: 4 eventos, reserva rende CDI</td><td class="c tl b">MÉDIA</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══ ACTION PLAN ══ -->
+<section id="action" class="section">
+  <div class="section-header fade-in">
+    <div class="pillar-tag">Action Plan</div>
+    <h1 class="section-title">Plano de Ação Priorizado</h1>
+    <p class="section-subtitle">O Que Fazer nos Próximos 30, 90 e 365 Dias</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="timeline fade-in">
+    <div class="timeline-phase phase-30">⬤ 30 DIAS — PROTEÇÃO E DIAGNÓSTICO</div>
+    <div class="action-item action-row">
+      <div class="action-num">01</div>
+      <div class="action-text"><b>Contratar Seguro de Vida</b> — mínimo R$ 1,5MM capital segurado, prazo 20 anos ou Vida Inteira. Solicitar 3 cotações: Zurich, Porto Seguro, Icatu.</div>
+      <span class="impact-badge impact-critico">Crítico</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">02</div>
+      <div class="action-text"><b>Contratar Seguro DIT (Invalidez)</b> — cobertura de R$ 20–25k/mês até 65 anos. Período de carência 60–90 dias.</div>
+      <span class="impact-badge impact-critico">Crítico</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">03</div>
+      <div class="action-text"><b>Extrato de marcação a mercado</b> — solicitar à XP e SVN para entender a volatilidade real dos CRAs e Debêntures de longo prazo.</div>
+      <span class="impact-badge impact-alto">Alto</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">04</div>
+      <div class="action-text"><b>Consulta com advogado de Direito de Família</b> — avaliar pacto antenupcial ou holding familiar.</div>
+      <span class="impact-badge impact-alto">Alto</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">05</div>
+      <div class="action-text"><b>Verificar limite FGC</b> — confirmar se o CDB C6 (IPCA+ 8%) está dentro do limite de R$ 250k por CPF para cobertura total.</div>
+      <span class="impact-badge impact-medio">Médio</span>
+    </div>
+
+    <div class="timeline-phase phase-90" style="margin-top:16px;">⬤ 90 DIAS — REBALANCEAMENTO E ESTRUTURAÇÃO</div>
+    <div class="action-item action-row">
+      <div class="action-num">01</div>
+      <div class="action-text"><b>Iniciar migração gradual</b> — novos aportes direcionados para Tesouro IPCA+ 2035/2040 e LCI/LCA curto prazo. Parar de aumentar posição em CRAs com vencimento &gt; 2045.</div>
+      <span class="impact-badge impact-alto">Alto</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">02</div>
+      <div class="action-text"><b>Avaliar MTM dos CRAs longos</b> — se taxa de mercado subiu vs. taxa de compra, avaliar se compensa esperar o vencimento ou trocar por NTN-B 2035.</div>
+      <span class="impact-badge impact-alto">Alto</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">03</div>
+      <div class="action-text"><b>Definir o imóvel herdado</b> — iniciar conversa com pai e co-herdeiros sobre usufruto formal ou prospecto de venda. Contratar avaliação imobiliária formal.</div>
+      <span class="impact-badge impact-medio">Médio</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">04</div>
+      <div class="action-text"><b>Criar planilha de controle patrimonial mensal</b> — patrimônio total, aportes, rendimentos, desvio vs. meta. Revisão trimestral obrigatória.</div>
+      <span class="impact-badge impact-medio">Médio</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">05</div>
+      <div class="action-text"><b>Avaliar Holding Patrimonial Familiar</b> — com contador especialista em planejamento tributário. Decisão crítica se houver exit no horizonte.</div>
+      <span class="impact-badge impact-alto">Alto</span>
+    </div>
+
+    <div class="timeline-phase phase-365" style="margin-top:16px;">⬤ 365 DIAS — CONSOLIDAÇÃO E CRESCIMENTO</div>
+    <div class="action-item action-row">
+      <div class="action-num">01</div>
+      <div class="action-text"><b>Revisão anual completa do plano</b> — atualizar projeções com saldos reais, ajustar aporte se renda cresceu, revisar vencimento médio da carteira.</div>
+      <span class="impact-badge impact-critico">Crítico</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">02</div>
+      <div class="action-text"><b>Formalizar gestão</b> — se patrimônio ultrapassar R$ 500k: multi-family office ou private banking com acesso a fundos exclusivos.</div>
+      <span class="impact-badge impact-alto">Alto</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">03</div>
+      <div class="action-text"><b>Diversificação internacional (5–10%)</b> — ETFs de renda fixa USD, Tesouro americano ou fundos multimercado com hedge cambial via Interactive Brokers.</div>
+      <span class="impact-badge impact-medio">Médio</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">04</div>
+      <div class="action-text"><b>Negociar equity/stock options</b> — garantir cláusulas de vesting, anti-diluição e tag along. Este ativo pode ser o maior salto patrimonial da carreira.</div>
+      <span class="impact-badge impact-critico">Crítico</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">05</div>
+      <div class="action-text"><b>Avaliar PGBL vs. VGBL</b> — para alta renda com declaração completa, PGBL deduz até 12% da renda bruta no IR e é geralmente superior.</div>
+      <span class="impact-badge impact-medio">Médio</span>
+    </div>
+    <div class="action-item action-row">
+      <div class="action-num">06</div>
+      <div class="action-text"><b>Atualizar testamento e beneficiários</b> — especialmente crítico como sócio de empresa. Definir destino das cotas em caso de morte.</div>
+      <span class="impact-badge impact-alto">Alto</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FINAL NOTE ══ -->
+<section id="final-note">
+  <div class="pillar-tag" style="position:relative">Nota Final do Wealth Manager</div>
+  <div class="final-quote">
+    Você está no percentil 95% dos brasileiros em disciplina de aportes.<br>
+    Os ajustes necessários são cirúrgicos, não uma reforma completa.<br>
+    A <span>independência financeira aos 50 anos</span> é não apenas possível — é provável.
+  </div>
+  <div class="disclaimer">
+    ⚠ Este documento não constitui oferta ou recomendação formal de investimentos. Consulte sempre um profissional certificado (CFP/CFA) para decisões individuais. Elaborado em Jan/2026. Revisão anual recomendada.
+  </div>
+</section>
+
+</main>
+
+<script>
+  // ── Progress bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+        // Trigger pbar fills inside this element
+        el.target.querySelectorAll('.pbar-fill[data-w]').forEach(bar => {
+          const w = Math.min(parseFloat(bar.dataset.w), 100);
+          setTimeout(() => bar.style.width = w + '%', 100);
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Also observe the table itself for pbar triggers
+  document.querySelectorAll('#projection-table tbody tr').forEach(row => {
+    const barObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.pbar-fill[data-w]').forEach(bar => {
+            const w = Math.min(parseFloat(bar.dataset.w), 100);
+            setTimeout(() => bar.style.width = w + '%', 200);
+          });
+          barObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    barObs.observe(row);
+  });
+
+  // ── Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  const navObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navItems.forEach(n => n.classList.remove('active'));
+        const active = document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => navObs.observe(s));
+</script>
+</body>
+</html>
