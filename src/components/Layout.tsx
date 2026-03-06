@@ -64,8 +64,8 @@ const menuItems = [
     icon: Building2,
   },
   {
-    title: "Dívidas",
-    url: "/dividas",
+    title: "Sonhos",
+    url: "/sonhos",
     icon: Scale,
   },
   {

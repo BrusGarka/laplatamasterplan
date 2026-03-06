@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Scale } from "lucide-react";
 import {
@@ -10,18 +11,22 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface Divida {
+interface Sonho {
   nome: string;
   tipo: string;
   valor: number;
   observacao?: string;
 }
 
-const dividas: Divida[] = [
+interface SonhoWithLink extends Sonho {
+  link?: string;
+}
+
+const sonhos: SonhoWithLink[] = [
   { nome: "Casa", tipo: "Financiamento", valor: 0, observacao: "Valor a preencher" },
-  { nome: "Carro", tipo: "Financiamento", valor: 0, observacao: "Valor a preencher" },
+  { nome: "Carrinho BYD", tipo: "Financiamento", valor: 0, observacao: "Projeto BYD Dolphin Mini PCD", link: "/sonhos/carrinho-byd" },
   { nome: "IPTU Casa", tipo: "Tributo", valor: 0, observacao: "Valor a preencher" },
-  { nome: "Divi", tipo: "Outras", valor: 0, observacao: "Valor a preencher" },
+  { nome: "Viagem", tipo: "Outras", valor: 0, observacao: "Valor a preencher" },
 ];
 
 function formatBRL(value: number): string {
@@ -33,8 +38,8 @@ function formatBRL(value: number): string {
   });
 }
 
-export default function Dividas() {
-  const totalDividas = dividas.reduce((sum, d) => sum + d.valor, 0);
+export default function Sonhos() {
+  const totalSonhos = sonhos.reduce((sum, d) => sum + d.valor, 0);
 
   return (
     <div className="min-h-screen gradient-mesh">
@@ -48,7 +53,7 @@ export default function Dividas() {
             <Scale className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Dívidas</h1>
+            <h1 className="text-2xl font-bold tracking-tight">Sonhos</h1>
             <p className="text-sm text-muted-foreground">
               Visão geral de obrigações e passivos
             </p>
@@ -58,10 +63,10 @@ export default function Dividas() {
         <div className="grid gap-4 md:grid-cols-1">
           <Card className="border-destructive/20 bg-destructive/5">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium">Total de Dívidas</CardTitle>
+              <CardTitle className="text-sm font-medium">Total de Sonhos</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-destructive">{formatBRL(totalDividas)}</div>
+              <div className="text-2xl font-bold text-destructive">{formatBRL(totalSonhos)}</div>
               <p className="text-xs text-muted-foreground mt-1">
                 Soma de todas as obrigações listadas
               </p>
@@ -71,9 +76,9 @@ export default function Dividas() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Detalhamento das Dívidas</CardTitle>
+            <CardTitle>Detalhamento dos Sonhos</CardTitle>
             <CardDescription>
-              Casa, carro, IPTU casa e outras dívidas.
+              Casa, Carrinho BYD, IPTU casa e outros sonhos.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -88,9 +93,17 @@ export default function Dividas() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {dividas.map((d) => (
-                    <TableRow key={d.nome}>
-                      <TableCell className="font-medium">{d.nome}</TableCell>
+                  {sonhos.map((d) => (
+                    <TableRow key={d.nome} className={d.link ? "hover:bg-muted/50" : undefined}>
+                      <TableCell className="font-medium">
+                        {d.link ? (
+                          <Link to={d.link} className="text-primary hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded">
+                            {d.nome}
+                          </Link>
+                        ) : (
+                          d.nome
+                        )}
+                      </TableCell>
                       <TableCell>{d.tipo}</TableCell>
                       <TableCell className="text-right font-mono">
                         {formatBRL(d.valor)}
