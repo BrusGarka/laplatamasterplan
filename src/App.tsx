@@ -2,9 +2,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { PremissasProvider } from "@/contexts/PremissasContext";
 import { Layout } from "@/components/Layout";
+import { AuthGate } from "@/components/AuthGate";
 import Dashboard from "./pages/Dashboard";
 import Parametros from "./pages/Parametros";
 import Premissas from "./pages/Premissas";
@@ -31,8 +32,9 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Layout>
-            <Routes>
+          <AuthGate>
+            <Layout>
+              <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/master-plan" element={<MasterPlan />} />
@@ -51,8 +53,9 @@ const App = () => (
               <Route path="/seguros" element={<Seguros />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Layout>
+              </Routes>
+            </Layout>
+          </AuthGate>
         </BrowserRouter>
       </TooltipProvider>
     </PremissasProvider>
