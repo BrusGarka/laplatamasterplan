@@ -16,7 +16,6 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useMesesComDados } from "@/hooks/use-caixa";
 import { ContasMesCard } from "@/components/caixa/ContasMesCard";
-import { PosicaoBalancoCard } from "@/components/caixa/PosicaoBalancoCard";
 import { FluxoMensalCard } from "@/components/caixa/FluxoMensalCard";
 
 function anoMesAtual(): string {
@@ -130,16 +129,12 @@ export default function Caixa() {
         )}
 
         <Tabs defaultValue="contas" className="space-y-4">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-3">
+          <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="contas">Contas do mês</TabsTrigger>
-            <TabsTrigger value="posicao">Posição e balanço</TabsTrigger>
             <TabsTrigger value="fluxo">Fluxo mensal</TabsTrigger>
           </TabsList>
           <TabsContent value="contas" className="space-y-4">
             <ContasMesCard anoMes={anoMes} />
-          </TabsContent>
-          <TabsContent value="posicao" className="space-y-4">
-            <PosicaoBalancoCard anoMes={anoMes} />
           </TabsContent>
           <TabsContent value="fluxo" className="space-y-4">
             <FluxoMensalCard anoMes={anoMes} />

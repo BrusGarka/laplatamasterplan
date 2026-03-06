@@ -52,10 +52,10 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { formatBRL, formatBRLForInput, parseBRL } from "@/lib/utils";
-import { useLancamentos, useSaveLancamentos, useClearMesInteiro } from "@/hooks/use-caixa";
+import { useLancamentos, useSaveLancamentos, useClearMesInteiro, useResumo } from "@/hooks/use-caixa";
 import { toast } from "sonner";
 import { getLancamentosMes } from "@/services/caixa-service";
-import type { Lancamento, TipoLancamento } from "@/types/caixa";
+import type { Lancamento, TipoLancamento, ResumoMes } from "@/types/caixa";
 import { SortableTableRow } from "./SortableTableRow";
 
 const TIPOS: TipoLancamento[] = ["giro", "entrada", "fixo", "poupança", "variavel"];
@@ -66,12 +66,39 @@ function anoMesAnterior(anoMes: string): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
 }
 
+function calcularResumo(lancamentos: { valor: number; executado: boolean }[]): Partial<ResumoMes> {
+  const totalEntradas = lancamentos
+    .filter((l) => l.valor > 0)
+    .reduce((s, l) => s + l.valor, 0);
+  const totalSaidas = lancamentos
+    .filter((l) => l.valor < 0)
+    .reduce((s, l) => s + Math.abs(l.valor), 0);
+  const balanco = totalEntradas - totalSaidas;
+  
+  // Posição atual considera apenas lançamentos executados
+  const entradasExecutadas = lancamentos
+    .filter((l) => l.valor > 0 && l.executado)
+    .reduce((s, l) => s + l.valor, 0);
+  const saidasExecutadas = lancamentos
+    .filter((l) => l.valor < 0 && l.executado)
+    .reduce((s, l) => s + Math.abs(l.valor), 0);
+  const posicaoAtual = entradasExecutadas - saidasExecutadas;
+  
+  return {
+    posicao: posicaoAtual,
+    ativoCirculante: totalEntradas,
+    passivoCirculante: -totalSaidas,
+    balancoPrevisto: balanco,
+  };
+}
+
 interface ContasMesCardProps {
   anoMes: string;
 }
 
 export function ContasMesCard({ anoMes }: ContasMesCardProps) {
   const { data: lancamentos = [], isLoading } = useLancamentos(anoMes);
+  const { data: resumoSalvo } = useResumo(anoMes);
   const saveMutation = useSaveLancamentos(anoMes);
   const clearMutation = useClearMesInteiro(anoMes);
   const [filtroTipo, setFiltroTipo] = useState<string>("todos");
@@ -97,6 +124,33 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
   }, [lancamentos, filtroTipo]);
 
   const ordenados = useMemo(() => [...filtrados], [filtrados]);
+
+  const calculado = useMemo(
+    () => calcularResumo(lancamentos),
+    [lancamentos]
+  );
+
+  const resumo: ResumoMes = useMemo(() => {
+    if (resumoSalvo) {
+      return {
+        posicao: resumoSalvo.posicao,
+        ativoCirculante: resumoSalvo.ativoCirculante,
+        passivoCirculante: resumoSalvo.passivoCirculante,
+        balancoPrevisto: resumoSalvo.balancoPrevisto,
+        acumuladoAnual: resumoSalvo.acumuladoAnual,
+        totalPoupanca: resumoSalvo.totalPoupanca,
+        porquinhos: resumoSalvo.porquinhos,
+      };
+    }
+    return {
+      posicao: calculado.posicao ?? 0,
+      ativoCirculante: calculado.ativoCirculante ?? 0,
+      passivoCirculante: calculado.passivoCirculante ?? 0,
+      balancoPrevisto: calculado.balancoPrevisto ?? 0,
+      acumuladoAnual: 0,
+      totalPoupanca: 0,
+    };
+  }, [resumoSalvo, calculado]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
@@ -242,6 +296,72 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
         animate={{ opacity: 1, y: 0 }}
         className="space-y-4"
       >
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Posição atual
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div
+                className={`text-2xl font-bold ${
+                  resumo.posicao >= 0 ? "text-primary" : "text-destructive"
+                }`}
+              >
+                {formatBRL(resumo.posicao)}
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Caixa disponível
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="border-emerald-500/20 bg-emerald-500/5">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Ativo circulante
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                {formatBRL(resumo.ativoCirculante)}
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">Entradas</p>
+            </CardContent>
+          </Card>
+          <Card className="border-destructive/20 bg-destructive/5">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Passivo circulante
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold text-destructive">
+                {formatBRL(resumo.passivoCirculante)}
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">Saídas</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Balanço previsto
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div
+                className={`text-2xl font-bold ${
+                  resumo.balancoPrevisto >= 0 ? "text-primary" : "text-destructive"
+                }`}
+              >
+                {formatBRL(resumo.balancoPrevisto)}
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Ativo − Passivo
+              </p>
+            </CardContent>
+          </Card>
+        </div>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <div>
