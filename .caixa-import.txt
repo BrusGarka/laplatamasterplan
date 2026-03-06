@@ -1,0 +1,26 @@
+tipo	categoria	Item	Valor	executado?	dia
+giro		saldo em conta	R$ 2.428,29	x	3
+giro		porquinho de giro	R$ 6.000,00	x	3
+entrada		salário - mob	R$ 17.977,82	x	18
+entrada		venda reis maia	R$ 2.578,13	x	11
+fixo		aluguel - lf imóveis	-R$ 1.020,00	x	3
+fixo		consórcio	-R$ 1.816,53	x	3
+fixo		condominio - vila rica	-R$ 530,00	x	3
+fixo		iptu - pbh	R$ 0,00		1
+fixo		luz - cemig	-R$ 124,66	x	3
+fixo		terapia - rosana	-R$ 313,50	x	3
+fixo		faxina - silvana	-R$ 420,00	x	3
+fixo		lavanderia - silvana	-R$ 842,50	x	3
+fixo		spotify	-R$ 5,81	x	5
+fixo		internet - vivo	-R$ 150,00	x	24
+fixo		almoço mei de semana	R$ 0,00		
+fixo		livup	R$ 0,00		17
+fixo		crase			
+fixo		aluguel - quinto andar	-R$ 789,49	x	24
+					
+variável		mudança	-R$ 1.900,00	x	
+fixo		rpg - dardânia	R$ 0,00		15
+poupança		poupança do salario	-R$ 1.000,00		15
+poupança		poupança reis maia	-R$ 2.578,13		15
+giro		porquinho de giro	-R$ 6.000,00	x	15
+variavel		cartão inter	-R$ 7.695,25	x	18

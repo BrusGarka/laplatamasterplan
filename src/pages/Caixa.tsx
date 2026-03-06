@@ -80,7 +80,7 @@ export default function Caixa() {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground">Mês:</span>
             <div className="flex items-center rounded-md border">
               <Button

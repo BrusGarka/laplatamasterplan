@@ -37,10 +37,22 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Pencil, Trash2, Zap, Check, X, Copy } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { formatBRL, formatBRLForInput, parseBRL } from "@/lib/utils";
-import { useLancamentos, useSaveLancamentos } from "@/hooks/use-caixa";
+import { useLancamentos, useSaveLancamentos, useClearMesInteiro } from "@/hooks/use-caixa";
 import { toast } from "sonner";
 import { getLancamentosMes } from "@/services/caixa-service";
 import type { Lancamento, TipoLancamento } from "@/types/caixa";
@@ -61,6 +73,7 @@ interface ContasMesCardProps {
 export function ContasMesCard({ anoMes }: ContasMesCardProps) {
   const { data: lancamentos = [], isLoading } = useLancamentos(anoMes);
   const saveMutation = useSaveLancamentos(anoMes);
+  const clearMutation = useClearMesInteiro(anoMes);
   const [filtroTipo, setFiltroTipo] = useState<string>("todos");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<{
@@ -289,7 +302,47 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                     <TableHead className="text-right w-32 min-w-[7rem]">Valor</TableHead>
                     <TableHead className="w-16">Dia</TableHead>
                     <TableHead className="w-12" />
-                    <TableHead className="w-20" />
+                    <TableHead className="w-20">
+                      <div className="flex justify-end">
+                        <AlertDialog>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <AlertDialogTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10"
+                                  disabled={clearMutation.isPending}
+                                  aria-label="Apagar tudo"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </Button>
+                              </AlertDialogTrigger>
+                            </TooltipTrigger>
+                            <TooltipContent>Apagar tudo</TooltipContent>
+                          </Tooltip>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Limpar mês inteiro?</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                Isso vai apagar todos os lançamentos e o resumo de{" "}
+                                <strong>{format(new Date(anoMes + "-01"), "MMMM yyyy", { locale: ptBR })}</strong>.
+                                Esta ação não pode ser desfeita.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                              <AlertDialogAction
+                                onClick={() => clearMutation.mutate()}
+                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                              >
+                                {clearMutation.isPending ? "Limpando..." : "Limpar tudo"}
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </div>
+                    </TableHead>
                     <TableHead className="w-12">Pago</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -419,7 +472,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                             )}
                           </TableCell>
                           <TableCell>
-                            <div className="flex gap-1">
+                            <div className="flex justify-end gap-1">
                               {isEditing && editForm ? (
                                 <>
                                   <Button
@@ -541,7 +594,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                       </TableCell>
                       <TableCell className="w-12" />
                       <TableCell>
-                        <div className="flex gap-1">
+                        <div className="flex justify-end gap-1">
                           <Button
                             variant="ghost"
                             size="icon"

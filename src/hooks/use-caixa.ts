@@ -8,6 +8,7 @@ import {
   getContasFixas,
   saveContasFixas,
   listMesesComDados,
+  clearMesInteiro,
 } from "@/services/caixa-service";
 import type { Lancamento, ResumoMes } from "@/types/caixa";
 
@@ -91,5 +92,25 @@ export function useMesesComDados() {
   return useQuery({
     queryKey: CAIXA_KEYS.mesesComDados(),
     queryFn: listMesesComDados,
+  });
+}
+
+export function useClearMesInteiro(anoMes: string) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: () => clearMesInteiro(anoMes),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: CAIXA_KEYS.lancamentos(anoMes) });
+      queryClient.invalidateQueries({ queryKey: CAIXA_KEYS.resumo(anoMes) });
+      queryClient.invalidateQueries({ queryKey: CAIXA_KEYS.mesesComDados() });
+      toast.success("Mês limpo", {
+        description: "Todos os lançamentos e o resumo do mês foram removidos.",
+      });
+    },
+    onError: (err) => {
+      toast.error("Erro ao limpar", {
+        description: err instanceof Error ? err.message : "Não foi possível limpar o mês.",
+      });
+    },
   });
 }

@@ -47,3 +47,11 @@ export async function listMesesComDados(): Promise<string[]> {
     .sort()
     .reverse();
 }
+
+/** Remove todos os dados do mês (lançamentos e resumo) */
+export async function clearMesInteiro(anoMes: string): Promise<void> {
+  await Promise.all([
+    redis.del(REDIS_KEYS.LANCAMENTOS(anoMes)),
+    redis.del(REDIS_KEYS.RESUMO(anoMes)),
+  ]);
+}
