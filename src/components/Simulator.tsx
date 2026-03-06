@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { simularProjecao, formatBRL, formatCompact, META } from "@/lib/financial-engine";
 import { motion } from "framer-motion";
 import {
@@ -6,12 +6,19 @@ import {
   ResponsiveContainer, ReferenceLine,
 } from "recharts";
 import { Sliders } from "lucide-react";
+import { usePremissas } from "@/contexts/PremissasContext";
 
 export function Simulator() {
+  const { rentabilidade } = usePremissas();
   const [saldoInicial, setSaldoInicial] = useState(224_000);
   const [pmtMes, setPmtMes] = useState(9_117);
-  const [taxaAnual, setTaxaAnual] = useState(10.77);
+  const [taxaAnual, setTaxaAnual] = useState(rentabilidade);
   const [anos, setAnos] = useState(8);
+
+  // Sincroniza com o contexto quando mudar
+  useEffect(() => {
+    setTaxaAnual(rentabilidade);
+  }, [rentabilidade]);
 
   const projecao = useMemo(
     () => simularProjecao(saldoInicial, pmtMes, taxaAnual / 100, anos),
