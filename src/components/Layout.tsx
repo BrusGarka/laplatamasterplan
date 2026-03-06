@@ -13,7 +13,24 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Shield, Settings, LayoutDashboard, FileText, Wallet, User, Building2, Scale } from "lucide-react";
+import {
+  Shield,
+  Settings,
+  LayoutDashboard,
+  FileText,
+  Wallet,
+  User,
+  Building2,
+  Scale,
+  PiggyBank,
+  ShieldCheck,
+  Target,
+  ArrowLeftRight,
+  Landmark,
+  Receipt,
+  ShieldAlert,
+  Coins,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface LayoutProps {
@@ -56,6 +73,14 @@ const menuItems = [
     url: "/premissas",
     icon: User,
   },
+  { title: "Orçamento", url: "/orcamento", icon: PiggyBank },
+  { title: "Reserva de Emergência", url: "/reserva-emergencia", icon: ShieldCheck },
+  { title: "Metas Financeiras", url: "/metas-financeiras", icon: Target },
+  { title: "Fluxo de Caixa", url: "/fluxo-caixa", icon: ArrowLeftRight },
+  { title: "Aposentadoria", url: "/aposentadoria", icon: Landmark },
+  { title: "Renda Passiva", url: "/renda-passiva", icon: Coins },
+  { title: "Impostos", url: "/impostos", icon: Receipt },
+  { title: "Seguros", url: "/seguros", icon: ShieldAlert },
 ];
 
 export function Layout({ children }: LayoutProps) {

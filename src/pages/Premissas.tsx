@@ -14,6 +14,7 @@ import {
   Sparkles,
   AlertTriangle,
   BookOpen,
+  EyeOff,
 } from "lucide-react";
 
 const container = {
@@ -201,7 +202,91 @@ export default function Premissas() {
           </motion.ul>
         </motion.section>
 
-        {/* 3. Resumo do Raio-X */}
+        {/* 3. Os 5 Pontos Cegos */}
+        <motion.section
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25 }}
+          className="space-y-4"
+        >
+          <div className="flex items-center gap-2">
+            <EyeOff className="w-5 h-5 text-amber-500" />
+            <h2 className="text-lg font-semibold">Os 5 Pontos Cegos</h2>
+            <Badge variant="outline" className="text-xs border-amber-500/50 text-amber-600 dark:text-amber-400">
+              Ordenados por severidade
+            </Badge>
+          </div>
+          <motion.ul
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="grid gap-3 sm:grid-cols-1"
+          >
+            {[
+              {
+                severity: "red",
+                title: "Plano de saúde particular",
+                text: "Não está em nenhum lugar do plano. R$4.500/mês para um casal aos 50 anos, R$8.000/mês aos 65, subindo 7-10% ao ano acima do IPCA. Esse custo sozinho exige reajustar a meta de R$4,55M para R$7,1M se quiser manter R$15k de renda livre além do plano.",
+              },
+              {
+                severity: "red",
+                title: "Taxa de saque 4,5% agressiva demais",
+                text: "A regra de Bengen (4%) foi calibrada para 30 anos de renda. Com IF aos 49, você tem 40+ anos de retiradas. A taxa conservadora é 3,5%, o que eleva a meta para R$5,84M sem incluir saúde.",
+              },
+              {
+                severity: "yellow",
+                title: "Sequence of returns risk",
+                text: "Se o mercado cair 35% no primeiro ano que você começar a sacar, o portfólio não se recupera completamente mesmo que a média de longo prazo seja boa. Solução: o Bucket System abaixo.",
+              },
+              {
+                severity: "blue",
+                title: "Taxas de gestão e come-cotas",
+                text: "Fundos com come-cotas antecipam IR em maio e novembro (-0,2-0,3% ao ano). Advisory fees de 0,3-1%: de R$1.100 a R$3.800/mês invisíveis. Preferir instrumentos diretos (Tesouro, LCI/LCA, FIIs) na fase de renda.",
+              },
+              {
+                severity: "neutral",
+                title: "Inflação assimétrica do estilo de vida",
+                text: "IPCA é uma média. Saúde, educação e serviços sobem mais. Monitorar anualmente.",
+              },
+            ].map((ponto, i) => (
+              <motion.li key={i} variants={item}>
+                <Card
+                  className={
+                    ponto.severity === "red"
+                      ? "border-destructive/30 bg-destructive/5 hover:border-destructive/40"
+                      : ponto.severity === "yellow"
+                        ? "border-amber-500/30 bg-amber-500/5 hover:border-amber-500/40"
+                        : ponto.severity === "blue"
+                          ? "border-blue-500/30 bg-blue-500/5 hover:border-blue-500/40 dark:border-blue-400/20 dark:bg-blue-400/5"
+                          : "border-border hover:border-muted-foreground/30 transition-colors"
+                  }
+                >
+                  <CardContent className="flex gap-3 pt-4">
+                    <div
+                      className={`shrink-0 flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${
+                        ponto.severity === "red"
+                          ? "bg-destructive/20 text-destructive"
+                          : ponto.severity === "yellow"
+                            ? "bg-amber-500/20 text-amber-600 dark:text-amber-400"
+                            : ponto.severity === "blue"
+                              ? "bg-blue-500/20 text-blue-600 dark:text-blue-400"
+                              : "bg-muted text-muted-foreground"
+                      }`}
+                    >
+                      {i + 1}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-medium text-sm mb-0.5">{ponto.title}</p>
+                      <p className="text-sm text-muted-foreground">{ponto.text}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </motion.section>
+
+        {/* 4. Resumo do Raio-X */}
         <motion.section
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
