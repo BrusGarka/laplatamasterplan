@@ -17,9 +17,7 @@ import { ptBR } from "date-fns/locale";
 import { useMesesComDados } from "@/hooks/use-caixa";
 import { ContasMesCard } from "@/components/caixa/ContasMesCard";
 import { PosicaoBalancoCard } from "@/components/caixa/PosicaoBalancoCard";
-import { PoupancaCard } from "@/components/caixa/PoupancaCard";
 import { FluxoMensalCard } from "@/components/caixa/FluxoMensalCard";
-import { ContasFixasTemplateCard } from "@/components/caixa/ContasFixasTemplateCard";
 
 function anoMesAtual(): string {
   const now = new Date();
@@ -132,12 +130,10 @@ export default function Caixa() {
         )}
 
         <Tabs defaultValue="contas" className="space-y-4">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-3">
             <TabsTrigger value="contas">Contas do mês</TabsTrigger>
             <TabsTrigger value="posicao">Posição e balanço</TabsTrigger>
-            <TabsTrigger value="poupanca">Poupança</TabsTrigger>
             <TabsTrigger value="fluxo">Fluxo mensal</TabsTrigger>
-            <TabsTrigger value="templates">Contas fixas</TabsTrigger>
           </TabsList>
           <TabsContent value="contas" className="space-y-4">
             <ContasMesCard anoMes={anoMes} />
@@ -145,14 +141,8 @@ export default function Caixa() {
           <TabsContent value="posicao" className="space-y-4">
             <PosicaoBalancoCard anoMes={anoMes} />
           </TabsContent>
-          <TabsContent value="poupanca" className="space-y-4">
-            <PoupancaCard anoMes={anoMes} />
-          </TabsContent>
           <TabsContent value="fluxo" className="space-y-4">
             <FluxoMensalCard anoMes={anoMes} />
-          </TabsContent>
-          <TabsContent value="templates" className="space-y-4">
-            <ContasFixasTemplateCard />
           </TabsContent>
         </Tabs>
       </div>

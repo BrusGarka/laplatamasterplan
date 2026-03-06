@@ -17,7 +17,7 @@ Tabela com colunas (separadas por tab ou espaços):
 | categoria  | (ignorada, pode estar vazia)        | —                    |
 | Item       | Nome do lançamento                 | terapia - rosana     |
 | Valor      | R$ 1.234,56 ou -R$ 1.234,56        | -R$ 313,50           |
-| executado? | x = pago, vazio = não pago         | x                    |
+| executado? | x = executado, vazio = não executado | x                    |
 | dia        | 1–31 ou vazio                      | 15                   |
 
 **Regras de parsing:**

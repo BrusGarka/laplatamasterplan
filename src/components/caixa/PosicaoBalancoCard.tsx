@@ -9,7 +9,7 @@ interface PosicaoBalancoCardProps {
   anoMes: string;
 }
 
-function calcularResumo(lancamentos: { valor: number }[]): Partial<ResumoMes> {
+function calcularResumo(lancamentos: { valor: number; executado: boolean }[]): Partial<ResumoMes> {
   const totalEntradas = lancamentos
     .filter((l) => l.valor > 0)
     .reduce((s, l) => s + l.valor, 0);
@@ -17,8 +17,18 @@ function calcularResumo(lancamentos: { valor: number }[]): Partial<ResumoMes> {
     .filter((l) => l.valor < 0)
     .reduce((s, l) => s + Math.abs(l.valor), 0);
   const balanco = totalEntradas - totalSaidas;
+  
+  // Posição atual considera apenas lançamentos executados
+  const entradasExecutadas = lancamentos
+    .filter((l) => l.valor > 0 && l.executado)
+    .reduce((s, l) => s + l.valor, 0);
+  const saidasExecutadas = lancamentos
+    .filter((l) => l.valor < 0 && l.executado)
+    .reduce((s, l) => s + Math.abs(l.valor), 0);
+  const posicaoAtual = entradasExecutadas - saidasExecutadas;
+  
   return {
-    posicao: balanco,
+    posicao: posicaoAtual,
     ativoCirculante: totalEntradas,
     passivoCirculante: -totalSaidas,
     balancoPrevisto: balanco,

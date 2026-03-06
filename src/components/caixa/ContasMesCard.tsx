@@ -214,7 +214,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
       }));
       saveMutation.mutate(clonados);
       toast.success("Copiado do mês anterior", {
-        description: `${clonados.length} lançamento(s) clonado(s). Status "pago" zerado.`,
+        description: `${clonados.length} lançamento(s) clonado(s). Status "executado" zerado.`,
       });
     } catch (err) {
       toast.error("Erro ao copiar", {
@@ -280,7 +280,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">
-                    {pagas} de {total} contas pagas
+                    {pagas} de {total} contas executadas
                   </span>
                   <span>{Math.round(progresso)}%</span>
                 </div>
@@ -343,7 +343,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                         </AlertDialog>
                       </div>
                     </TableHead>
-                    <TableHead className="w-12">Pago</TableHead>
+                    <TableHead className="w-12">Executado</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
