@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { PremissasProvider } from "@/contexts/PremissasContext";
 import { Layout } from "@/components/Layout";
 import { AuthGate } from "@/components/AuthGate";
@@ -14,10 +14,9 @@ import Investimentos from "./pages/Investimentos";
 import Patrimonio from "./pages/Patrimonio";
 import Sonhos from "./pages/Sonhos";
 import CarrinhoByd from "./pages/CarrinhoByd";
-import Orcamento from "./pages/Orcamento";
+import Caixa from "./pages/Caixa";
 import ReservaEmergencia from "./pages/ReservaEmergencia";
 import MetasFinanceiras from "./pages/MetasFinanceiras";
-import FluxoCaixa from "./pages/FluxoCaixa";
 import Aposentadoria from "./pages/Aposentadoria";
 import RendaPassiva from "./pages/RendaPassiva";
 import Impostos from "./pages/Impostos";
@@ -45,10 +44,11 @@ const App = () => (
               <Route path="/patrimonio" element={<Patrimonio />} />
               <Route path="/sonhos" element={<Sonhos />} />
               <Route path="/sonhos/carrinho-byd" element={<CarrinhoByd />} />
-              <Route path="/orcamento" element={<Orcamento />} />
+              <Route path="/caixa" element={<Caixa />} />
+              <Route path="/orcamento" element={<Navigate to="/caixa" replace />} />
+              <Route path="/fluxo-caixa" element={<Navigate to="/caixa" replace />} />
               <Route path="/reserva-emergencia" element={<ReservaEmergencia />} />
               <Route path="/metas-financeiras" element={<MetasFinanceiras />} />
-              <Route path="/fluxo-caixa" element={<FluxoCaixa />} />
               <Route path="/aposentadoria" element={<Aposentadoria />} />
               <Route path="/renda-passiva" element={<RendaPassiva />} />
               <Route path="/impostos" element={<Impostos />} />

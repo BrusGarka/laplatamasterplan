@@ -25,7 +25,6 @@ import {
   PiggyBank,
   ShieldCheck,
   Target,
-  ArrowLeftRight,
   Landmark,
   Receipt,
   ShieldAlert,
@@ -73,10 +72,9 @@ const menuItems = [
     url: "/premissas",
     icon: User,
   },
-  { title: "Orçamento", url: "/orcamento", icon: PiggyBank },
+  { title: "Caixa", url: "/caixa", icon: PiggyBank },
   { title: "Reserva de Emergência", url: "/reserva-emergencia", icon: ShieldCheck },
   { title: "Metas Financeiras", url: "/metas-financeiras", icon: Target },
-  { title: "Fluxo de Caixa", url: "/fluxo-caixa", icon: ArrowLeftRight },
   { title: "Aposentadoria", url: "/aposentadoria", icon: Landmark },
   { title: "Renda Passiva", url: "/renda-passiva", icon: Coins },
   { title: "Impostos", url: "/impostos", icon: Receipt },
@@ -110,7 +108,8 @@ export function Layout({ children }: LayoutProps) {
                     const Icon = item.icon;
                     const isActive =
                       location.pathname === item.url ||
-                      (item.url === "/" && location.pathname === "/dashboard");
+                      (item.url === "/" && location.pathname === "/dashboard") ||
+                      (item.url === "/caixa" && ["/orcamento", "/fluxo-caixa"].includes(location.pathname));
                     return (
                       <SidebarMenuItem key={item.url}>
                         <SidebarMenuButton
