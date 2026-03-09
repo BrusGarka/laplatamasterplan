@@ -58,6 +58,7 @@ import { getLancamentosMes } from "@/services/caixa-service";
 import type { Lancamento, TipoLancamento, ResumoMes } from "@/types/caixa";
 import { SortableTableRow } from "./SortableTableRow";
 import { TagCombobox } from "./TagCombobox";
+import { TagBadge } from "./TagBadge";
 
 const TIPOS: TipoLancamento[] = ["giro", "entrada", "fixo", "poupança", "variavel"];
 
@@ -448,7 +449,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                 collisionDetection={closestCenter}
                 onDragEnd={handleDragEnd}
               >
-                <Table>
+                <Table className="[&_th]:h-9 [&_th]:py-2 [&_th]:px-3 [&_td]:py-2 [&_td]:px-3">
                   <TableHeader>
                     <TableRow>
                       <TableHead className="w-10" />
@@ -559,7 +560,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                                 onKeyDown={(e) => e.key === "Enter" && handleSaveEdit()}
                               />
                             ) : (
-                              l.tag ?? "—"
+                              <TagBadge tag={l.tag ?? ""} />
                             )}
                           </TableCell>
                           <TableCell className="font-medium">

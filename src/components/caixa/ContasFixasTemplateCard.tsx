@@ -41,6 +41,7 @@ import { useContasFixas, useSaveContasFixas, useTagsCaixa, useAddTagCaixa } from
 import type { Lancamento, TipoLancamento } from "@/types/caixa";
 import { SortableTableRow } from "./SortableTableRow";
 import { TagCombobox } from "./TagCombobox";
+import { TagBadge } from "./TagBadge";
 
 const TIPOS: TipoLancamento[] = ["giro", "entrada", "fixo", "poupança", "variavel"];
 
@@ -278,7 +279,7 @@ export function ContasFixasTemplateCard() {
                               onKeyDown={(e) => e.key === "Enter" && handleSaveEdit()}
                             />
                           ) : (
-                            l.tag ?? "—"
+                            <TagBadge tag={l.tag ?? ""} />
                           )}
                         </TableCell>
                         <TableCell className="font-medium">
