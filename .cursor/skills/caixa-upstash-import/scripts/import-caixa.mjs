@@ -2,7 +2,7 @@
 /**
  * Importa tabela de lançamentos do Caixa para Upstash Redis.
  * Uso: node import-caixa.mjs <arquivo> [anoMes]
- * Formato: tipo\tcategoria\tItem\tValor\texecutado?\tdia (tab ou |)
+ * Formato: tipo\ttag\tcategoria\tItem\tValor\texecutado?\tdia (tab ou |)
  * Env: UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN (ou VITE_*)
  *
  * Estrutura de saída: idêntica a Lancamento (caixa-schema.ts) e ao
@@ -75,6 +75,8 @@ function parseLinha(linha, colunas) {
   if (!item) return null;
 
   const tipo = normalizarTipo(get("tipo"));
+  const tagRaw = (get("tag") || "").trim();
+  const tag = tagRaw || undefined;
   const valor = parseValor(get("Valor") || get("valor"));
   const executado = parseExecutado(get("executado?") || get("executado"));
   const dia = parseDia(get("dia"));
@@ -83,6 +85,7 @@ function parseLinha(linha, colunas) {
   return {
     id: randomUUID(),
     tipo,
+    ...(tag && { tag }),
     item: item.trim(),
     valor,
     executado,

@@ -35,6 +35,22 @@ export async function saveContasFixas(contas: Lancamento[]): Promise<void> {
   await redis.set(REDIS_KEYS.CONFIG_CONTAS_FIXAS, contas);
 }
 
+/** Lista de tags para autocomplete (persistente entre meses) */
+export async function getTagsCaixa(): Promise<string[]> {
+  const data = await redis.get<string[]>(REDIS_KEYS.TAGS);
+  return Array.isArray(data) ? data : [];
+}
+
+/** Adiciona tag à lista se ainda não existir */
+export async function addTagCaixa(tag: string): Promise<void> {
+  const trimmed = tag.trim();
+  if (!trimmed) return;
+  const tags = await getTagsCaixa();
+  const lower = trimmed.toLowerCase();
+  if (tags.some((t) => t.toLowerCase() === lower)) return;
+  await redis.set(REDIS_KEYS.TAGS, [...tags, trimmed]);
+}
+
 /** Lista meses que têm lançamentos no Redis (prefix lancamentos:) */
 export async function listMesesComDados(): Promise<string[]> {
   const keyList = await redis.keys("lancamentos:*");

@@ -24,8 +24,9 @@ interface SonhoWithLink extends Sonho {
 
 const sonhos: SonhoWithLink[] = [
   { nome: "Casa", tipo: "Financiamento", valor: 0, observacao: "Valor a preencher" },
-  { nome: "Carrinho BYD", tipo: "Financiamento", valor: 0, observacao: "Projeto BYD Dolphin Mini PCD", link: "/sonhos/carrinho-byd" },
-  { nome: "IPTU Casa", tipo: "Tributo", valor: 0, observacao: "Valor a preencher" },
+  { nome: "Carrinho BYD", tipo: "Financiamento", valor: -100000, observacao: "Projeto BYD Dolphin Mini PCD", link: "/sonhos/carrinho-byd" },
+  { nome: "IPTU acordo judicial", tipo: "Tributo", valor: -5993.72, observacao: "À vista" },
+  { nome: "IPTU 2023-2025", tipo: "Tributo", valor: -6919.16, observacao: "10 parcelas fixas de R$ 698,59 (simulação Prefeitura)" },
   { nome: "Viagem", tipo: "Outras", valor: 0, observacao: "Valor a preencher" },
 ];
 
@@ -78,7 +79,7 @@ export default function Sonhos() {
           <CardHeader>
             <CardTitle>Detalhamento dos Sonhos</CardTitle>
             <CardDescription>
-              Casa, Carrinho BYD, IPTU casa e outros sonhos.
+              Casa, Carrinho BYD, IPTU e outros sonhos.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -105,7 +106,7 @@ export default function Sonhos() {
                         )}
                       </TableCell>
                       <TableCell>{d.tipo}</TableCell>
-                      <TableCell className="text-right font-mono">
+                      <TableCell className={`text-right font-mono ${d.valor < 0 ? "text-destructive font-semibold" : ""}`}>
                         {formatBRL(d.valor)}
                       </TableCell>
                       <TableCell className="text-sm text-muted-foreground">

@@ -1,6 +1,6 @@
 ---
 name: caixa-upstash-import
-description: Importa dados do Caixa para o Upstash Redis. Use quando o usuário enviar uma tabela de lançamentos financeiros (tipo, categoria, Item, Valor, executado?, dia) para publicar no Upstash.
+description: Importa dados do Caixa para o Upstash Redis. Use quando o usuário enviar uma tabela de lançamentos financeiros (tipo, tag, categoria, Item, Valor, executado?, dia) para publicar no Upstash.
 ---
 
 # Importar Caixa para Upstash
@@ -14,6 +14,7 @@ Tabela com colunas (separadas por tab ou espaços):
 | Coluna     | Descrição                          | Exemplo              |
 |------------|------------------------------------|----------------------|
 | tipo       | giro, entrada, fixo, poupança, variavel | fixo                 |
+| tag        | Tag para categorização (opcional)  | saúde                |
 | categoria  | (ignorada, pode estar vazia)        | —                    |
 | Item       | Nome do lançamento                 | terapia - rosana     |
 | Valor      | R$ 1.234,56 ou -R$ 1.234,56        | -R$ 313,50           |
@@ -54,6 +55,7 @@ O script produz objetos **exatamente** no formato de `Lancamento` usado pelo `Co
 interface Lancamento {
   id: string;                    // crypto.randomUUID()
   tipo: TipoLancamento;          // "giro" | "entrada" | "fixo" | "poupança" | "variavel"
+  tag?: string;                  // opcional
   item: string;
   valor: number;
   executado: boolean;

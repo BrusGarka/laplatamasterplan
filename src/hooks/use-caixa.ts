@@ -7,6 +7,8 @@ import {
   saveResumoMes,
   getContasFixas,
   saveContasFixas,
+  getTagsCaixa,
+  addTagCaixa,
   listMesesComDados,
   clearMesInteiro,
 } from "@/services/caixa-service";
@@ -16,6 +18,7 @@ const CAIXA_KEYS = {
   lancamentos: (anoMes: string) => ["caixa", "lancamentos", anoMes] as const,
   resumo: (anoMes: string) => ["caixa", "resumo", anoMes] as const,
   contasFixas: () => ["caixa", "contas-fixas"] as const,
+  tags: () => ["caixa", "tags"] as const,
   mesesComDados: () => ["caixa", "meses-com-dados"] as const,
 };
 
@@ -75,6 +78,23 @@ export function useContasFixas() {
   return useQuery({
     queryKey: CAIXA_KEYS.contasFixas(),
     queryFn: getContasFixas,
+  });
+}
+
+export function useTagsCaixa() {
+  return useQuery({
+    queryKey: CAIXA_KEYS.tags(),
+    queryFn: getTagsCaixa,
+  });
+}
+
+export function useAddTagCaixa() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (tag: string) => addTagCaixa(tag),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: CAIXA_KEYS.tags() });
+    },
   });
 }
 

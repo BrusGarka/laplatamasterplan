@@ -37,30 +37,37 @@ import {
 import { Input } from "@/components/ui/input";
 import { Pencil, Trash2, Zap, Check, X } from "lucide-react";
 import { formatBRL, formatBRLForInput, parseBRL } from "@/lib/utils";
-import { useContasFixas, useSaveContasFixas } from "@/hooks/use-caixa";
+import { useContasFixas, useSaveContasFixas, useTagsCaixa, useAddTagCaixa } from "@/hooks/use-caixa";
 import type { Lancamento, TipoLancamento } from "@/types/caixa";
 import { SortableTableRow } from "./SortableTableRow";
+import { TagCombobox } from "./TagCombobox";
 
 const TIPOS: TipoLancamento[] = ["giro", "entrada", "fixo", "poupança", "variavel"];
 
 export function ContasFixasTemplateCard() {
   const { data: contas = [], isLoading } = useContasFixas();
+  const { data: tagsCaixa = [] } = useTagsCaixa();
+  const addTagMutation = useAddTagCaixa();
   const saveMutation = useSaveContasFixas();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<{
     tipo: TipoLancamento;
+    tag: string;
     item: string;
     valor: number;
     dia: number | null;
     debitoAutomatico: boolean;
   } | null>(null);
+  const [editValorStr, setEditValorStr] = useState("");
   const [inline, setInline] = useState({
     tipo: "fixo" as TipoLancamento,
+    tag: "",
     item: "",
     valor: 0,
     dia: null as number | null,
     debitoAutomatico: false,
   });
+  const [inlineValorStr, setInlineValorStr] = useState("");
 
   const ordenados = useMemo(() => [...contas], [contas]);
 
@@ -83,24 +90,30 @@ export function ContasFixasTemplateCard() {
     if (!editingId || !editForm?.item?.trim()) return;
     const l = contas.find((x) => x.id === editingId);
     if (!l) return;
+    const valorFinal = editValorStr ? parseBRL(editValorStr) : editForm.valor;
+    const tagFinal = (editForm.tag ?? l.tag ?? "").trim() || undefined;
     const updated: Lancamento = {
       ...l,
       tipo: editForm.tipo,
+      tag: tagFinal,
       item: editForm.item.trim(),
-      valor: editForm.valor,
+      valor: valorFinal,
       dia: editForm.dia,
       debitoAutomatico: editForm.debitoAutomatico ?? false,
     };
+    if (tagFinal) addTagMutation.mutate(tagFinal);
     saveMutation.mutate(
       contas.map((x) => (x.id === editingId ? updated : x))
     );
     setEditingId(null);
     setEditForm(null);
+    setEditValorStr("");
   };
 
   const handleCancelEdit = () => {
     setEditingId(null);
     setEditForm(null);
+    setEditValorStr("");
   };
 
   const handleDelete = (id: string) => {
@@ -112,28 +125,50 @@ export function ContasFixasTemplateCard() {
     setEditingId(l.id);
     setEditForm({
       tipo: l.tipo,
+      tag: l.tag ?? "",
       item: l.item,
       valor: l.valor,
       dia: l.dia ?? null,
       debitoAutomatico: l.debitoAutomatico ?? false,
     });
+    setEditValorStr(l.valor === 0 ? "" : formatBRLForInput(l.valor));
   };
 
+  const tagSuggestions = useMemo(() => {
+    const fromContas = contas
+      .map((l) => l.tag)
+      .filter((t): t is string => !!t?.trim());
+    const seen = new Set<string>();
+    return [...tagsCaixa, ...fromContas]
+      .filter((t) => {
+        const key = t.toLowerCase();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
+      .sort((a, b) => a.localeCompare(b, "pt-BR"));
+  }, [tagsCaixa, contas]);
+
   const clearInline = () => {
-    setInline({ tipo: "fixo", item: "", valor: 0, dia: null, debitoAutomatico: false });
+    setInline({ tipo: "fixo", tag: "", item: "", valor: 0, dia: null, debitoAutomatico: false });
+    setInlineValorStr("");
   };
 
   const handleSaveInline = () => {
     if (!inline.item.trim()) return;
+    const valorFinal = inlineValorStr ? parseBRL(inlineValorStr) : inline.valor;
+    const tagFinal = inline.tag?.trim() || undefined;
     const novo: Lancamento = {
       id: crypto.randomUUID(),
       tipo: inline.tipo,
+      tag: tagFinal,
       item: inline.item.trim(),
-      valor: inline.valor,
+      valor: valorFinal,
       executado: false,
       dia: inline.dia,
       debitoAutomatico: inline.debitoAutomatico,
     };
+    if (tagFinal) addTagMutation.mutate(tagFinal);
     saveMutation.mutate([...contas, novo]);
     clearInline();
   };
@@ -175,6 +210,7 @@ export function ContasFixasTemplateCard() {
                 <TableRow>
                   <TableHead className="w-10"></TableHead>
                   <TableHead>Tipo</TableHead>
+                  <TableHead>Tag</TableHead>
                   <TableHead>Item</TableHead>
                   <TableHead className="text-right w-32 min-w-[7rem]">Valor</TableHead>
                   <TableHead className="w-16">Dia</TableHead>
@@ -186,7 +222,7 @@ export function ContasFixasTemplateCard() {
                 {ordenados.length === 0 ? (
                   <TableRow>
                     <TableCell
-                      colSpan={7}
+                      colSpan={8}
                       className="text-center py-8 text-muted-foreground"
                     >
                       Nenhuma conta fixa cadastrada. Adicione na linha abaixo.
@@ -230,6 +266,21 @@ export function ContasFixasTemplateCard() {
                             </Badge>
                           )}
                         </TableCell>
+                        <TableCell>
+                          {isEditing && editForm ? (
+                            <TagCombobox
+                              value={editForm.tag}
+                              onChange={(v) =>
+                                setEditForm((p) => (p ? { ...p, tag: v } : null))
+                              }
+                              suggestions={tagSuggestions}
+                              placeholder="Tag"
+                              onKeyDown={(e) => e.key === "Enter" && handleSaveEdit()}
+                            />
+                          ) : (
+                            l.tag ?? "—"
+                          )}
+                        </TableCell>
                         <TableCell className="font-medium">
                           {isEditing && editForm ? (
                             <Input
@@ -256,12 +307,14 @@ export function ContasFixasTemplateCard() {
                               type="text"
                               inputMode="decimal"
                               className="h-8 w-full min-w-[7rem] max-w-[8rem] text-right font-mono"
-                              value={editForm.valor === 0 ? "" : formatBRLForInput(editForm.valor)}
-                              onChange={(e) =>
-                                setEditForm((p) =>
-                                  p ? { ...p, valor: parseBRL(e.target.value) } : null
-                                )
-                              }
+                              value={editValorStr}
+                              onChange={(e) => setEditValorStr(e.target.value)}
+                              onBlur={(e) => {
+                                const parsed = parseBRL(e.target.value);
+                                if (parsed !== 0) {
+                                  setEditValorStr(formatBRLForInput(parsed));
+                                }
+                              }}
                               onKeyDown={(e) => e.key === "Enter" && handleSaveEdit()}
                             />
                           ) : (
@@ -384,6 +437,15 @@ export function ContasFixasTemplateCard() {
                     </Select>
                   </TableCell>
                   <TableCell>
+                    <TagCombobox
+                      value={inline.tag}
+                      onChange={(v) => setInline((p) => ({ ...p, tag: v }))}
+                      suggestions={tagSuggestions}
+                      placeholder="Tag"
+                      onKeyDown={(e) => e.key === "Enter" && handleSaveInline()}
+                    />
+                  </TableCell>
+                  <TableCell>
                     <Input
                       className="h-8"
                       placeholder="Item"
@@ -400,10 +462,13 @@ export function ContasFixasTemplateCard() {
                       inputMode="decimal"
                       className="h-8 w-full min-w-[7rem] max-w-[8rem] text-right font-mono"
                       placeholder="0,00"
-                      value={inline.valor === 0 ? "" : formatBRLForInput(inline.valor)}
-                      onChange={(e) => {
-                        const n = parseBRL(e.target.value);
-                        setInline((p) => ({ ...p, valor: n }));
+                      value={inlineValorStr}
+                      onChange={(e) => setInlineValorStr(e.target.value)}
+                      onBlur={(e) => {
+                        const parsed = parseBRL(e.target.value);
+                        if (parsed !== 0) {
+                          setInlineValorStr(formatBRLForInput(parsed));
+                        }
                       }}
                       onKeyDown={(e) => e.key === "Enter" && handleSaveInline()}
                     />

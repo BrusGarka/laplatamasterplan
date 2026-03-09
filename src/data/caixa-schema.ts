@@ -6,6 +6,7 @@
 // Chaves usadas no Redis (Upstash)
 export const REDIS_KEYS = {
   CONFIG_CONTAS_FIXAS: "config:contas-fixas",
+  TAGS: "config:tags",
   MES: (anoMes: string) => `mes:${anoMes}`,
   LANCAMENTOS: (anoMes: string) => `lancamentos:${anoMes}`,
   RESUMO: (anoMes: string) => `resumo:${anoMes}`,
@@ -25,6 +26,7 @@ export const TIPOS_LANCAMENTO: TipoLancamento[] = [
 export interface Lancamento {
   id: string;
   tipo: TipoLancamento;
+  tag?: string;
   item: string;
   valor: number;
   executado: boolean;
