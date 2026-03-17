@@ -696,7 +696,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                   <span className="text-emerald-600 dark:text-emerald-400">
                     Entradas {formatBRL(entradas)}
                   </span>
-                  <span className="text-destructive">Saídas {formatBRL(saidas)}</span>
+                  <span className="text-destructive">Saídas {formatBRL(-saidas)}</span>
                   <span
                     className={
                       resumo.balancoPrevisto >= 0 ? "text-primary" : "text-destructive"
@@ -710,7 +710,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                     Entradas executadas {formatBRL(entradasExecutadas)}
                   </span>
                   <span className="text-destructive">
-                    Saídas executadas {formatBRL(saidasExecutadas)}
+                    Saídas executadas {formatBRL(-saidasExecutadas)}
                   </span>
                   <span
                     className={
