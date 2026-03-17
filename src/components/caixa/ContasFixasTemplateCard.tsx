@@ -36,7 +36,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Pencil, Trash2, Zap, Check, X } from "lucide-react";
-import { formatBRL, formatBRLForInput, parseBRL } from "@/lib/utils";
+import { formatBRL, formatBRLForInput, parseBRLExpression } from "@/lib/utils";
 import { useContasFixas, useSaveContasFixas, useTagsCaixa, useAddTagCaixa } from "@/hooks/use-caixa";
 import type { Lancamento, TipoLancamento } from "@/types/caixa";
 import { SortableTableRow } from "./SortableTableRow";
@@ -91,7 +91,7 @@ export function ContasFixasTemplateCard() {
     if (!editingId || !editForm?.item?.trim()) return;
     const l = contas.find((x) => x.id === editingId);
     if (!l) return;
-    const valorFinal = editValorStr ? parseBRL(editValorStr) : editForm.valor;
+    const valorFinal = editValorStr ? parseBRLExpression(editValorStr) : editForm.valor;
     const tagFinal = (editForm.tag ?? l.tag ?? "").trim() || undefined;
     const updated: Lancamento = {
       ...l,
@@ -157,7 +157,7 @@ export function ContasFixasTemplateCard() {
 
   const handleSaveInline = () => {
     if (!inline.item.trim()) return;
-    const valorFinal = inlineValorStr ? parseBRL(inlineValorStr) : inline.valor;
+    const valorFinal = inlineValorStr ? parseBRLExpression(inlineValorStr) : inline.valor;
     const tagFinal = inline.tag?.trim() || undefined;
     const novo: Lancamento = {
       id: crypto.randomUUID(),
@@ -311,7 +311,7 @@ export function ContasFixasTemplateCard() {
                               value={editValorStr}
                               onChange={(e) => setEditValorStr(e.target.value)}
                               onBlur={(e) => {
-                                const parsed = parseBRL(e.target.value);
+                                const parsed = parseBRLExpression(e.target.value);
                                 if (parsed !== 0) {
                                   setEditValorStr(formatBRLForInput(parsed));
                                 }
@@ -466,7 +466,7 @@ export function ContasFixasTemplateCard() {
                       value={inlineValorStr}
                       onChange={(e) => setInlineValorStr(e.target.value)}
                       onBlur={(e) => {
-                        const parsed = parseBRL(e.target.value);
+                        const parsed = parseBRLExpression(e.target.value);
                         if (parsed !== 0) {
                           setInlineValorStr(formatBRLForInput(parsed));
                         }

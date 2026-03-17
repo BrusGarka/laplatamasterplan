@@ -39,3 +39,21 @@ export function parseBRL(value: string): number {
   const result = Number.isNaN(n) ? 0 : n;
   return neg ? -result : result;
 }
+
+/**
+ * Avalia expressão tipo planilha no input de valor.
+ * Ex: "50,00+40" → 90 | "100-20" → 80 | "-50+10" → -40
+ */
+export function parseBRLExpression(value: string): number {
+  const trimmed = value.trim();
+  if (!trimmed || trimmed === "-") return 0;
+  const parts = trimmed.split(/(\+|-)/);
+  let result = parseBRL(parts[0] ?? "0");
+  for (let i = 1; i < parts.length; i += 2) {
+    const op = parts[i];
+    const num = parseBRL(parts[i + 1] ?? "0");
+    if (op === "+") result += num;
+    else if (op === "-") result -= num;
+  }
+  return result;
+}

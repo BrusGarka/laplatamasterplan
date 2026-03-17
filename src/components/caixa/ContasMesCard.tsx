@@ -51,7 +51,7 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { formatBRL, formatBRLForInput, parseBRL } from "@/lib/utils";
+import { formatBRL, formatBRLForInput, parseBRLExpression } from "@/lib/utils";
 import { useLancamentos, useSaveLancamentos, useClearMesInteiro, useResumo, useTagsCaixa, useAddTagCaixa } from "@/hooks/use-caixa";
 import { toast } from "sonner";
 import { getLancamentosMes } from "@/services/caixa-service";
@@ -207,7 +207,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
     if (!editingId || !editForm.item?.trim()) return;
     const l = lancamentos.find((x) => x.id === editingId);
     if (!l) return;
-    const valorFinal = editValorStr ? parseBRL(editValorStr) : (editForm.valor ?? l.valor);
+    const valorFinal = editValorStr ? parseBRLExpression(editValorStr) : (editForm.valor ?? l.valor);
     const tagFinal = (editForm.tag ?? l.tag ?? "").trim() || undefined;
     const updated: Lancamento = {
       ...l,
@@ -240,7 +240,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
 
   const handleSaveInline = () => {
     if (!inline.item.trim()) return;
-    const valorFinal = inlineValorStr ? parseBRL(inlineValorStr) : inline.valor;
+    const valorFinal = inlineValorStr ? parseBRLExpression(inlineValorStr) : inline.valor;
     const tagFinal = inline.tag?.trim() || undefined;
     const novo: Lancamento = {
       id: crypto.randomUUID(),
@@ -592,7 +592,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                                 value={editValorStr}
                                 onChange={(e) => setEditValorStr(e.target.value)}
                                 onBlur={(e) => {
-                                  const parsed = parseBRL(e.target.value);
+                                  const parsed = parseBRLExpression(e.target.value);
                                   if (parsed !== 0) {
                                     setEditValorStr(formatBRLForInput(parsed));
                                   }
@@ -752,7 +752,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                           value={inlineValorStr}
                           onChange={(e) => setInlineValorStr(e.target.value)}
                           onBlur={(e) => {
-                            const parsed = parseBRL(e.target.value);
+                            const parsed = parseBRLExpression(e.target.value);
                             if (parsed !== 0) {
                               setInlineValorStr(formatBRLForInput(parsed));
                             }
