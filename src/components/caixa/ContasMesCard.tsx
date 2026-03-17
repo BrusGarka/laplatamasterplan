@@ -49,6 +49,11 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { formatBRL, formatBRLForInput, parseBRLExpression } from "@/lib/utils";
@@ -692,33 +697,87 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                 />
               </div>
               <div className="flex justify-end gap-6 text-sm">
-                <div className="flex flex-col gap-1 text-right pr-20">
-                  <span className="text-emerald-600 dark:text-emerald-400">
-                    Entradas {formatBRL(entradas)}
+                <div className="flex flex-col gap-1 text-right pr-20 opacity-80">
+                  <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                    Previsto
                   </span>
-                  <span className="text-destructive">Saídas {formatBRL(-saidas)}</span>
-                  <span
-                    className={
-                      resumo.balancoPrevisto >= 0 ? "text-primary" : "text-destructive"
-                    }
-                  >
-                    Balanço previsto {formatBRL(resumo.balancoPrevisto)}
-                  </span>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <span className="text-emerald-600 dark:text-emerald-400">
+                        {formatBRL(entradas)}
+                      </span>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto py-2 px-3 animate-none duration-0" align="end">
+                      Entradas
+                    </PopoverContent>
+                  </Popover>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <span className="text-destructive">
+                        {formatBRL(-saidas)}
+                      </span>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto py-2 px-3 animate-none duration-0" align="end">
+                      Saídas
+                    </PopoverContent>
+                  </Popover>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <span
+                        className={
+                          resumo.balancoPrevisto >= 0
+                            ? "text-primary"
+                            : "text-destructive"
+                        }
+                      >
+                        {formatBRL(resumo.balancoPrevisto)}
+                      </span>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto py-2 px-3 animate-none duration-0" align="end">
+                      Balanço
+                    </PopoverContent>
+                  </Popover>
                 </div>
                 <div className="flex flex-col gap-1 text-right pl-20">
-                  <span className="text-emerald-600 dark:text-emerald-400">
-                    Entradas executadas {formatBRL(entradasExecutadas)}
+                  <span className="text-xs font-medium uppercase tracking-wide">
+                    Executado
                   </span>
-                  <span className="text-destructive">
-                    Saídas executadas {formatBRL(-saidasExecutadas)}
-                  </span>
-                  <span
-                    className={
-                      resumo.posicao >= 0 ? "text-primary font-medium" : "text-destructive font-medium"
-                    }
-                  >
-                    Posição {formatBRL(resumo.posicao)}
-                  </span>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-medium">
+                        {formatBRL(entradasExecutadas)}
+                      </span>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto py-2 px-3 animate-none duration-0" align="end">
+                      Entradas
+                    </PopoverContent>
+                  </Popover>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <span className="text-destructive font-medium">
+                        {formatBRL(-saidasExecutadas)}
+                      </span>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto py-2 px-3 animate-none duration-0" align="end">
+                      Saídas
+                    </PopoverContent>
+                  </Popover>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <span
+                        className={
+                          resumo.posicao >= 0
+                            ? "text-primary font-medium"
+                            : "text-destructive font-medium"
+                        }
+                      >
+                        {formatBRL(resumo.posicao)}
+                      </span>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto py-2 px-3 animate-none duration-0" align="end">
+                      Posição
+                    </PopoverContent>
+                  </Popover>
                 </div>
               </div>
             </div>
