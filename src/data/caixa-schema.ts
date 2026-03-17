@@ -32,6 +32,8 @@ export interface Lancamento {
   executado: boolean;
   dia: number | null;
   debitoAutomatico?: boolean;
+  /** Comentário na célula do item (como em planilhas) */
+  comentario?: string;
 }
 
 export interface ResumoMes {

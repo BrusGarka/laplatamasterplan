@@ -36,7 +36,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Pencil, Trash2, Zap, Check, X, PiggyBank } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Pencil, Trash2, Zap, Check, X, PiggyBank, MessageSquare } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -135,6 +136,24 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
     debitoAutomatico: false,
   });
   const [inlineValorStr, setInlineValorStr] = useState("");
+  const [commentPopoverId, setCommentPopoverId] = useState<string | null>(null);
+  const [commentDraft, setCommentDraft] = useState("");
+  const [selectedValorIds, setSelectedValorIds] = useState<Set<string>>(new Set());
+
+  const toggleValorSelection = (id: string) => {
+    setSelectedValorIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const somaSelecionada = useMemo(() => {
+    return lancamentos
+      .filter((l) => selectedValorIds.has(l.id))
+      .reduce((s, l) => s + l.valor, 0);
+  }, [lancamentos, selectedValorIds]);
 
   const filtrados = useMemo(() => {
     return lancamentos;
@@ -312,6 +331,22 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
       debitoAutomatico: l.debitoAutomatico ?? false,
     });
     setEditValorStr(l.valor === 0 ? "" : formatBRLForInput(l.valor));
+  };
+
+  const openCommentPopover = (l: Lancamento) => {
+    if (editingId === l.id) return;
+    setCommentPopoverId(l.id);
+    setCommentDraft(l.comentario ?? "");
+  };
+
+  const closeCommentPopover = (l: Lancamento) => {
+    if (commentDraft !== (l.comentario ?? "")) {
+      const updated: Lancamento = { ...l, comentario: commentDraft.trim() || undefined };
+      saveMutation.mutate(
+        lancamentos.map((x) => (x.id === l.id ? updated : x))
+      );
+    }
+    setCommentPopoverId(null);
   };
 
   const tagSuggestions = useMemo(() => {
@@ -539,15 +574,52 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                                 onKeyDown={(e) => e.key === "Enter" && handleSaveEdit()}
                               />
                             ) : (
-                              l.item
+                              <Popover
+                                open={commentPopoverId === l.id}
+                                onOpenChange={(open) => {
+                                  if (!open) closeCommentPopover(l);
+                                }}
+                              >
+                                <PopoverTrigger asChild>
+                                  <button
+                                    type="button"
+                                    className="flex items-center gap-1.5 w-full text-left hover:bg-muted/50 rounded px-1 -mx-1 py-0.5 -my-0.5 min-h-[2rem] cursor-pointer"
+                                    onClick={() => openCommentPopover(l)}
+                                  >
+                                    <span>{l.item}</span>
+                                    {l.comentario && (
+                                      <MessageSquare className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                                    )}
+                                  </button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-80" align="start">
+                                  <div className="space-y-2">
+                                    <p className="text-sm font-medium text-muted-foreground">
+                                      Comentário em &quot;{l.item}&quot;
+                                    </p>
+                                    <Textarea
+                                      placeholder="Adicione um comentário..."
+                                      value={commentDraft}
+                                      onChange={(e) => setCommentDraft(e.target.value)}
+                                      className="min-h-[80px] resize-none"
+                                      autoFocus
+                                    />
+                                    <p className="text-xs text-muted-foreground">
+                                      Clique fora para salvar
+                                    </p>
+                                  </div>
+                                </PopoverContent>
+                              </Popover>
                             )}
                           </TableCell>
                           <TableCell
-                            className={`text-right font-mono ${
+                            className={`text-right font-mono cursor-pointer select-none ${
                               l.valor >= 0
                                 ? "text-emerald-600 dark:text-emerald-400"
                                 : "text-destructive"
-                            }`}
+                            } ${selectedValorIds.has(l.id) ? "ring-2 ring-primary ring-inset rounded" : ""}`}
+                            onClick={() => !isEditing && toggleValorSelection(l.id)}
+                            title="Clique para incluir na conta"
                           >
                             {isEditing && editForm ? (
                               <Input
@@ -979,6 +1051,33 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                   ) : null}
                 </div>
                 <div className="flex shrink-0 gap-6 text-sm">
+                {selectedValorIds.size > 0 && (
+                  <div className="flex flex-col gap-1 text-right">
+                    <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                      Conta provisória
+                    </span>
+                    <span
+                      className={`font-mono font-medium ${
+                        somaSelecionada >= 0
+                          ? "text-emerald-600 dark:text-emerald-400"
+                          : "text-destructive"
+                      }`}
+                    >
+                      {formatBRL(somaSelecionada)}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {selectedValorIds.size} item{selectedValorIds.size !== 1 ? "s" : ""} selecionado{selectedValorIds.size !== 1 ? "s" : ""}
+                    </span>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-6 px-2 text-xs -mb-1"
+                      onClick={() => setSelectedValorIds(new Set())}
+                    >
+                      Desselecionar todos
+                    </Button>
+                  </div>
+                )}
                 <div className="flex flex-col gap-1 text-right opacity-80">
                   <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
                     Previsto
