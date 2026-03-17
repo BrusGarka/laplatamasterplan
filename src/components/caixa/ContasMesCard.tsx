@@ -36,7 +36,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Pencil, Trash2, Zap, Check, X, Copy } from "lucide-react";
+import { Pencil, Trash2, Zap, Check, X } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -54,19 +54,12 @@ import { ptBR } from "date-fns/locale";
 import { formatBRL, formatBRLForInput, parseBRLExpression } from "@/lib/utils";
 import { useLancamentos, useSaveLancamentos, useClearMesInteiro, useResumo, useTagsCaixa, useAddTagCaixa } from "@/hooks/use-caixa";
 import { toast } from "sonner";
-import { getLancamentosMes } from "@/services/caixa-service";
 import type { Lancamento, TipoLancamento, ResumoMes } from "@/types/caixa";
 import { SortableTableRow } from "./SortableTableRow";
 import { TagCombobox } from "./TagCombobox";
 import { TagBadge } from "./TagBadge";
 
 const TIPOS: TipoLancamento[] = ["giro", "entrada", "fixo", "poupança", "variavel"];
-
-function anoMesAnterior(anoMes: string): string {
-  const [y, m] = anoMes.split("-").map(Number);
-  const d = new Date(y, m - 2, 1);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
-}
 
 function calcularResumo(lancamentos: { valor: number; executado: boolean }[]): Partial<ResumoMes> {
   const totalEntradas = lancamentos
@@ -105,7 +98,6 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
   const addTagMutation = useAddTagCaixa();
   const saveMutation = useSaveLancamentos(anoMes);
   const clearMutation = useClearMesInteiro(anoMes);
-  const [filtroTipo, setFiltroTipo] = useState<string>("todos");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<{
     tipo: TipoLancamento;
@@ -127,9 +119,8 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
   const [inlineValorStr, setInlineValorStr] = useState("");
 
   const filtrados = useMemo(() => {
-    if (filtroTipo === "todos") return lancamentos;
-    return lancamentos.filter((l) => l.tipo === filtroTipo);
-  }, [lancamentos, filtroTipo]);
+    return lancamentos;
+  }, [lancamentos]);
 
   const ordenados = useMemo(() => [...filtrados], [filtrados]);
 
@@ -172,19 +163,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
     const newIndex = ordenados.findIndex((l) => l.id === over.id);
     if (oldIndex === -1 || newIndex === -1) return;
     const newFiltrados = arrayMove(ordenados, oldIndex, newIndex);
-    if (filtroTipo === "todos") {
-      saveMutation.mutate(newFiltrados);
-    } else {
-      const filteredIds = new Set(newFiltrados.map((l) => l.id));
-      const filteredIndices = lancamentos
-        .map((l, i) => (filteredIds.has(l.id) ? i : -1))
-        .filter((i) => i >= 0);
-      const newLancamentos = [...lancamentos];
-      newFiltrados.forEach((item, i) => {
-        newLancamentos[filteredIndices[i]] = item;
-      });
-      saveMutation.mutate(newLancamentos);
-    }
+    saveMutation.mutate(newFiltrados);
   };
 
   const pagas = lancamentos.filter((l) => l.executado).length;
@@ -285,36 +264,6 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
       .sort((a, b) => a.localeCompare(b, "pt-BR"));
   }, [tagsCaixa, lancamentos]);
 
-  const [copiando, setCopiando] = useState(false);
-  const handleCopiarMesAnterior = async () => {
-    const mesAnterior = anoMesAnterior(anoMes);
-    setCopiando(true);
-    try {
-      const anteriores = await getLancamentosMes(mesAnterior);
-      if (anteriores.length === 0) {
-        toast.info("Mês anterior vazio", {
-          description: `Nenhum lançamento em ${format(new Date(mesAnterior + "-01"), "MMMM yyyy", { locale: ptBR })}.`,
-        });
-        return;
-      }
-      const clonados: Lancamento[] = anteriores.map((l) => ({
-        ...l,
-        id: crypto.randomUUID(),
-        executado: false,
-      }));
-      saveMutation.mutate(clonados);
-      toast.success("Copiado do mês anterior", {
-        description: `${clonados.length} lançamento(s) clonado(s). Status "executado" zerado.`,
-      });
-    } catch (err) {
-      toast.error("Erro ao copiar", {
-        description: err instanceof Error ? err.message : "Não foi possível buscar o mês anterior.",
-      });
-    } finally {
-      setCopiando(false);
-    }
-  };
-
   if (isLoading) {
     return (
       <Card>
@@ -325,6 +274,11 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
     );
   }
 
+  const entradas = resumo.ativoCirculante;
+  const saidas = Math.abs(resumo.passivoCirculante);
+  const somaEntradasSaidas = entradas + saidas;
+  const entradasPct = somaEntradasSaidas > 0 ? (entradas / somaEntradasSaidas) * 100 : 50;
+
   return (
     <>
       <motion.div
@@ -332,105 +286,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
         animate={{ opacity: 1, y: 0 }}
         className="space-y-4"
       >
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                Posição atual
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div
-                className={`text-2xl font-bold ${
-                  resumo.posicao >= 0 ? "text-primary" : "text-destructive"
-                }`}
-              >
-                {formatBRL(resumo.posicao)}
-              </div>
-              <p className="text-xs text-muted-foreground mt-1">
-                Caixa disponível
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="border-emerald-500/20 bg-emerald-500/5">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                Ativo circulante
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-                {formatBRL(resumo.ativoCirculante)}
-              </div>
-              <p className="text-xs text-muted-foreground mt-1">Entradas</p>
-            </CardContent>
-          </Card>
-          <Card className="border-destructive/20 bg-destructive/5">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                Passivo circulante
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold text-destructive">
-                {formatBRL(resumo.passivoCirculante)}
-              </div>
-              <p className="text-xs text-muted-foreground mt-1">Saídas</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                Balanço previsto
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div
-                className={`text-2xl font-bold ${
-                  resumo.balancoPrevisto >= 0 ? "text-primary" : "text-destructive"
-                }`}
-              >
-                {formatBRL(resumo.balancoPrevisto)}
-              </div>
-              <p className="text-xs text-muted-foreground mt-1">
-                Ativo − Passivo
-              </p>
-            </CardContent>
-          </Card>
-        </div>
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <div>
-              <CardTitle>Contas do mês</CardTitle>
-              <CardDescription>
-                Lançamentos com marcação de pagamento (executado)
-              </CardDescription>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleCopiarMesAnterior}
-                disabled={copiando || saveMutation.isPending}
-              >
-                <Copy className="w-4 h-4 mr-1" />
-                Copiar do mês passado
-              </Button>
-              <Select value={filtroTipo} onValueChange={setFiltroTipo}>
-                <SelectTrigger className="w-[140px]">
-                  <SelectValue placeholder="Tipo" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="todos">Todos</SelectItem>
-                  {TIPOS.map((t) => (
-                    <SelectItem key={t} value={t}>
-                      {t}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          </CardHeader>
           <CardContent className="space-y-4">
             {total > 0 && (
               <div className="space-y-2">
@@ -641,7 +497,12 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                               />
                             ) : (
                               l.debitoAutomatico && (
-                                <Zap className="w-4 h-4 text-amber-500" title="Débito automático" />
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <Zap className="w-4 h-4 text-amber-500" />
+                                  </TooltipTrigger>
+                                  <TooltipContent>Débito automático</TooltipContent>
+                                </Tooltip>
                               )
                             )}
                           </TableCell>
@@ -805,6 +666,41 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                 </TableBody>
               </Table>
               </DndContext>
+            </div>
+            <div
+              className="sticky bottom-0 z-10 mt-4 flex flex-col gap-2 rounded-md border bg-card py-2 px-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"
+              aria-label="Resumo financeiro"
+            >
+              <div className="flex h-2 w-full overflow-hidden rounded-full bg-muted">
+                <div
+                  className="bg-emerald-500 transition-all"
+                  style={{ width: `${entradasPct}%` }}
+                />
+                <div
+                  className="bg-destructive transition-all"
+                  style={{ width: `${100 - entradasPct}%` }}
+                />
+              </div>
+              <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-sm">
+                <span className="text-emerald-600 dark:text-emerald-400">
+                  Entradas {formatBRL(entradas)}
+                </span>
+                <span className="text-destructive">Saídas {formatBRL(saidas)}</span>
+                <span
+                  className={
+                    resumo.balancoPrevisto >= 0 ? "text-primary" : "text-destructive"
+                  }
+                >
+                  Balanço {formatBRL(resumo.balancoPrevisto)}
+                </span>
+                <span
+                  className={
+                    resumo.posicao >= 0 ? "text-primary font-medium" : "text-destructive font-medium"
+                  }
+                >
+                  Posição {formatBRL(resumo.posicao)}
+                </span>
+              </div>
             </div>
           </CardContent>
         </Card>

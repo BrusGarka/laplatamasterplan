@@ -8,12 +8,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { PiggyBank, AlertTriangle, ChevronLeft, ChevronRight, Copy } from "lucide-react";
+import { TrendingUp, AlertTriangle, ChevronLeft, ChevronRight } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useMesesComDados } from "@/hooks/use-caixa";
-import { ContasMesCard } from "@/components/caixa/ContasMesCard";
+import { FluxoMensalCard } from "@/components/caixa/FluxoMensalCard";
 
 function anoMesAtual(): string {
   const now = new Date();
@@ -38,29 +38,11 @@ function labelMes(anoMes: string): string {
   return format(d, "MMMM yyyy", { locale: ptBR });
 }
 
-export default function Caixa() {
+export default function FluxoMensal() {
   const atual = anoMesAtual();
   const [anoMes, setAnoMes] = useState(atual);
-  const [copiando, setCopiando] = useState(false);
 
   const { data: mesesComDados = [], isError, error } = useMesesComDados();
-
-  const handleCopiarMesAnterior = async () => {
-    try {
-      setCopiando(true);
-      const anterior = anoMesAnterior(anoMes);
-      const anteriores = await getLancamentosMes(anterior);
-      if (!anteriores || anteriores.length === 0) {
-        throw new Error("Nenhum lançamento no mês anterior");
-      }
-      // Import getLancamentosMes
-      console.log("Copiar do mês anterior deve ser feito via ContasMesCard");
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setCopiando(false);
-    }
-  };
 
   const opcoesMes = useMemo(() => {
     const anterior = anoMesAnterior(atual);
@@ -81,31 +63,16 @@ export default function Caixa() {
         >
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
-              <PiggyBank className="w-5 h-5 text-primary" />
+              <TrendingUp className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold tracking-tight">
-                Caixa
-              </h1>
+              <h1 className="text-2xl font-bold tracking-tight">Fluxo mensal</h1>
               <p className="text-sm text-muted-foreground">
-                Contas do mês, posição de caixa e balanço ativo x passivo
+                Receita, despesa e aporte baseados nos lançamentos
               </p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => {
-                // Chamar método de copiar do ContasMesCard via ref
-                const event = new CustomEvent("copy-mes-anterior");
-                document.dispatchEvent(event);
-              }}
-              disabled={copiando}
-            >
-              <Copy className="w-4 h-4 mr-1" />
-              Copiar do mês passado
-            </Button>
             <span className="text-sm text-muted-foreground">Mês:</span>
             <div className="flex items-center rounded-md border">
               <Button
@@ -156,7 +123,7 @@ export default function Caixa() {
           </Alert>
         )}
 
-        <ContasMesCard anoMes={anoMes} />
+        <FluxoMensalCard anoMes={anoMes} />
       </div>
     </div>
   );

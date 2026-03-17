@@ -29,6 +29,7 @@ import {
   Receipt,
   ShieldAlert,
   Coins,
+  BarChart2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -73,6 +74,7 @@ const menuItems = [
     icon: User,
   },
   { title: "Caixa", url: "/caixa", icon: PiggyBank },
+  { title: "Fluxo mensal", url: "/fluxo-mensal", icon: BarChart2 },
   { title: "Reserva de Emergência", url: "/reserva-emergencia", icon: ShieldCheck },
   { title: "Metas Financeiras", url: "/metas-financeiras", icon: Target },
   { title: "Aposentadoria", url: "/aposentadoria", icon: Landmark },
@@ -109,7 +111,8 @@ export function Layout({ children }: LayoutProps) {
                     const isActive =
                       location.pathname === item.url ||
                       (item.url === "/" && location.pathname === "/dashboard") ||
-                      (item.url === "/caixa" && ["/orcamento", "/fluxo-caixa"].includes(location.pathname));
+                      (item.url === "/caixa" && location.pathname === "/orcamento") ||
+                      (item.url === "/fluxo-mensal" && location.pathname === "/fluxo-caixa");
                     return (
                       <SidebarMenuItem key={item.url}>
                         <SidebarMenuButton
