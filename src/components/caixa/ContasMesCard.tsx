@@ -73,6 +73,12 @@ function anoMesAnterior(anoMes: string): string {
   return format(d, "yyyy-MM");
 }
 
+function labelMes(anoMes: string): string {
+  const [y, m] = anoMes.split("-").map(Number);
+  const d = new Date(y, m - 1, 1);
+  return format(d, "MMMM yyyy", { locale: ptBR });
+}
+
 function calcularResumo(lancamentos: { valor: number; executado: boolean }[]): Partial<ResumoMes> {
   const totalEntradas = lancamentos
     .filter((l) => l.valor > 0)
@@ -442,7 +448,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                               <AlertDialogTitle>Limpar mês inteiro?</AlertDialogTitle>
                               <AlertDialogDescription>
                                 Isso vai apagar todos os lançamentos e o resumo de{" "}
-                                <strong>{format(new Date(anoMes + "-01"), "MMMM yyyy", { locale: ptBR })}</strong>.
+                                <strong>{labelMes(anoMes)}</strong>.
                                 Esta ação não pode ser desfeita.
                               </AlertDialogDescription>
                             </AlertDialogHeader>
