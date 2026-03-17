@@ -697,7 +697,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                 />
               </div>
               <div className="flex justify-end gap-6 text-sm">
-                <div className="flex flex-col gap-1 text-right pr-20 opacity-80">
+                <div className="flex flex-col gap-1 text-right opacity-80">
                   <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
                     Previsto
                   </span>
@@ -721,24 +721,26 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                       Saídas
                     </PopoverContent>
                   </Popover>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <span
-                        className={
-                          resumo.balancoPrevisto >= 0
-                            ? "text-primary"
-                            : "text-destructive"
-                        }
-                      >
-                        {formatBRL(resumo.balancoPrevisto)}
-                      </span>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto py-2 px-3 animate-none duration-0" align="end">
-                      Balanço
-                    </PopoverContent>
-                  </Popover>
+                  <div className="border-t border-border pt-1 mt-1">
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <span
+                          className={
+                            resumo.balancoPrevisto >= 0
+                              ? "text-primary"
+                              : "text-destructive"
+                          }
+                        >
+                          {formatBRL(resumo.balancoPrevisto)}
+                        </span>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto py-2 px-3 animate-none duration-0" align="end">
+                        Balanço
+                      </PopoverContent>
+                    </Popover>
+                  </div>
                 </div>
-                <div className="flex flex-col gap-1 text-right pl-20">
+                <div className="flex flex-col gap-1 text-right">
                   <span className="text-xs font-medium uppercase tracking-wide">
                     Executado
                   </span>
@@ -762,22 +764,24 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                       Saídas
                     </PopoverContent>
                   </Popover>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <span
-                        className={
-                          resumo.posicao >= 0
-                            ? "text-primary font-medium"
-                            : "text-destructive font-medium"
-                        }
-                      >
-                        {formatBRL(resumo.posicao)}
-                      </span>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto py-2 px-3 animate-none duration-0" align="end">
-                      Posição
-                    </PopoverContent>
-                  </Popover>
+                  <div className="border-t border-border pt-1 mt-1">
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <span
+                          className={
+                            resumo.posicao >= 0
+                              ? "text-primary font-medium"
+                              : "text-destructive font-medium"
+                          }
+                        >
+                          {formatBRL(resumo.posicao)}
+                        </span>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto py-2 px-3 animate-none duration-0" align="end">
+                        Posição
+                      </PopoverContent>
+                    </Popover>
+                  </div>
                 </div>
               </div>
             </div>
