@@ -36,7 +36,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Pencil, Trash2, Zap, Check, X } from "lucide-react";
+import { Pencil, Trash2, Zap, Check, X, PiggyBank, AlertTriangle, CheckCircle2, TrendingDown } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -54,7 +54,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { format } from "date-fns";
+import { format, getDaysInMonth } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { formatBRL, formatBRLForInput, parseBRLExpression } from "@/lib/utils";
 import { useLancamentos, useSaveLancamentos, useClearMesInteiro, useResumo, useTagsCaixa, useAddTagCaixa } from "@/hooks/use-caixa";
@@ -293,6 +293,31 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
   const saidas = Math.abs(resumo.passivoCirculante);
   const somaEntradasSaidas = entradas + saidas;
   const entradasPct = somaEntradasSaidas > 0 ? (entradas / somaEntradasSaidas) * 100 : 50;
+
+  const statusMes = useMemo(() => {
+    const balancoOk = resumo.balancoPrevisto >= 0;
+    const progressoOk = progresso >= 50;
+    if (balancoOk && progressoOk) return { label: "Em dia", variant: "emDia" as const };
+    if (!balancoOk) return { label: "Negativo", variant: "negativo" as const };
+    return { label: "Atenção", variant: "atencao" as const };
+  }, [resumo.balancoPrevisto, progresso]);
+
+  const diasComVencimento = useMemo(() => {
+    const dias = new Set<number>();
+    lancamentos.forEach((l) => l.dia != null && dias.add(l.dia));
+    return Array.from(dias).sort((a, b) => a - b);
+  }, [lancamentos]);
+
+  const diasNoMes = useMemo(() => {
+    const [ano, mes] = anoMes.split("-").map(Number);
+    return getDaysInMonth(new Date(ano, mes - 1));
+  }, [anoMes]);
+
+  const totalPorquinhos = useMemo(() => {
+    const p = resumo.porquinhos;
+    if (!p || Object.keys(p).length === 0) return null;
+    return Object.values(p).reduce((s, v) => s + v, 0);
+  }, [resumo.porquinhos]);
 
   return (
     <>
@@ -696,7 +721,156 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                   style={{ width: `${100 - entradasPct}%` }}
                 />
               </div>
-              <div className="flex justify-end gap-6 text-sm">
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div className="flex flex-wrap items-center gap-4">
+                  {/* 1. Badge de status */}
+                  <Badge
+                    variant="outline"
+                    className={
+                      statusMes.variant === "emDia"
+                        ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                        : statusMes.variant === "negativo"
+                          ? "border-destructive/50 bg-destructive/10 text-destructive"
+                          : "border-amber-500/50 bg-amber-500/10 text-amber-600 dark:text-amber-400"
+                    }
+                  >
+                    {statusMes.variant === "emDia" && <CheckCircle2 className="mr-1 h-3 w-3" />}
+                    {statusMes.variant === "atencao" && <AlertTriangle className="mr-1 h-3 w-3" />}
+                    {statusMes.variant === "negativo" && <TrendingDown className="mr-1 h-3 w-3" />}
+                    {statusMes.label}
+                  </Badge>
+
+                  {/* 2. Mini donut */}
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className="flex items-center gap-1.5">
+                        <svg width={28} height={28} className="-rotate-90" aria-hidden>
+                          <circle
+                            cx={14}
+                            cy={14}
+                            r={11}
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={4}
+                            className="text-muted"
+                          />
+                          <circle
+                            cx={14}
+                            cy={14}
+                            r={11}
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={4}
+                            strokeDasharray={`${(entradasPct / 100) * 69.1} 69.1`}
+                            className="text-emerald-500"
+                          />
+                          <circle
+                            cx={14}
+                            cy={14}
+                            r={11}
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={4}
+                            strokeDasharray={`${((100 - entradasPct) / 100) * 69.1} 69.1`}
+                            strokeDashoffset={-((entradasPct / 100) * 69.1)}
+                            className="text-destructive"
+                          />
+                        </svg>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>Entradas vs saídas</TooltipContent>
+                  </Tooltip>
+
+                  {/* 3. Progresso circular */}
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className="relative h-7 w-7">
+                        <svg width={28} height={28} className="-rotate-90" aria-hidden>
+                          <circle
+                            cx={14}
+                            cy={14}
+                            r={11}
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={4}
+                            className="text-muted"
+                          />
+                          <circle
+                            cx={14}
+                            cy={14}
+                            r={11}
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={4}
+                            strokeDasharray={`${(progresso / 100) * 69.1} 69.1`}
+                            className="text-emerald-500 transition-all"
+                          />
+                        </svg>
+                        <span className="absolute inset-0 flex items-center justify-center text-[10px] font-medium">
+                          {total > 0 ? pagas : "—"}
+                        </span>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>{pagas} de {total} executadas</TooltipContent>
+                  </Tooltip>
+
+                  {/* 4. Timeline do mês */}
+                  {diasNoMes > 0 && (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div className="flex items-center gap-0.5" style={{ width: 120 }}>
+                          {Array.from({ length: Math.min(diasNoMes, 31) }, (_, i) => i + 1).map(
+                            (dia) => (
+                              <div
+                                key={dia}
+                                className={`h-1.5 flex-1 rounded-sm transition-colors ${
+                                  diasComVencimento.includes(dia)
+                                    ? "bg-primary/70"
+                                    : "bg-muted"
+                                }`}
+                              />
+                            )
+                          )}
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Dias com vencimento: {diasComVencimento.length > 0 ? diasComVencimento.join(", ") : "nenhum"}
+                      </TooltipContent>
+                    </Tooltip>
+                  )}
+
+                  {/* 5. Resumo porquinhos */}
+                  {(resumo.totalPoupanca != null && resumo.totalPoupanca !== 0) ||
+                  (totalPorquinhos != null && totalPorquinhos !== 0) ? (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div className="flex items-center gap-1 text-xs">
+                          <PiggyBank className="h-3.5 w-3.5 text-muted-foreground" />
+                          <span className="font-mono text-muted-foreground">
+                            {formatBRL(
+                              resumo.totalPoupanca ?? totalPorquinhos ?? 0
+                            )}
+                          </span>
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        {resumo.porquinhos && Object.keys(resumo.porquinhos).length > 0 ? (
+                          <div className="space-y-1">
+                            {Object.entries(resumo.porquinhos).map(([nome, valor]) => (
+                              <div key={nome} className="flex justify-between gap-2">
+                                <span className="capitalize">{nome}</span>
+                                <span className="font-mono">{formatBRL(valor)}</span>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          "Total poupança"
+                        )}
+                      </TooltipContent>
+                    </Tooltip>
+                  ) : null}
+                </div>
+                <div className="flex shrink-0 gap-6 text-sm">
                 <div className="flex flex-col gap-1 text-right opacity-80">
                   <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
                     Previsto
@@ -784,6 +958,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </CardContent>
         </Card>
