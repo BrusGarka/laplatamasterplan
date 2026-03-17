@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { PiggyBank, AlertTriangle, ChevronLeft, ChevronRight, Copy } from "lucide-react";
+import { PiggyBank, AlertTriangle, ChevronLeft, ChevronRight, Copy, Loader2 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -45,31 +45,29 @@ export default function Caixa() {
 
   const { data: mesesComDados = [], isError, error } = useMesesComDados();
 
-  const handleCopiarMesAnterior = async () => {
-    try {
-      setCopiando(true);
-      const anterior = anoMesAnterior(anoMes);
-      const anteriores = await getLancamentosMes(anterior);
-      if (!anteriores || anteriores.length === 0) {
-        throw new Error("Nenhum lançamento no mês anterior");
-      }
-      // Import getLancamentosMes
-      console.log("Copiar do mês anterior deve ser feito via ContasMesCard");
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setCopiando(false);
-    }
-  };
+  useEffect(() => {
+    const onStart = () => setCopiando(true);
+    const onEnd = () => setCopiando(false);
+    document.addEventListener("copy-mes-anterior-start", onStart);
+    document.addEventListener("copy-mes-anterior-end", onEnd);
+    return () => {
+      document.removeEventListener("copy-mes-anterior-start", onStart);
+      document.removeEventListener("copy-mes-anterior-end", onEnd);
+    };
+  }, []);
 
-  const opcoesMes = useMemo(() => {
+  const { opcoesMes, limiteProximo } = useMemo(() => {
     const anterior = anoMesAnterior(atual);
     const proximo = anoMesProximo(atual);
-    return [proximo, atual, anterior];
+    const proximoProximo = anoMesProximo(proximo);
+    return {
+      opcoesMes: [proximoProximo, proximo, atual, anterior],
+      limiteProximo: proximoProximo,
+    };
   }, [atual]);
 
   const podeVoltar = anoMes !== anoMesAnterior(atual);
-  const podeAvancar = anoMes !== anoMesProximo(atual);
+  const podeAvancar = anoMes !== limiteProximo;
 
   return (
     <div className="min-h-screen gradient-mesh">
@@ -97,13 +95,15 @@ export default function Caixa() {
               variant="outline"
               size="sm"
               onClick={() => {
-                // Chamar método de copiar do ContasMesCard via ref
-                const event = new CustomEvent("copy-mes-anterior");
-                document.dispatchEvent(event);
+                document.dispatchEvent(new CustomEvent("copy-mes-anterior"));
               }}
               disabled={copiando}
             >
-              <Copy className="w-4 h-4 mr-1" />
+              {copiando ? (
+                <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+              ) : (
+                <Copy className="w-4 h-4 mr-1" />
+              )}
               Copiar do mês passado
             </Button>
             <span className="text-sm text-muted-foreground">Mês:</span>

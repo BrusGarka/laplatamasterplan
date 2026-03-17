@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   DndContext,
@@ -58,6 +58,7 @@ import { format, getDaysInMonth } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { formatBRL, formatBRLForInput, parseBRLExpression } from "@/lib/utils";
 import { useLancamentos, useSaveLancamentos, useClearMesInteiro, useResumo, useTagsCaixa, useAddTagCaixa } from "@/hooks/use-caixa";
+import { getLancamentosMes } from "@/services/caixa-service";
 import { toast } from "sonner";
 import type { Lancamento, TipoLancamento, ResumoMes } from "@/types/caixa";
 import { SortableTableRow } from "./SortableTableRow";
@@ -65,6 +66,12 @@ import { TagCombobox } from "./TagCombobox";
 import { TagBadge } from "./TagBadge";
 
 const TIPOS: TipoLancamento[] = ["giro", "entrada", "fixo", "poupança", "variavel"];
+
+function anoMesAnterior(anoMes: string): string {
+  const [y, m] = anoMes.split("-").map(Number);
+  const d = new Date(y, m - 2, 1);
+  return format(d, "yyyy-MM");
+}
 
 function calcularResumo(lancamentos: { valor: number; executado: boolean }[]): Partial<ResumoMes> {
   const totalEntradas = lancamentos
@@ -170,6 +177,43 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
   );
+
+  useEffect(() => {
+    const handler = async () => {
+      const anterior = anoMesAnterior(anoMes);
+      try {
+        document.dispatchEvent(new CustomEvent("copy-mes-anterior-start"));
+        const anteriores = await getLancamentosMes(anterior);
+        if (!anteriores || anteriores.length === 0) {
+          toast.error("Nenhum lançamento no mês anterior", {
+            description: `Não há dados em ${anterior} para copiar.`,
+          });
+          return;
+        }
+        const copiados: Lancamento[] = anteriores.map((l) => ({
+          ...l,
+          id: crypto.randomUUID(),
+          executado: false,
+        }));
+        for (const l of copiados) {
+          if (l.tag?.trim()) addTagMutation.mutate(l.tag.trim());
+        }
+        saveMutation.mutate(copiados);
+        toast.success("Lançamentos copiados", {
+          description: `${copiados.length} itens do mês anterior foram copiados.`,
+        });
+      } catch (err) {
+        toast.error("Erro ao copiar", {
+          description: err instanceof Error ? err.message : "Não foi possível copiar do mês anterior.",
+        });
+      } finally {
+        document.dispatchEvent(new CustomEvent("copy-mes-anterior-end"));
+      }
+    };
+    const onCopy = () => handler();
+    document.addEventListener("copy-mes-anterior", onCopy);
+    return () => document.removeEventListener("copy-mes-anterior", onCopy);
+  }, [anoMes, saveMutation, addTagMutation]);
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;

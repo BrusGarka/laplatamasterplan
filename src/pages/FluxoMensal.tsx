@@ -44,14 +44,18 @@ export default function FluxoMensal() {
 
   const { data: mesesComDados = [], isError, error } = useMesesComDados();
 
-  const opcoesMes = useMemo(() => {
+  const { opcoesMes, limiteProximo } = useMemo(() => {
     const anterior = anoMesAnterior(atual);
     const proximo = anoMesProximo(atual);
-    return [proximo, atual, anterior];
+    const proximoProximo = anoMesProximo(proximo);
+    return {
+      opcoesMes: [proximoProximo, proximo, atual, anterior],
+      limiteProximo: proximoProximo,
+    };
   }, [atual]);
 
   const podeVoltar = anoMes !== anoMesAnterior(atual);
-  const podeAvancar = anoMes !== anoMesProximo(atual);
+  const podeAvancar = anoMes !== limiteProximo;
 
   return (
     <div className="min-h-screen gradient-mesh">
