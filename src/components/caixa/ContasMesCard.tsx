@@ -36,7 +36,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Pencil, Trash2, Zap, Check, X, PiggyBank, AlertTriangle, CheckCircle2, TrendingDown } from "lucide-react";
+import { Pencil, Trash2, Zap, Check, X, PiggyBank } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -279,28 +279,10 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
       .sort((a, b) => a.localeCompare(b, "pt-BR"));
   }, [tagsCaixa, lancamentos]);
 
-  if (isLoading) {
-    return (
-      <Card>
-        <CardContent className="py-8 text-center text-muted-foreground">
-          Carregando...
-        </CardContent>
-      </Card>
-    );
-  }
-
   const entradas = resumo.ativoCirculante;
   const saidas = Math.abs(resumo.passivoCirculante);
   const somaEntradasSaidas = entradas + saidas;
   const entradasPct = somaEntradasSaidas > 0 ? (entradas / somaEntradasSaidas) * 100 : 50;
-
-  const statusMes = useMemo(() => {
-    const balancoOk = resumo.balancoPrevisto >= 0;
-    const progressoOk = progresso >= 50;
-    if (balancoOk && progressoOk) return { label: "Em dia", variant: "emDia" as const };
-    if (!balancoOk) return { label: "Negativo", variant: "negativo" as const };
-    return { label: "Atenção", variant: "atencao" as const };
-  }, [resumo.balancoPrevisto, progresso]);
 
   const diasComVencimento = useMemo(() => {
     const dias = new Set<number>();
@@ -318,6 +300,43 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
     if (!p || Object.keys(p).length === 0) return null;
     return Object.values(p).reduce((s, v) => s + v, 0);
   }, [resumo.porquinhos]);
+
+  const somaExecutado = entradasExecutadas + saidasExecutadas;
+  const executadoPct = somaExecutado > 0 ? (entradasExecutadas / somaExecutado) * 100 : 50;
+
+  const porTipo = useMemo(() => {
+    const map = new Map<TipoLancamento, number>();
+    TIPOS.forEach((t) => map.set(t, 0));
+    lancamentos.forEach((l) => {
+      const v = map.get(l.tipo) ?? 0;
+      map.set(l.tipo, v + Math.abs(l.valor));
+    });
+    const totalAbs = Array.from(map.values()).reduce((s, v) => s + v, 0);
+    if (totalAbs === 0) return [];
+    return TIPOS.map((tipo) => ({
+      tipo,
+      valor: map.get(tipo) ?? 0,
+      pct: ((map.get(tipo) ?? 0) / totalAbs) * 100,
+    })).filter((x) => x.valor > 0);
+  }, [lancamentos]);
+
+  const CORES_TIPO: Record<TipoLancamento, string> = {
+    entrada: "text-emerald-500",
+    giro: "text-sky-500",
+    fixo: "text-amber-500",
+    poupança: "text-violet-500",
+    variavel: "text-rose-500",
+  };
+
+  if (isLoading) {
+    return (
+      <Card>
+        <CardContent className="py-8 text-center text-muted-foreground">
+          Carregando...
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <>
@@ -711,40 +730,13 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
               className="sticky bottom-0 z-10 mt-4 flex flex-col gap-2 rounded-md border bg-card py-2 px-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"
               aria-label="Resumo financeiro"
             >
-              <div className="flex h-2 w-full overflow-hidden rounded-full bg-muted">
-                <div
-                  className="bg-emerald-500 transition-all"
-                  style={{ width: `${entradasPct}%` }}
-                />
-                <div
-                  className="bg-destructive transition-all"
-                  style={{ width: `${100 - entradasPct}%` }}
-                />
-              </div>
-              <div className="flex flex-wrap items-start justify-between gap-4">
-                <div className="flex flex-wrap items-center gap-4">
-                  {/* 1. Badge de status */}
-                  <Badge
-                    variant="outline"
-                    className={
-                      statusMes.variant === "emDia"
-                        ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                        : statusMes.variant === "negativo"
-                          ? "border-destructive/50 bg-destructive/10 text-destructive"
-                          : "border-amber-500/50 bg-amber-500/10 text-amber-600 dark:text-amber-400"
-                    }
-                  >
-                    {statusMes.variant === "emDia" && <CheckCircle2 className="mr-1 h-3 w-3" />}
-                    {statusMes.variant === "atencao" && <AlertTriangle className="mr-1 h-3 w-3" />}
-                    {statusMes.variant === "negativo" && <TrendingDown className="mr-1 h-3 w-3" />}
-                    {statusMes.label}
-                  </Badge>
-
-                  {/* 2. Mini donut */}
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3 min-w-0">
+                  {/* Mini donut previsto */}
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <div className="flex items-center gap-1.5">
-                        <svg width={28} height={28} className="-rotate-90" aria-hidden>
+                      <div className="h-12 w-12 flex-shrink-0 opacity-80">
+                        <svg viewBox="0 0 28 28" className="h-full w-full -rotate-90" preserveAspectRatio="xMidYMid meet" aria-hidden>
                           <circle
                             cx={14}
                             cy={14}
@@ -778,14 +770,14 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                         </svg>
                       </div>
                     </TooltipTrigger>
-                    <TooltipContent>Entradas vs saídas</TooltipContent>
+                    <TooltipContent>Entradas vs saídas (previsto)</TooltipContent>
                   </Tooltip>
 
-                  {/* 3. Progresso circular */}
+                  {/* Donut executado */}
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <div className="relative h-7 w-7">
-                        <svg width={28} height={28} className="-rotate-90" aria-hidden>
+                      <div className="h-12 w-12 flex-shrink-0">
+                        <svg viewBox="0 0 28 28" className="h-full w-full -rotate-90" preserveAspectRatio="xMidYMid meet" aria-hidden>
                           <circle
                             cx={14}
                             cy={14}
@@ -802,19 +794,85 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                             fill="none"
                             stroke="currentColor"
                             strokeWidth={4}
-                            strokeDasharray={`${(progresso / 100) * 69.1} 69.1`}
-                            className="text-emerald-500 transition-all"
+                            strokeDasharray={`${(executadoPct / 100) * 69.1} 69.1`}
+                            className="text-emerald-500"
+                          />
+                          <circle
+                            cx={14}
+                            cy={14}
+                            r={11}
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={4}
+                            strokeDasharray={`${((100 - executadoPct) / 100) * 69.1} 69.1`}
+                            strokeDashoffset={-((executadoPct / 100) * 69.1)}
+                            className="text-destructive"
                           />
                         </svg>
-                        <span className="absolute inset-0 flex items-center justify-center text-[10px] font-medium">
-                          {total > 0 ? pagas : "—"}
-                        </span>
                       </div>
                     </TooltipTrigger>
-                    <TooltipContent>{pagas} de {total} executadas</TooltipContent>
+                    <TooltipContent>
+                      Executado: entradas {formatBRL(entradasExecutadas)} vs saídas {formatBRL(-saidasExecutadas)}
+                    </TooltipContent>
                   </Tooltip>
 
-                  {/* 4. Timeline do mês */}
+                  {/* Donut por tipo */}
+                  {porTipo.length > 0 && (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div className="h-12 w-12 flex-shrink-0">
+                          <svg viewBox="0 0 28 28" className="h-full w-full -rotate-90" preserveAspectRatio="xMidYMid meet" aria-hidden>
+                            <circle
+                              cx={14}
+                              cy={14}
+                              r={11}
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth={4}
+                              className="text-muted"
+                            />
+                            {porTipo.reduce(
+                              (acc, { pct }, i) => {
+                                const offset = acc.prevOffset;
+                                const length = (pct / 100) * 69.1;
+                                acc.segments.push(
+                                  <circle
+                                    key={porTipo[i].tipo}
+                                    cx={14}
+                                    cy={14}
+                                    r={11}
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth={4}
+                                    strokeDasharray={`${length} 69.1`}
+                                    strokeDashoffset={-offset}
+                                    className={CORES_TIPO[porTipo[i].tipo]}
+                                  />
+                                );
+                                acc.prevOffset += length;
+                                return acc;
+                              },
+                              { prevOffset: 0, segments: [] as React.ReactNode[] }
+                            ).segments}
+                          </svg>
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <div className="space-y-1">
+                          {porTipo.map(({ tipo, valor, pct }) => (
+                            <div key={tipo} className="flex justify-between gap-3">
+                              <span className="capitalize">{tipo}</span>
+                              <span className="font-mono">
+                                {formatBRL(valor)} ({Math.round(pct)}%)
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </TooltipContent>
+                    </Tooltip>
+                  )}
+
+                  {/* Timeline do mês */}
                   {diasNoMes > 0 && (
                     <Tooltip>
                       <TooltipTrigger asChild>

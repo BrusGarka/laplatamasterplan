@@ -1,0 +1,9 @@
+---
+description: Regras de build e validação - não rodar build por padrão, usar linters
+alwaysApply: true
+---
+
+# Build e Validação
+
+- **Build**: Só executar build quando o usuário pedir explicitamente.
+- **Validação**: Usar linters, type-check (ex: `tsc --noEmit`) e outras formas leves para garantir sintaxe e semântica, sem rodar build completo.
