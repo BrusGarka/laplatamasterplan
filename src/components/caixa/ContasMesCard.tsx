@@ -129,6 +129,16 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
     [lancamentos]
   );
 
+  const { entradasExecutadas, saidasExecutadas } = useMemo(() => {
+    const entradas = lancamentos
+      .filter((l) => l.valor > 0 && l.executado)
+      .reduce((s, l) => s + l.valor, 0);
+    const saidas = lancamentos
+      .filter((l) => l.valor < 0 && l.executado)
+      .reduce((s, l) => s + Math.abs(l.valor), 0);
+    return { entradasExecutadas: entradas, saidasExecutadas: saidas };
+  }, [lancamentos]);
+
   const resumo: ResumoMes = useMemo(() => {
     if (resumoSalvo) {
       return {
@@ -289,7 +299,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
         <Card>
           <CardContent className="space-y-4">
             {total > 0 && (
-              <div className="space-y-2">
+              <div className="space-y-2 pt-2">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">
                     {pagas} de {total} contas executadas
@@ -681,25 +691,35 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                   style={{ width: `${100 - entradasPct}%` }}
                 />
               </div>
-              <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-sm">
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  Entradas {formatBRL(entradas)}
-                </span>
-                <span className="text-destructive">Saídas {formatBRL(saidas)}</span>
-                <span
-                  className={
-                    resumo.balancoPrevisto >= 0 ? "text-primary" : "text-destructive"
-                  }
-                >
-                  Balanço {formatBRL(resumo.balancoPrevisto)}
-                </span>
-                <span
-                  className={
-                    resumo.posicao >= 0 ? "text-primary font-medium" : "text-destructive font-medium"
-                  }
-                >
-                  Posição {formatBRL(resumo.posicao)}
-                </span>
+              <div className="flex justify-end gap-6 text-sm">
+                <div className="flex flex-col gap-1 text-right pr-20">
+                  <span className="text-emerald-600 dark:text-emerald-400">
+                    Entradas {formatBRL(entradas)}
+                  </span>
+                  <span className="text-destructive">Saídas {formatBRL(saidas)}</span>
+                  <span
+                    className={
+                      resumo.balancoPrevisto >= 0 ? "text-primary" : "text-destructive"
+                    }
+                  >
+                    Balanço previsto {formatBRL(resumo.balancoPrevisto)}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1 text-right pl-20">
+                  <span className="text-emerald-600 dark:text-emerald-400">
+                    Entradas executadas {formatBRL(entradasExecutadas)}
+                  </span>
+                  <span className="text-destructive">
+                    Saídas executadas {formatBRL(saidasExecutadas)}
+                  </span>
+                  <span
+                    className={
+                      resumo.posicao >= 0 ? "text-primary font-medium" : "text-destructive font-medium"
+                    }
+                  >
+                    Posição {formatBRL(resumo.posicao)}
+                  </span>
+                </div>
               </div>
             </div>
           </CardContent>
