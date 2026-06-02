@@ -14,6 +14,7 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useMesesComDados } from "@/hooks/use-caixa";
 import { ContasMesCard } from "@/components/caixa/ContasMesCard";
+import { buildOpcoesMesNavegacao } from "@/lib/caixa-mes-nav";
 
 function anoMesAtual(): string {
   const now = new Date();
@@ -56,18 +57,13 @@ export default function Caixa() {
     };
   }, []);
 
-  const { opcoesMes, limiteProximo } = useMemo(() => {
-    const anterior = anoMesAnterior(atual);
-    const proximo = anoMesProximo(atual);
-    const proximoProximo = anoMesProximo(proximo);
-    return {
-      opcoesMes: [proximoProximo, proximo, atual, anterior],
-      limiteProximo: proximoProximo,
-    };
-  }, [atual]);
+  const { opcoesMes, limiteProximo, limiteAnterior } = useMemo(
+    () => buildOpcoesMesNavegacao(atual, mesesComDados),
+    [atual, mesesComDados]
+  );
 
-  const podeVoltar = anoMes !== anoMesAnterior(atual);
-  const podeAvancar = anoMes !== limiteProximo;
+  const podeVoltar = anoMes > limiteAnterior;
+  const podeAvancar = anoMes < limiteProximo;
 
   return (
     <div className="min-h-screen gradient-mesh">
