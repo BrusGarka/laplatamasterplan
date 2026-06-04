@@ -1,9 +1,15 @@
-function anoMesProximo(anoMes: string): string {
+import { format } from "date-fns";
+
+export function anoMesAnterior(anoMes: string): string {
+  const [y, m] = anoMes.split("-").map(Number);
+  const d = new Date(y, m - 2, 1);
+  return format(d, "yyyy-MM");
+}
+
+export function anoMesProximo(anoMes: string): string {
   const [y, m] = anoMes.split("-").map(Number);
   const d = new Date(y, m, 1);
-  const yy = d.getFullYear();
-  const mm = String(d.getMonth() + 1).padStart(2, "0");
-  return `${yy}-${mm}`;
+  return format(d, "yyyy-MM");
 }
 
 /** Futuro: janela fixa (M+2, M+1, atual). Passado: só meses com dados no Redis. */

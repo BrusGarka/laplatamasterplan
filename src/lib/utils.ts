@@ -40,18 +40,29 @@ export function parseBRL(value: string): number {
   return neg ? -result : result;
 }
 
+/** Avalia fatores ligados por * dentro de um termo de soma/subtração. */
+function parseMultiplyTerm(term: string): number {
+  const trimmed = term.trim();
+  if (!trimmed) return 0;
+  if (!trimmed.includes("*")) return parseBRL(trimmed);
+  return trimmed
+    .split("*")
+    .map((f) => parseBRL(f.trim()))
+    .reduce((acc, n) => acc * n, 1);
+}
+
 /**
  * Avalia expressão tipo planilha no input de valor.
- * Ex: "50,00+40" → 90 | "100-20" → 80 | "-50+10" → -40
+ * Ex: "50,00+40" → 90 | "100-20" → 80 | "2*2" → 4 | "10+2*3" → 16
  */
 export function parseBRLExpression(value: string): number {
   const trimmed = value.trim();
   if (!trimmed || trimmed === "-") return 0;
   const parts = trimmed.split(/(\+|-)/);
-  let result = parseBRL(parts[0] ?? "0");
+  let result = parseMultiplyTerm(parts[0] ?? "0");
   for (let i = 1; i < parts.length; i += 2) {
     const op = parts[i];
-    const num = parseBRL(parts[i + 1] ?? "0");
+    const num = parseMultiplyTerm(parts[i + 1] ?? "0");
     if (op === "+") result += num;
     else if (op === "-") result -= num;
   }

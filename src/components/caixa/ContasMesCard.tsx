@@ -37,7 +37,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Pencil, Trash2, Zap, Check, X, PiggyBank, MessageSquare } from "lucide-react";
+import { Pencil, Trash2, Zap, Check, X, PiggyBank, MessageSquare, Clock } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -61,18 +61,22 @@ import { formatBRL, formatBRLForInput, parseBRLExpression } from "@/lib/utils";
 import { useLancamentos, useSaveLancamentos, useClearMesInteiro, useResumo, useTagsCaixa, useAddTagCaixa } from "@/hooks/use-caixa";
 import { getLancamentosMes } from "@/services/caixa-service";
 import { toast } from "sonner";
-import type { Lancamento, TipoLancamento, ResumoMes } from "@/types/caixa";
+import type { Lancamento, RepeticaoDiasSemana, TipoLancamento, ResumoMes } from "@/types/caixa";
+import { anoMesAnterior } from "@/lib/caixa-mes-nav";
 import { SortableTableRow } from "./SortableTableRow";
 import { TagCombobox } from "./TagCombobox";
 import { TagBadge } from "./TagBadge";
+import {
+  CalculadoraDiasSemanaDialog,
+  type CalculadoraDiasSemanaResult,
+} from "./CalculadoraDiasSemanaDialog";
 
 const TIPOS: TipoLancamento[] = ["giro", "entrada", "fixo", "poupança", "variavel"];
 
-function anoMesAnterior(anoMes: string): string {
-  const [y, m] = anoMes.split("-").map(Number);
-  const d = new Date(y, m - 2, 1);
-  return format(d, "yyyy-MM");
-}
+type CalculadoraTarget =
+  | { kind: "edit" }
+  | { kind: "inline" }
+  | { kind: "saved"; lancamentoId: string };
 
 function labelMes(anoMes: string): string {
   const [y, m] = anoMes.split("-").map(Number);
@@ -125,6 +129,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
     valor: number;
     dia: number | null;
     debitoAutomatico: boolean;
+    repeticaoDiasSemana?: RepeticaoDiasSemana;
   } | null>(null);
   const [editValorStr, setEditValorStr] = useState("");
   const [inline, setInline] = useState({
@@ -134,8 +139,11 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
     valor: 0,
     dia: null as number | null,
     debitoAutomatico: false,
+    repeticaoDiasSemana: undefined as RepeticaoDiasSemana | undefined,
   });
   const [inlineValorStr, setInlineValorStr] = useState("");
+  const [calculadoraOpen, setCalculadoraOpen] = useState(false);
+  const [calculadoraTarget, setCalculadoraTarget] = useState<CalculadoraTarget | null>(null);
   const [commentPopoverId, setCommentPopoverId] = useState<string | null>(null);
   const [commentDraft, setCommentDraft] = useState("");
   const [selectedValorIds, setSelectedValorIds] = useState<Set<string>>(new Set());
@@ -266,6 +274,69 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
     saveMutation.mutate(updated);
   };
 
+  const openCalculadora = (target: CalculadoraTarget) => {
+    setCalculadoraTarget(target);
+    setCalculadoraOpen(true);
+  };
+
+  const calculadoraInitial = useMemo((): RepeticaoDiasSemana | undefined => {
+    if (!calculadoraTarget) return undefined;
+    if (calculadoraTarget.kind === "edit") return editForm?.repeticaoDiasSemana;
+    if (calculadoraTarget.kind === "inline") return inline.repeticaoDiasSemana;
+    return lancamentos.find((l) => l.id === calculadoraTarget.lancamentoId)?.repeticaoDiasSemana;
+  }, [calculadoraTarget, editForm, inline.repeticaoDiasSemana, lancamentos]);
+
+  const handleCalculadoraApply = ({ valor, repeticao }: CalculadoraDiasSemanaResult) => {
+    if (!calculadoraTarget) return;
+    if (calculadoraTarget.kind === "edit") {
+      setEditValorStr(formatBRLForInput(valor));
+      setEditForm((p) => (p ? { ...p, valor, repeticaoDiasSemana: repeticao } : null));
+    } else if (calculadoraTarget.kind === "inline") {
+      setInlineValorStr(formatBRLForInput(valor));
+      setInline((p) => ({ ...p, valor, repeticaoDiasSemana: repeticao }));
+    } else {
+      const id = calculadoraTarget.lancamentoId;
+      saveMutation.mutate(
+        lancamentos.map((x) =>
+          x.id === id ? { ...x, valor, repeticaoDiasSemana: repeticao } : x
+        )
+      );
+    }
+  };
+
+  const handleCalculadoraClear = () => {
+    if (!calculadoraTarget) return;
+    if (calculadoraTarget.kind === "edit") {
+      setEditForm((p) => (p ? { ...p, repeticaoDiasSemana: undefined } : null));
+    } else if (calculadoraTarget.kind === "inline") {
+      setInline((p) => ({ ...p, repeticaoDiasSemana: undefined }));
+    } else {
+      const id = calculadoraTarget.lancamentoId;
+      saveMutation.mutate(
+        lancamentos.map((x) =>
+          x.id === id ? { ...x, repeticaoDiasSemana: undefined } : x
+        )
+      );
+    }
+  };
+
+  const renderBotaoCalculadora = (
+    hasRepeticao: boolean,
+    onOpen: () => void
+  ) => (
+    <Button
+      type="button"
+      variant="ghost"
+      size="icon"
+      className={`h-8 w-8 shrink-0 ${hasRepeticao ? "text-primary" : "text-muted-foreground"}`}
+      aria-label="Calcular valor por dias da semana"
+      title="Calcular valor por dias da semana"
+      onClick={onOpen}
+    >
+      <Clock className="w-4 h-4" />
+    </Button>
+  );
+
   const handleSaveEdit = () => {
     if (!editingId || !editForm.item?.trim()) return;
     const l = lancamentos.find((x) => x.id === editingId);
@@ -280,6 +351,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
       valor: valorFinal,
       dia: editForm.dia ?? l.dia ?? null,
       debitoAutomatico: editForm.debitoAutomatico ?? l.debitoAutomatico ?? false,
+      repeticaoDiasSemana: editForm.repeticaoDiasSemana,
     };
     if (tagFinal) addTagMutation.mutate(tagFinal);
     saveMutation.mutate(
@@ -297,7 +369,15 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
   };
 
   const clearInline = () => {
-    setInline({ tipo: "fixo", tag: "", item: "", valor: 0, dia: null, debitoAutomatico: false });
+    setInline({
+      tipo: "fixo",
+      tag: "",
+      item: "",
+      valor: 0,
+      dia: null,
+      debitoAutomatico: false,
+      repeticaoDiasSemana: undefined,
+    });
     setInlineValorStr("");
   };
 
@@ -314,6 +394,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
       executado: false,
       dia: inline.dia,
       debitoAutomatico: inline.debitoAutomatico,
+      repeticaoDiasSemana: inline.repeticaoDiasSemana,
     };
     if (tagFinal) addTagMutation.mutate(tagFinal);
     saveMutation.mutate([...lancamentos, novo]);
@@ -329,6 +410,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
       valor: l.valor,
       dia: l.dia ?? null,
       debitoAutomatico: l.debitoAutomatico ?? false,
+      repeticaoDiasSemana: l.repeticaoDiasSemana,
     });
     setEditValorStr(l.valor === 0 ? "" : formatBRLForInput(l.valor));
   };
@@ -457,7 +539,7 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                     <TableHead>Tag</TableHead>
                     <TableHead>Item</TableHead>
                     <TableHead className="text-right w-32 min-w-[7rem]">Valor</TableHead>
-                    <TableHead className="w-16">Dia</TableHead>
+                    <TableHead className="w-28 min-w-[7rem]">Dia</TableHead>
                     <TableHead className="w-12" />
                     <TableHead className="w-20">
                       <div className="flex justify-end">
@@ -642,28 +724,40 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                           </TableCell>
                           <TableCell>
                             {isEditing && editForm ? (
-                              <Input
-                                type="number"
-                                min={1}
-                                max={31}
-                                className="h-8 w-14"
-                                placeholder="—"
-                                value={editForm.dia ?? ""}
-                                onChange={(e) => {
-                                  const v = e.target.value;
-                                  setEditForm((p) =>
-                                    p
-                                      ? {
-                                          ...p,
-                                          dia: v === "" ? null : parseInt(v, 10) || null,
-                                        }
-                                      : null
-                                  );
-                                }}
-                                onKeyDown={(e) => e.key === "Enter" && handleSaveEdit()}
-                              />
+                              <div className="flex items-center gap-1">
+                                <Input
+                                  type="number"
+                                  min={1}
+                                  max={31}
+                                  className="h-8 w-12"
+                                  placeholder="—"
+                                  value={editForm.dia ?? ""}
+                                  onChange={(e) => {
+                                    const v = e.target.value;
+                                    setEditForm((p) =>
+                                      p
+                                        ? {
+                                            ...p,
+                                            dia: v === "" ? null : parseInt(v, 10) || null,
+                                          }
+                                        : null
+                                    );
+                                  }}
+                                  onKeyDown={(e) => e.key === "Enter" && handleSaveEdit()}
+                                />
+                                {renderBotaoCalculadora(!!editForm.repeticaoDiasSemana, () =>
+                                  openCalculadora({ kind: "edit" })
+                                )}
+                              </div>
                             ) : (
-                              l.dia ?? "—"
+                              <div className="flex items-center gap-1">
+                                <span className="w-8 text-center tabular-nums text-sm">
+                                  {l.dia ?? "—"}
+                                </span>
+                                {renderBotaoCalculadora(!!l.repeticaoDiasSemana, () =>
+                                  openCalculadora({ kind: "saved", lancamentoId: l.id })
+                                )}
+                              </div>
                             )}
                           </TableCell>
                           <TableCell>
@@ -803,22 +897,27 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
                         />
                       </TableCell>
                       <TableCell>
-                        <Input
-                          type="number"
-                          min={1}
-                          max={31}
-                          className="h-8 w-14"
-                          placeholder="—"
-                          value={inline.dia ?? ""}
-                          onChange={(e) => {
-                            const v = e.target.value;
-                            setInline((p) => ({
-                              ...p,
-                              dia: v === "" ? null : parseInt(v, 10) || null,
-                            }));
-                          }}
-                          onKeyDown={(e) => e.key === "Enter" && handleSaveInline()}
-                        />
+                        <div className="flex items-center gap-1">
+                          <Input
+                            type="number"
+                            min={1}
+                            max={31}
+                            className="h-8 w-12"
+                            placeholder="—"
+                            value={inline.dia ?? ""}
+                            onChange={(e) => {
+                              const v = e.target.value;
+                              setInline((p) => ({
+                                ...p,
+                                dia: v === "" ? null : parseInt(v, 10) || null,
+                              }));
+                            }}
+                            onKeyDown={(e) => e.key === "Enter" && handleSaveInline()}
+                          />
+                          {renderBotaoCalculadora(!!inline.repeticaoDiasSemana, () =>
+                            openCalculadora({ kind: "inline" })
+                          )}
+                        </div>
                       </TableCell>
                       <TableCell className="w-12" />
                       <TableCell>
@@ -1170,6 +1269,17 @@ export function ContasMesCard({ anoMes }: ContasMesCardProps) {
           </CardContent>
         </Card>
       </motion.div>
+
+      <CalculadoraDiasSemanaDialog
+        open={calculadoraOpen}
+        onOpenChange={setCalculadoraOpen}
+        anoMesTela={anoMes}
+        initial={calculadoraInitial}
+        onApply={handleCalculadoraApply}
+        onClear={
+          calculadoraInitial ? handleCalculadoraClear : undefined
+        }
+      />
     </>
   );
 }

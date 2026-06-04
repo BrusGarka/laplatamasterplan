@@ -1,5 +1,6 @@
 export type {
   Lancamento,
+  RepeticaoDiasSemana,
   ResumoMes,
   MetadadosMes,
   TipoLancamento,

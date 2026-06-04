@@ -23,6 +23,14 @@ export const TIPOS_LANCAMENTO: TipoLancamento[] = [
   "variavel",
 ];
 
+export interface RepeticaoDiasSemana {
+  /** Relativo ao anoMes da tela no momento do uso/salvamento */
+  mesRef: "atual" | "passado";
+  /** 0=domingo … 6=sábado */
+  diasSemana: number[];
+  valorPorEvento: number;
+}
+
 export interface Lancamento {
   id: string;
   tipo: TipoLancamento;
@@ -34,6 +42,7 @@ export interface Lancamento {
   debitoAutomatico?: boolean;
   /** Comentário na célula do item (como em planilhas) */
   comentario?: string;
+  repeticaoDiasSemana?: RepeticaoDiasSemana;
 }
 
 export interface ResumoMes {

@@ -14,23 +14,15 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useMesesComDados } from "@/hooks/use-caixa";
 import { ContasMesCard } from "@/components/caixa/ContasMesCard";
-import { buildOpcoesMesNavegacao } from "@/lib/caixa-mes-nav";
+import {
+  anoMesAnterior,
+  anoMesProximo,
+  buildOpcoesMesNavegacao,
+} from "@/lib/caixa-mes-nav";
 
 function anoMesAtual(): string {
   const now = new Date();
   return format(now, "yyyy-MM");
-}
-
-function anoMesAnterior(anoMes: string): string {
-  const [y, m] = anoMes.split("-").map(Number);
-  const d = new Date(y, m - 2, 1);
-  return format(d, "yyyy-MM");
-}
-
-function anoMesProximo(anoMes: string): string {
-  const [y, m] = anoMes.split("-").map(Number);
-  const d = new Date(y, m, 1);
-  return format(d, "yyyy-MM");
 }
 
 function labelMes(anoMes: string): string {
