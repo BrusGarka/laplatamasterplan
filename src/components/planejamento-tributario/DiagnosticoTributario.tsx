@@ -639,20 +639,29 @@ export function DiagnosticoTributario() {
             <li className="flex gap-2">
               <Badge className="shrink-0">2</Badge>
               <span>
+                <strong>Valide a substância do CNAE com a Contajá.</strong> Confirme se o que a Maia entrega à
+                MOB2CON é defensável como item 17.01 (fornecimento de dados) e não como desenvolvimento de
+                software (item 1.x). Alinhe contrato, descrição da NF e CNAE na mesma narrativa — não troque de
+                CNAE só por parecer “mais técnico”.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <Badge className="shrink-0">3</Badge>
+              <span>
                 <strong>Confirme escrituração contábil completa com a Contajá.</strong> É o que respalda
                 distribuir 100% do lucro isento de IR (hoje a presunção limitaria a ~
                 {formatBRL(dados.lucroIsentoPresuncao)}/mês).
               </span>
             </li>
             <li className="flex gap-2">
-              <Badge variant="secondary" className="shrink-0">3</Badge>
+              <Badge variant="secondary" className="shrink-0">4</Badge>
               <span>
                 <strong>Mantenha o pró-labore em 1 salário mínimo.</strong> Aumentar não reduz o DAS e só corta
                 seu líquido via INSS/IRRF.
               </span>
             </li>
             <li className="flex gap-2">
-              <Badge variant="secondary" className="shrink-0">4</Badge>
+              <Badge variant="secondary" className="shrink-0">5</Badge>
               <span>
                 <strong>Monitore a média mensal.</strong> Até ~{formatBRL(dados.mediaMensalParaProximaFaixa)}/mês
                 você fica na 2ª faixa. Acima disso, o RBT12 ultrapassa {formatBRL(tabelaAnexoIII[1].limite)} e a
