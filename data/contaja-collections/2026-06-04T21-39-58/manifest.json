@@ -1,0 +1,12 @@
+{
+  "fonte": "contaja-api",
+  "url": "https://app.contaja.com.br/tributos-folhas",
+  "scrapedAt": "2026-06-04T21:39:58.566Z",
+  "totalDocumentos": 120,
+  "totalComMetodoCalculo": 22,
+  "calculosSimplesUnicos": 22,
+  "endpoints": [
+    "/api/tax-payroll-document",
+    "/api/tax-payroll-document/national-simple-tax-calculation"
+  ]
+}

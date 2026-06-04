@@ -10,33 +10,102 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 
 interface Sonho {
   nome: string;
   tipo: string;
   valor: number;
   observacao?: string;
-}
-
-interface SonhoWithLink extends Sonho {
   link?: string;
+  valorMeta?: number;
+  valorAtual?: number;
+  prazo?: string;
+  prioridade?: "alta" | "media" | "baixa";
 }
 
-const sonhos: SonhoWithLink[] = [
+const sonhos: Sonho[] = [
   { nome: "Casa", tipo: "Financiamento", valor: 0, observacao: "Valor a preencher" },
-  { nome: "Carrinho BYD", tipo: "Financiamento", valor: -100000, observacao: "Projeto BYD Dolphin Mini PCD", link: "/sonhos/carrinho-byd" },
+  {
+    nome: "Carrinho BYD",
+    tipo: "Financiamento",
+    valor: -100000,
+    observacao: "Projeto BYD Dolphin Mini PCD",
+    link: "/sonhos/carrinho-byd",
+    valorMeta: 80_000,
+    valorAtual: 0,
+    prazo: "2028",
+    prioridade: "baixa",
+  },
   { nome: "IPTU acordo judicial", tipo: "Tributo", valor: -5993.72, observacao: "À vista" },
-  { nome: "IPTU 2023-2025", tipo: "Tributo", valor: -6919.16, observacao: "10 parcelas fixas de R$ 698,59 (simulação Prefeitura)" },
-  { nome: "Viagem", tipo: "Outras", valor: 0, observacao: "Valor a preencher" },
+  {
+    nome: "IPTU 2023-2025",
+    tipo: "Tributo",
+    valor: -6919.16,
+    observacao: "10 parcelas fixas de R$ 698,59 (simulação Prefeitura)",
+  },
+  {
+    nome: "Viagem",
+    tipo: "Outras",
+    valor: 0,
+    observacao: "Viagem família",
+    valorMeta: 25_000,
+    valorAtual: 8_000,
+    prazo: "2026",
+    prioridade: "media",
+  },
+  {
+    nome: "Reserva de emergência (6 meses)",
+    tipo: "Meta",
+    valor: 0,
+    link: "/reserva-emergencia",
+    valorMeta: 51_000,
+    valorAtual: 25_000,
+    prazo: "2025",
+    prioridade: "alta",
+  },
+  {
+    nome: "Meta patrimonial Master Plan",
+    tipo: "Meta",
+    valor: 0,
+    link: "/master-plan",
+    valorMeta: 2_000_000,
+    valorAtual: 224_000,
+    prazo: "2033",
+    prioridade: "alta",
+  },
 ];
 
-function formatBRL(value: number): string {
+function formatBRL(value: number, fractionDigits = 2): string {
   return value.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
+    minimumFractionDigits: fractionDigits,
+    maximumFractionDigits: fractionDigits,
   });
+}
+
+function formatMetaBRL(value: number): string {
+  return formatBRL(value, 0);
+}
+
+function getPrioridadeVariant(p: string): "default" | "secondary" | "destructive" | "outline" {
+  if (p === "alta") return "destructive";
+  if (p === "media") return "secondary";
+  return "outline";
+}
+
+const prioridadeLabel: Record<string, string> = {
+  alta: "Alta",
+  media: "Média",
+  baixa: "Baixa",
+};
+
+function progressPct(valorMeta?: number, valorAtual?: number): number {
+  if (valorMeta == null || valorMeta === 0) return 0;
+  const atual = valorAtual ?? 0;
+  return Math.min(100, (atual / valorMeta) * 100);
 }
 
 export default function Sonhos() {
@@ -56,7 +125,7 @@ export default function Sonhos() {
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Sonhos</h1>
             <p className="text-sm text-muted-foreground">
-              Visão geral de obrigações e passivos
+              Obrigações, passivos e metas com prazo e progresso
             </p>
           </div>
         </motion.header>
@@ -69,7 +138,7 @@ export default function Sonhos() {
             <CardContent>
               <div className="text-2xl font-bold text-destructive">{formatBRL(totalSonhos)}</div>
               <p className="text-xs text-muted-foreground mt-1">
-                Soma de todas as obrigações listadas
+                Soma das obrigações listadas (valores negativos)
               </p>
             </CardContent>
           </Card>
@@ -79,41 +148,72 @@ export default function Sonhos() {
           <CardHeader>
             <CardTitle>Detalhamento dos Sonhos</CardTitle>
             <CardDescription>
-              Casa, Carrinho BYD, IPTU e outros sonhos.
+              Casa, carro, IPTU, viagem, reserva de emergência e meta patrimonial.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="rounded-md border">
+            <div className="rounded-md border overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Item</TableHead>
                     <TableHead>Tipo</TableHead>
                     <TableHead className="text-right">Valor (R$)</TableHead>
+                    <TableHead className="text-right">Valor atual</TableHead>
+                    <TableHead className="text-right">Valor meta</TableHead>
+                    <TableHead>Prazo</TableHead>
+                    <TableHead>Progresso</TableHead>
+                    <TableHead></TableHead>
                     <TableHead className="text-muted-foreground">Observação</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {sonhos.map((d) => (
-                    <TableRow key={d.nome} className={d.link ? "hover:bg-muted/50" : undefined}>
-                      <TableCell className="font-medium">
-                        {d.link ? (
-                          <Link to={d.link} className="text-primary hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded">
-                            {d.nome}
-                          </Link>
-                        ) : (
-                          d.nome
-                        )}
-                      </TableCell>
-                      <TableCell>{d.tipo}</TableCell>
-                      <TableCell className={`text-right font-mono ${d.valor < 0 ? "text-destructive font-semibold" : ""}`}>
-                        {formatBRL(d.valor)}
-                      </TableCell>
-                      <TableCell className="text-sm text-muted-foreground">
-                        {d.observacao ?? "—"}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {sonhos.map((d) => {
+                    const pct = progressPct(d.valorMeta, d.valorAtual);
+                    const hasMeta = d.valorMeta != null;
+                    return (
+                      <TableRow key={d.nome} className={d.link ? "hover:bg-muted/50" : undefined}>
+                        <TableCell className="font-medium">
+                          {d.link ? (
+                            <Link
+                              to={d.link}
+                              className="text-primary hover:underline focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                            >
+                              {d.nome}
+                            </Link>
+                          ) : (
+                            d.nome
+                          )}
+                        </TableCell>
+                        <TableCell>{d.tipo}</TableCell>
+                        <TableCell
+                          className={`text-right font-mono ${d.valor < 0 ? "text-destructive font-semibold" : ""}`}
+                        >
+                          {formatBRL(d.valor)}
+                        </TableCell>
+                        <TableCell className="text-right font-mono">
+                          {hasMeta ? formatMetaBRL(d.valorAtual ?? 0) : "—"}
+                        </TableCell>
+                        <TableCell className="text-right font-mono">
+                          {hasMeta ? formatMetaBRL(d.valorMeta!) : "—"}
+                        </TableCell>
+                        <TableCell>{d.prazo ?? "—"}</TableCell>
+                        <TableCell className="w-32">
+                          {hasMeta ? <Progress value={pct} className="h-2" /> : "—"}
+                        </TableCell>
+                        <TableCell>
+                          {d.prioridade ? (
+                            <Badge variant={getPrioridadeVariant(d.prioridade)} className="text-xs">
+                              {prioridadeLabel[d.prioridade] ?? d.prioridade}
+                            </Badge>
+                          ) : null}
+                        </TableCell>
+                        <TableCell className="text-sm text-muted-foreground">
+                          {d.observacao ?? "—"}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </div>

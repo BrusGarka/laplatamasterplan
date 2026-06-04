@@ -1,0 +1,508 @@
+{
+  "606": {
+    "aliquot": "7,41",
+    "id": 606,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,41",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 653,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.418,08",
+        "totalValue": "R$ 19.150,00"
+      }
+    ],
+    "taxTotalValue": "R$ 1.418,08",
+    "totalValue": "R$ 19.150,00"
+  },
+  "4339": {
+    "aliquot": "7,42",
+    "id": 4339,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,42",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 4677,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 2.914,00",
+        "totalValue": "R$ 39.257,50"
+      }
+    ],
+    "taxTotalValue": "R$ 2.914,00",
+    "totalValue": "R$ 39.257,50"
+  },
+  "9843": {
+    "aliquot": "7,45",
+    "id": 9843,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,45",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 10629,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.498,94",
+        "totalValue": "R$ 20.107,50"
+      }
+    ],
+    "taxTotalValue": "R$ 1.498,94",
+    "totalValue": "R$ 20.107,50"
+  },
+  "12645": {
+    "aliquot": "7,47",
+    "id": 12645,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,47",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 13715,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.501,81",
+        "totalValue": "R$ 20.107,50"
+      }
+    ],
+    "taxTotalValue": "R$ 1.501,81",
+    "totalValue": "R$ 20.107,50"
+  },
+  "17345": {
+    "aliquot": "7,48",
+    "id": 17345,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,48",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 18827,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.504,66",
+        "totalValue": "R$ 20.107,50"
+      }
+    ],
+    "taxTotalValue": "R$ 1.504,66",
+    "totalValue": "R$ 20.107,50"
+  },
+  "22292": {
+    "aliquot": "7,50",
+    "id": 22292,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,50",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 24209,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.507,49",
+        "totalValue": "R$ 20.107,50"
+      }
+    ],
+    "taxTotalValue": "R$ 1.507,49",
+    "totalValue": "R$ 20.107,50"
+  },
+  "32338": {
+    "aliquot": "7,53",
+    "id": 32338,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,53",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 35034,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.513,09",
+        "totalValue": "R$ 20.107,50"
+      }
+    ],
+    "taxTotalValue": "R$ 1.513,09",
+    "totalValue": "R$ 20.107,50"
+  },
+  "37516": {
+    "aliquot": "7,54",
+    "id": 37516,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,54",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 40610,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.515,86",
+        "totalValue": "R$ 20.107,50"
+      }
+    ],
+    "taxTotalValue": "R$ 1.515,86",
+    "totalValue": "R$ 20.107,50"
+  },
+  "45430": {
+    "aliquot": "7,55",
+    "id": 45430,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,55",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 49094,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.518,60",
+        "totalValue": "R$ 20.107,50"
+      }
+    ],
+    "taxTotalValue": "R$ 1.518,60",
+    "totalValue": "R$ 20.107,50"
+  },
+  "49736": {
+    "aliquot": "7,57",
+    "id": 49736,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,57",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 53786,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.521,34",
+        "totalValue": "R$ 20.107,50"
+      }
+    ],
+    "taxTotalValue": "R$ 1.521,34",
+    "totalValue": "R$ 20.107,50"
+  },
+  "55935": {
+    "aliquot": "7,58",
+    "id": 55935,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,58",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 60435,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.524,03",
+        "totalValue": "R$ 20.107,50"
+      }
+    ],
+    "taxTotalValue": "R$ 1.524,03",
+    "totalValue": "R$ 20.107,50"
+  },
+  "61716": {
+    "aliquot": "7,59",
+    "id": 61716,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,59",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 66710,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.526,74",
+        "totalValue": "R$ 20.107,50"
+      }
+    ],
+    "taxTotalValue": "R$ 1.526,74",
+    "totalValue": "R$ 20.107,50"
+  },
+  "68219": {
+    "aliquot": "7,61",
+    "id": 68219,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,61",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 73738,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 3.135,25",
+        "totalValue": "R$ 41.220,38"
+      }
+    ],
+    "taxTotalValue": "R$ 3.135,25",
+    "totalValue": "R$ 41.220,38"
+  },
+  "75319": {
+    "aliquot": "7,63",
+    "id": 75319,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,63",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 81461,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.745,83",
+        "totalValue": "R$ 22.872,29"
+      }
+    ],
+    "taxTotalValue": "R$ 1.745,83",
+    "totalValue": "R$ 22.872,29"
+  },
+  "84806": {
+    "aliquot": "7,67",
+    "id": 84806,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,67",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 91741,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.754,33",
+        "totalValue": "R$ 22.872,29"
+      }
+    ],
+    "taxTotalValue": "R$ 1.754,33",
+    "totalValue": "R$ 22.872,29"
+  },
+  "90513": {
+    "aliquot": "7,71",
+    "id": 90513,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,71",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 97987,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.762,67",
+        "totalValue": "R$ 22.872,29"
+      }
+    ],
+    "taxTotalValue": "R$ 1.762,67",
+    "totalValue": "R$ 22.872,29"
+  },
+  "97773": {
+    "aliquot": "7,74",
+    "id": 97773,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,74",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 105903,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.770,83",
+        "totalValue": "R$ 22.872,29"
+      }
+    ],
+    "taxTotalValue": "R$ 1.770,83",
+    "totalValue": "R$ 22.872,29"
+  },
+  "106330": {
+    "aliquot": "7,78",
+    "id": 106330,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,78",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 115193,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.778,83",
+        "totalValue": "R$ 22.872,29"
+      }
+    ],
+    "taxTotalValue": "R$ 1.778,83",
+    "totalValue": "R$ 22.872,29"
+  },
+  "114866": {
+    "aliquot": "7,81",
+    "id": 114866,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,81",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 124336,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.786,66",
+        "totalValue": "R$ 22.872,29"
+      }
+    ],
+    "taxTotalValue": "R$ 1.786,66",
+    "totalValue": "R$ 22.872,29"
+  },
+  "124016": {
+    "aliquot": "7,85",
+    "id": 124016,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,85",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 134189,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.794,35",
+        "totalValue": "R$ 22.872,29"
+      }
+    ],
+    "taxTotalValue": "R$ 1.794,35",
+    "totalValue": "R$ 22.872,29"
+  },
+  "134258": {
+    "aliquot": "7,88",
+    "id": 134258,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,88",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 145246,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.801,87",
+        "totalValue": "R$ 22.872,29"
+      }
+    ],
+    "taxTotalValue": "R$ 1.801,87",
+    "totalValue": "R$ 22.872,29"
+  },
+  "144166": {
+    "aliquot": "7,91",
+    "id": 144166,
+    "isFatorR": null,
+    "nationalSimpleTaxCalculationItems": [
+      {
+        "aliquot": "7,91",
+        "annex": {
+          "description": "Anexo III",
+          "id": 3,
+          "slug": "annex-3",
+          "symbol": "III"
+        },
+        "hasRetention": false,
+        "id": 155894,
+        "isFatorR": false,
+        "taxTotalValue": "R$ 1.977,56",
+        "totalValue": "R$ 25.000,00"
+      }
+    ],
+    "taxTotalValue": "R$ 1.977,56",
+    "totalValue": "R$ 25.000,00"
+  }
+}

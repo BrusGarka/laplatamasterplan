@@ -1,0 +1,3993 @@
+{
+  "scrapedAt": "2026-06-04T21:39:58.566Z",
+  "docs": [
+    {
+      "automaticValueReading": 0,
+      "competency": "05/2026",
+      "description": "HOLERITE",
+      "dueDate": "19/06/2026",
+      "hash": "W7Mmb",
+      "id": 968806,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "04/2026",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/05/2026",
+      "hash": "vXVD8",
+      "id": 944479,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 178,31",
+      "wasPaid": 1,
+      "wasPaidBySystem": true
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "04/2026",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/05/2026",
+      "hash": "qeWNq",
+      "id": 928618,
+      "nationalSimpleTaxCalculationId": 144166,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.977,56",
+      "wasPaid": 1,
+      "wasPaidBySystem": true
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "05/2026",
+      "description": "Taxa de Localização e Funcionamento",
+      "dueDate": "11/05/2026",
+      "hash": "NyWLM",
+      "id": 925422,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "04/2026",
+      "description": "HOLERITE",
+      "dueDate": "20/05/2026",
+      "hash": "eJLvA",
+      "id": 922129,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "03/2026",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/04/2026",
+      "hash": "W84zb",
+      "id": 890750,
+      "nationalSimpleTaxCalculationId": 134258,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.801,87",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "03/2026",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/04/2026",
+      "hash": "Ly7oB",
+      "id": 884216,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 178,31",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "03/2026",
+      "description": "HOLERITE",
+      "dueDate": "20/04/2026",
+      "hash": "EJxRb",
+      "id": 879663,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "02/2026",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/03/2026",
+      "hash": "ayPDJ",
+      "id": 845308,
+      "nationalSimpleTaxCalculationId": 124016,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.794,35",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "02/2026",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/03/2026",
+      "hash": "VKyAM",
+      "id": 844389,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 178,31",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "02/2026",
+      "description": "HOLERITE",
+      "dueDate": "20/03/2026",
+      "hash": "gyLkr",
+      "id": 840192,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "01/2026",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/02/2026",
+      "hash": "My8jZ",
+      "id": 811907,
+      "nationalSimpleTaxCalculationId": 114866,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.786,66",
+      "wasPaid": 1,
+      "wasPaidBySystem": true
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "01/2026",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/02/2026",
+      "hash": "7wkwD",
+      "id": 807712,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 178,31",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "01/2026",
+      "description": "HOLERITE",
+      "dueDate": "20/02/2026",
+      "hash": "MyZgV",
+      "id": 804351,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "12/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/01/2026",
+      "hash": "2ej8P",
+      "id": 777503,
+      "nationalSimpleTaxCalculationId": 106330,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.778,83",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "12/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/01/2026",
+      "hash": "DDw9P",
+      "id": 774631,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "12/2025",
+      "description": "HOLERITE",
+      "dueDate": "20/01/2026",
+      "hash": "lE66Z",
+      "id": 766667,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "11/2025",
+      "description": "DARF - FOLHA | Recálculo de Tributo",
+      "dueDate": "22/12/2025",
+      "hash": "129v1",
+      "id": 763811,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 167,53",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "11/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "22/12/2025",
+      "hash": "RrWk2",
+      "id": 741693,
+      "nationalSimpleTaxCalculationId": 97773,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.770,83",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "11/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "19/12/2025",
+      "hash": "VNMLl",
+      "id": 739145,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "warning",
+        "description": "Recálculo solicitado",
+        "slug": "recalculation-requested"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "11/2025",
+      "description": "HOLERITE",
+      "dueDate": "19/12/2025",
+      "hash": "yQvDR",
+      "id": 733361,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "danger",
+        "description": "Vencido",
+        "slug": "expired"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "10/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "21/11/2025",
+      "hash": "VN26l",
+      "id": 710545,
+      "nationalSimpleTaxCalculationId": 90513,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.762,67",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "10/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "19/11/2025",
+      "hash": "jgZqQ",
+      "id": 706057,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "10/2025",
+      "description": "HOLERITE",
+      "dueDate": "19/11/2025",
+      "hash": "ZwgME",
+      "id": 699570,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "09/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/10/2025",
+      "hash": "yQgg8",
+      "id": 683461,
+      "nationalSimpleTaxCalculationId": 84806,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.754,33",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "09/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/10/2025",
+      "hash": "54zog",
+      "id": 673676,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "09/2025",
+      "description": "HOLERITE",
+      "dueDate": "20/10/2025",
+      "hash": "mG6kV",
+      "id": 667037,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "08/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "19/09/2025",
+      "hash": "Zj1XG",
+      "id": 653426,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "08/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "22/09/2025",
+      "hash": "2Q9Nr",
+      "id": 644091,
+      "nationalSimpleTaxCalculationId": 75319,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.745,83",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "08/2025",
+      "description": "HOLERITE",
+      "dueDate": "19/09/2025",
+      "hash": "Zj7ZE",
+      "id": 637970,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "07/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/08/2025",
+      "hash": "EqPwj",
+      "id": 617763,
+      "nationalSimpleTaxCalculationId": 68219,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 3.135,25",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "07/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/08/2025",
+      "hash": "GOJGl",
+      "id": 615697,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "07/2025",
+      "description": "HOLERITE",
+      "dueDate": "20/08/2025",
+      "hash": "gPGZe",
+      "id": 608948,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "06/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "18/07/2025",
+      "hash": "myor8",
+      "id": 588781,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "06/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "21/07/2025",
+      "hash": "W2E8P",
+      "id": 587050,
+      "nationalSimpleTaxCalculationId": 61716,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.526,74",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "06/2025",
+      "description": "HOLERITE",
+      "dueDate": "18/07/2025",
+      "hash": "7Kozj",
+      "id": 580612,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "05/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/06/2025",
+      "hash": "NkDxr",
+      "id": 564166,
+      "nationalSimpleTaxCalculationId": 55935,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.524,03",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "05/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/06/2025",
+      "hash": "kmQmJ",
+      "id": 559778,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "05/2025",
+      "description": "HOLERITE",
+      "dueDate": "20/06/2025",
+      "hash": "Q8JE8",
+      "id": 554098,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "04/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/05/2025",
+      "hash": "lNBJQ",
+      "id": 537167,
+      "nationalSimpleTaxCalculationId": 49736,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.521,34",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "04/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/05/2025",
+      "hash": "yxX6G",
+      "id": 533517,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "04/2025",
+      "description": "HOLERITE",
+      "dueDate": "20/05/2025",
+      "hash": "4DWnL",
+      "id": 527814,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "03/2025",
+      "description": "TAXA DE LOCALIZAÇÃO E FUNCIONAMENTO",
+      "dueDate": "12/05/2025",
+      "hash": "oQrX5",
+      "id": 521644,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "03/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "22/04/2025",
+      "hash": "9wV9j",
+      "id": 512182,
+      "nationalSimpleTaxCalculationId": 45430,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.518,60",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "03/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "17/04/2025",
+      "hash": "eq51N",
+      "id": 504929,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "03/2025",
+      "description": "HOLERITE",
+      "dueDate": "17/04/2025",
+      "hash": "EZvqD",
+      "id": 499819,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "02/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/03/2025",
+      "hash": "VkQJB",
+      "id": 486245,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "02/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/03/2025",
+      "hash": "Mldl7",
+      "id": 480351,
+      "nationalSimpleTaxCalculationId": 37516,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.515,86",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "02/2025",
+      "description": "HOLERITE",
+      "dueDate": "20/03/2025",
+      "hash": "Qeogo",
+      "id": 476854,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "01/2025",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/02/2025",
+      "hash": "aa8EP",
+      "id": 459796,
+      "nationalSimpleTaxCalculationId": 32338,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.513,09",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "01/2025",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/02/2025",
+      "hash": "474lK",
+      "id": 456758,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 166,98",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "12/2024",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/01/2025",
+      "hash": "r8Kgq",
+      "id": 435369,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.510,30",
+      "wasPaid": 1,
+      "wasPaidBySystem": true
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "12/2024",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/01/2025",
+      "hash": "xPW4w",
+      "id": 433165,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 155,32",
+      "wasPaid": 1,
+      "wasPaidBySystem": true
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "12/2024",
+      "description": "HOLERITE",
+      "dueDate": "20/01/2025",
+      "hash": "b4Bbo",
+      "id": 428839,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "danger",
+        "description": "Vencido",
+        "slug": "expired"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "11/2024",
+      "description": "DAS - SIMPLES NACIONAL",
+      "dueDate": "20/12/2024",
+      "hash": "XkV8o",
+      "id": 413630,
+      "nationalSimpleTaxCalculationId": 22292,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.507,49",
+      "wasPaid": 1,
+      "wasPaidBySystem": true
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "11/2024",
+      "description": "DARF - FOLHA",
+      "dueDate": "20/12/2024",
+      "hash": "DwjNM",
+      "id": 409375,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 155,32",
+      "wasPaid": 1,
+      "wasPaidBySystem": true
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "11/2024",
+      "description": "HOLERITE | HOLERITE",
+      "dueDate": "20/12/2024",
+      "hash": "ZrBMm",
+      "id": 405326,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "10/2024",
+      "description": "DAS - SIMPLES NACIONAL | DAS MENSAL",
+      "dueDate": "21/11/2024",
+      "hash": "BZvvP",
+      "id": 392227,
+      "nationalSimpleTaxCalculationId": 17345,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.504,66",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "10/2024",
+      "description": "DARF - FOLHA | DARF FOLHA",
+      "dueDate": "19/11/2024",
+      "hash": "8y9mL",
+      "id": 388486,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 155,32",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "10/2024",
+      "description": "HOLERITE | HOLERITE",
+      "dueDate": "20/11/2024",
+      "hash": "1dRR1",
+      "id": 384311,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "09/2024",
+      "description": "DAS - SIMPLES NACIONAL | DAS MENSAL",
+      "dueDate": "21/10/2024",
+      "hash": "Kobqx",
+      "id": 370743,
+      "nationalSimpleTaxCalculationId": 12645,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.501,81",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "09/2024",
+      "description": "DARF - FOLHA | DARF FOLHA",
+      "dueDate": "18/10/2024",
+      "hash": "lLmdk",
+      "id": 368567,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 155,32",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "09/2024",
+      "description": "HOLERITE | HOLERITE",
+      "dueDate": "18/10/2024",
+      "hash": "MAxkV",
+      "id": 364351,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "08/2024",
+      "description": "DAS - SIMPLES NACIONAL | DAS MENSAL",
+      "dueDate": "20/09/2024",
+      "hash": "yeKVP",
+      "id": 355217,
+      "nationalSimpleTaxCalculationId": 9843,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.498,94",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "08/2024",
+      "description": "DARF - FOLHA | DARF FOLHA",
+      "dueDate": "20/09/2024",
+      "hash": "keeNx",
+      "id": 350078,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 155,32",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "08/2024",
+      "description": "HOLERITE | HOLERITE",
+      "dueDate": "20/09/2024",
+      "hash": "Dw4gN",
+      "id": 345331,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "07/2024",
+      "description": "DAS - SIMPLES NACIONAL | DAS MENSAL",
+      "dueDate": "20/08/2024",
+      "hash": "85BlO",
+      "id": 333686,
+      "nationalSimpleTaxCalculationId": 4339,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 2.914,00",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "07/2024",
+      "description": "DARF - FOLHA | DARF FOLHA",
+      "dueDate": "20/08/2024",
+      "hash": "48zOG",
+      "id": 331158,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 155,32",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "07/2024",
+      "description": "HOLERITE | HOLERITE",
+      "dueDate": "20/08/2024",
+      "hash": "VXnXM",
+      "id": 327345,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "HOLERITE",
+        "id": 25,
+        "isQuarter": 0,
+        "slug": "holerite"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "06/2024",
+      "description": "DAS - SIMPLES NACIONAL | DAS MENSAL",
+      "dueDate": "22/07/2024",
+      "hash": "wAjB5",
+      "id": 317541,
+      "nationalSimpleTaxCalculationId": 606,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DAS - SIMPLES NACIONAL",
+        "id": 1,
+        "isQuarter": 0,
+        "slug": "das-simples-nacional"
+      },
+      "value": "R$ 1.418,08",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 1,
+      "competency": "06/2024",
+      "description": "DARF - FOLHA | DARF FOLHA",
+      "dueDate": "19/07/2024",
+      "hash": "BWaO1",
+      "id": 314327,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 1,
+        "automaticValueReading": 1,
+        "description": "DARF - FOLHA",
+        "id": 4,
+        "isQuarter": 0,
+        "slug": "darf-folha"
+      },
+      "value": "R$ 155,32",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "06/2024",
+      "description": "HOLERITE",
+      "dueDate": "19/07/2024",
+      "hash": "M7D68",
+      "id": 309695,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "05/2024",
+      "description": "DAS MENSAL",
+      "dueDate": "20/06/2024",
+      "hash": "GWRn4",
+      "id": 299353,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "05/2024",
+      "description": "DARF FOLHA",
+      "dueDate": "20/06/2024",
+      "hash": "85kGO",
+      "id": 297342,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "05/2024",
+      "description": "HOLERITE",
+      "dueDate": "20/06/2024",
+      "hash": "94rQ1",
+      "id": 293438,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "04/2024",
+      "description": "DAS MENSAL",
+      "dueDate": "20/05/2024",
+      "hash": "azkO2",
+      "id": 282708,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "04/2024",
+      "description": "DARF FOLHA",
+      "dueDate": "20/05/2024",
+      "hash": "wA2BO",
+      "id": 280741,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "04/2024",
+      "description": "TAXA DE LOCALIZAÇÃO E FUNCIONAMENTO",
+      "dueDate": "10/05/2024",
+      "hash": "dark2",
+      "id": 279777,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "03/2024",
+      "description": "DAS MENSAL",
+      "dueDate": "20/04/2024",
+      "hash": "65ld7",
+      "id": 265924,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "03/2024",
+      "description": "DARF FOLHA",
+      "dueDate": "19/04/2024",
+      "hash": "elGGP",
+      "id": 263473,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "02/2024",
+      "description": "DAS MENSAL",
+      "dueDate": "20/03/2024",
+      "hash": "bk285",
+      "id": 252439,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "02/2024",
+      "description": "DARF FOLHA",
+      "dueDate": "20/03/2024",
+      "hash": "qEg4r",
+      "id": 248762,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "02/2024",
+      "description": "Envelope de Pagamento Gráfico",
+      "dueDate": "20/03/2024",
+      "hash": "5Jzr6",
+      "id": 247232,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "01/2024",
+      "description": "DAS MENSAL",
+      "dueDate": "20/02/2024",
+      "hash": "oPxL5",
+      "id": 240000,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "01/2024",
+      "description": "DARF FOLHA",
+      "dueDate": "20/02/2024",
+      "hash": "ElWQP",
+      "id": 234663,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "01/2024",
+      "description": "Envelope de Pagamento Gráfico",
+      "dueDate": "20/02/2024",
+      "hash": "gOe27",
+      "id": 232348,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "12/2023",
+      "description": "DARF FOLHA",
+      "dueDate": "19/01/2024",
+      "hash": "dOxPx",
+      "id": 228433,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "12/2023",
+      "description": "DAS MENSAL",
+      "dueDate": "22/01/2024",
+      "hash": "BVbe2",
+      "id": 227127,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "12/2023",
+      "description": "Envelope de Pagamento Gráfico",
+      "dueDate": "19/01/2024",
+      "hash": "oP5ZO",
+      "id": 218444,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "11/2023",
+      "description": "DAS MENSAL",
+      "dueDate": "20/12/2023",
+      "hash": "BVNjn",
+      "id": 209027,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "11/2023",
+      "description": "DARF FOLHA",
+      "dueDate": "20/12/2023",
+      "hash": "QWx4Q",
+      "id": 205098,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "11/2023",
+      "description": "Envelope de Pagamento Gráfico",
+      "dueDate": "20/12/2023",
+      "hash": "V1xGn",
+      "id": 203889,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "10/2023",
+      "description": "DAS MENSAL",
+      "dueDate": "20/11/2023",
+      "hash": "eoxzN",
+      "id": 198029,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "10/2023",
+      "description": "DARF FOLHA",
+      "dueDate": "20/11/2023",
+      "hash": "ZekD8",
+      "id": 192870,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "10/2023",
+      "description": "Envelope de Pagamento Gráfico",
+      "dueDate": "20/11/2023",
+      "hash": "kjJyJ",
+      "id": 191278,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "09/2023",
+      "description": "DAS - MENSAL",
+      "dueDate": "20/10/2023",
+      "hash": "5J495",
+      "id": 184976,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "09/2023",
+      "description": "DARF FOLHA",
+      "dueDate": "20/10/2023",
+      "hash": "Ao1bM",
+      "id": 179946,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "09/2023",
+      "description": "Envelope de Pagamento Gráfico",
+      "dueDate": "20/10/2023",
+      "hash": "V1exM",
+      "id": 178889,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "08/2023",
+      "description": "DAS MENSAL",
+      "dueDate": "20/09/2023",
+      "hash": "ajOn9",
+      "id": 173152,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "08/2023",
+      "description": "DARF FOLHA",
+      "dueDate": "20/09/2023",
+      "hash": "omLMz",
+      "id": 168400,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "08/2023",
+      "description": "Envelope de Pagamento Gráfico",
+      "dueDate": "20/09/2023",
+      "hash": "PLBxd",
+      "id": 167272,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "07/2023",
+      "description": "DAS MENSAL",
+      "dueDate": "21/08/2023",
+      "hash": "7JZ7M",
+      "id": 163256,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "07/2023",
+      "description": "DARF FOLHA",
+      "dueDate": "18/08/2023",
+      "hash": "QrDbJ",
+      "id": 157498,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "07/2023",
+      "description": "Envelope de Pagamento Gráfico",
+      "dueDate": "18/08/2023",
+      "hash": "8oMKL",
+      "id": 156342,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "06/2023",
+      "description": "DAS MENSAL",
+      "dueDate": "20/07/2023",
+      "hash": "WB5le",
+      "id": 153194,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "06/2023",
+      "description": "Guia de pagamento",
+      "dueDate": "20/07/2023",
+      "hash": "VBQZl",
+      "id": 146245,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "06/2023",
+      "description": "Envelope de Pagamento Gráfico",
+      "dueDate": "20/07/2023",
+      "hash": "vMbnJ",
+      "id": 145535,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "05/2023",
+      "description": "DAS MENSAL",
+      "dueDate": "20/06/2023",
+      "hash": "rv1qA",
+      "id": 138925,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "05/2023",
+      "description": "Guia de pagamento",
+      "dueDate": "20/06/2023",
+      "hash": "WBWVy",
+      "id": 135950,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "05/2023",
+      "description": "Envelope de Pagamento Gráfico",
+      "dueDate": "20/06/2023",
+      "hash": "VB94l",
+      "id": 135289,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "04/2023",
+      "description": "DAS MENSAL",
+      "dueDate": "22/05/2023",
+      "hash": "L8X2A",
+      "id": 132560,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "success",
+        "description": "Pago",
+        "slug": "paid"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 1,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "04/2023",
+      "description": "Guia de pagamento",
+      "dueDate": "19/05/2023",
+      "hash": "PLMvm",
+      "id": 125072,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "04/2023",
+      "description": "Envelope de Pagamento Grafico",
+      "dueDate": "19/05/2023",
+      "hash": "Mng5e",
+      "id": 124395,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "03/2023",
+      "description": "INSS",
+      "dueDate": "20/04/2023",
+      "hash": "6DXJB",
+      "id": 122068,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "03/2023",
+      "description": "DAS MENSAL",
+      "dueDate": "20/04/2023",
+      "hash": "aO8o9",
+      "id": 119208,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "03/2023",
+      "description": "Envelope de Pagamento Grafico",
+      "dueDate": "20/04/2023",
+      "hash": "217y4",
+      "id": 115147,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "02/2023",
+      "description": "INSS",
+      "dueDate": "20/03/2023",
+      "hash": "6D1mj",
+      "id": 113568,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "02/2023",
+      "description": "HOLERITE",
+      "dueDate": "20/03/2023",
+      "hash": "lvmwa",
+      "id": 113567,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "02/2023",
+      "description": "DAS - Mensal",
+      "dueDate": "20/03/2023",
+      "hash": "QrgaJ",
+      "id": 111254,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    },
+    {
+      "automaticValueReading": 0,
+      "competency": "01/2023",
+      "description": "DAS - Mensal",
+      "dueDate": "22/02/2023",
+      "hash": "AZEV4",
+      "id": 100646,
+      "nationalSimpleTaxCalculationId": null,
+      "permissions": {
+        "delete": false,
+        "restore": false
+      },
+      "status": {
+        "color": "metal",
+        "description": "Não consultado",
+        "slug": "not-consulted"
+      },
+      "type": {
+        "automaticRecalculation": 0,
+        "automaticValueReading": 0,
+        "description": "OUTRO",
+        "id": 30,
+        "isQuarter": 0,
+        "slug": "outro"
+      },
+      "value": "-",
+      "wasPaid": 0,
+      "wasPaidBySystem": false
+    }
+  ],
+  "calcs": {
+    "606": {
+      "aliquot": "7,41",
+      "id": 606,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,41",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 653,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.418,08",
+          "totalValue": "R$ 19.150,00"
+        }
+      ],
+      "taxTotalValue": "R$ 1.418,08",
+      "totalValue": "R$ 19.150,00"
+    },
+    "4339": {
+      "aliquot": "7,42",
+      "id": 4339,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,42",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 4677,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 2.914,00",
+          "totalValue": "R$ 39.257,50"
+        }
+      ],
+      "taxTotalValue": "R$ 2.914,00",
+      "totalValue": "R$ 39.257,50"
+    },
+    "9843": {
+      "aliquot": "7,45",
+      "id": 9843,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,45",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 10629,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.498,94",
+          "totalValue": "R$ 20.107,50"
+        }
+      ],
+      "taxTotalValue": "R$ 1.498,94",
+      "totalValue": "R$ 20.107,50"
+    },
+    "12645": {
+      "aliquot": "7,47",
+      "id": 12645,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,47",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 13715,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.501,81",
+          "totalValue": "R$ 20.107,50"
+        }
+      ],
+      "taxTotalValue": "R$ 1.501,81",
+      "totalValue": "R$ 20.107,50"
+    },
+    "17345": {
+      "aliquot": "7,48",
+      "id": 17345,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,48",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 18827,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.504,66",
+          "totalValue": "R$ 20.107,50"
+        }
+      ],
+      "taxTotalValue": "R$ 1.504,66",
+      "totalValue": "R$ 20.107,50"
+    },
+    "22292": {
+      "aliquot": "7,50",
+      "id": 22292,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,50",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 24209,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.507,49",
+          "totalValue": "R$ 20.107,50"
+        }
+      ],
+      "taxTotalValue": "R$ 1.507,49",
+      "totalValue": "R$ 20.107,50"
+    },
+    "32338": {
+      "aliquot": "7,53",
+      "id": 32338,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,53",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 35034,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.513,09",
+          "totalValue": "R$ 20.107,50"
+        }
+      ],
+      "taxTotalValue": "R$ 1.513,09",
+      "totalValue": "R$ 20.107,50"
+    },
+    "37516": {
+      "aliquot": "7,54",
+      "id": 37516,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,54",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 40610,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.515,86",
+          "totalValue": "R$ 20.107,50"
+        }
+      ],
+      "taxTotalValue": "R$ 1.515,86",
+      "totalValue": "R$ 20.107,50"
+    },
+    "45430": {
+      "aliquot": "7,55",
+      "id": 45430,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,55",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 49094,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.518,60",
+          "totalValue": "R$ 20.107,50"
+        }
+      ],
+      "taxTotalValue": "R$ 1.518,60",
+      "totalValue": "R$ 20.107,50"
+    },
+    "49736": {
+      "aliquot": "7,57",
+      "id": 49736,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,57",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 53786,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.521,34",
+          "totalValue": "R$ 20.107,50"
+        }
+      ],
+      "taxTotalValue": "R$ 1.521,34",
+      "totalValue": "R$ 20.107,50"
+    },
+    "55935": {
+      "aliquot": "7,58",
+      "id": 55935,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,58",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 60435,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.524,03",
+          "totalValue": "R$ 20.107,50"
+        }
+      ],
+      "taxTotalValue": "R$ 1.524,03",
+      "totalValue": "R$ 20.107,50"
+    },
+    "61716": {
+      "aliquot": "7,59",
+      "id": 61716,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,59",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 66710,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.526,74",
+          "totalValue": "R$ 20.107,50"
+        }
+      ],
+      "taxTotalValue": "R$ 1.526,74",
+      "totalValue": "R$ 20.107,50"
+    },
+    "68219": {
+      "aliquot": "7,61",
+      "id": 68219,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,61",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 73738,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 3.135,25",
+          "totalValue": "R$ 41.220,38"
+        }
+      ],
+      "taxTotalValue": "R$ 3.135,25",
+      "totalValue": "R$ 41.220,38"
+    },
+    "75319": {
+      "aliquot": "7,63",
+      "id": 75319,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,63",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 81461,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.745,83",
+          "totalValue": "R$ 22.872,29"
+        }
+      ],
+      "taxTotalValue": "R$ 1.745,83",
+      "totalValue": "R$ 22.872,29"
+    },
+    "84806": {
+      "aliquot": "7,67",
+      "id": 84806,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,67",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 91741,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.754,33",
+          "totalValue": "R$ 22.872,29"
+        }
+      ],
+      "taxTotalValue": "R$ 1.754,33",
+      "totalValue": "R$ 22.872,29"
+    },
+    "90513": {
+      "aliquot": "7,71",
+      "id": 90513,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,71",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 97987,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.762,67",
+          "totalValue": "R$ 22.872,29"
+        }
+      ],
+      "taxTotalValue": "R$ 1.762,67",
+      "totalValue": "R$ 22.872,29"
+    },
+    "97773": {
+      "aliquot": "7,74",
+      "id": 97773,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,74",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 105903,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.770,83",
+          "totalValue": "R$ 22.872,29"
+        }
+      ],
+      "taxTotalValue": "R$ 1.770,83",
+      "totalValue": "R$ 22.872,29"
+    },
+    "106330": {
+      "aliquot": "7,78",
+      "id": 106330,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,78",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 115193,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.778,83",
+          "totalValue": "R$ 22.872,29"
+        }
+      ],
+      "taxTotalValue": "R$ 1.778,83",
+      "totalValue": "R$ 22.872,29"
+    },
+    "114866": {
+      "aliquot": "7,81",
+      "id": 114866,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,81",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 124336,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.786,66",
+          "totalValue": "R$ 22.872,29"
+        }
+      ],
+      "taxTotalValue": "R$ 1.786,66",
+      "totalValue": "R$ 22.872,29"
+    },
+    "124016": {
+      "aliquot": "7,85",
+      "id": 124016,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,85",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 134189,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.794,35",
+          "totalValue": "R$ 22.872,29"
+        }
+      ],
+      "taxTotalValue": "R$ 1.794,35",
+      "totalValue": "R$ 22.872,29"
+    },
+    "134258": {
+      "aliquot": "7,88",
+      "id": 134258,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,88",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 145246,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.801,87",
+          "totalValue": "R$ 22.872,29"
+        }
+      ],
+      "taxTotalValue": "R$ 1.801,87",
+      "totalValue": "R$ 22.872,29"
+    },
+    "144166": {
+      "aliquot": "7,91",
+      "id": 144166,
+      "isFatorR": null,
+      "nationalSimpleTaxCalculationItems": [
+        {
+          "aliquot": "7,91",
+          "annex": {
+            "description": "Anexo III",
+            "id": 3,
+            "slug": "annex-3",
+            "symbol": "III"
+          },
+          "hasRetention": false,
+          "id": 155894,
+          "isFatorR": false,
+          "taxTotalValue": "R$ 1.977,56",
+          "totalValue": "R$ 25.000,00"
+        }
+      ],
+      "taxTotalValue": "R$ 1.977,56",
+      "totalValue": "R$ 25.000,00"
+    }
+  }
+}

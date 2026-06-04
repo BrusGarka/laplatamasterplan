@@ -1,0 +1,14 @@
+{
+  "sourceUrl": "https://app.contaja.com.br/tributos-folhas",
+  "scrapedAt": "2026-06-04T21:33:24.666Z",
+  "pages": [
+    {
+      "page": 1,
+      "rowCount": 100
+    },
+    {
+      "page": 2,
+      "rowCount": 20
+    }
+  ]
+}

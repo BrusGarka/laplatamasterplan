@@ -1,0 +1,876 @@
+{
+  "companyId": 8150,
+  "docs": [
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "06/2026",
+      "createdAt": "01/06/2026 21:06:40",
+      "id": 1001600,
+      "nfeLinkXml": "https://app.contaja.com.br/api/nfs-document/download?nfsDocumentId=1001600&isXmlType=1",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "ref a mai/26",
+      "value": "R$ 25.000,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "05/2026",
+      "createdAt": "02/05/2026 11:40:14",
+      "id": 947522,
+      "nfeLinkXml": "https://app.contaja.com.br/api/nfs-document/download?nfsDocumentId=947522&isXmlType=1",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "ref a abr/26",
+      "value": "R$ 25.000,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "04/2026",
+      "createdAt": "01/04/2026 15:22:42",
+      "id": 899830,
+      "nfeLinkXml": "https://app.contaja.com.br/api/nfs-document/download?nfsDocumentId=899830&isXmlType=1",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "ref a mar/25",
+      "value": "R$ 25.000,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "03/2026",
+      "createdAt": "02/03/2026 12:32:13",
+      "id": 852510,
+      "nfeLinkXml": "https://app.contaja.com.br/api/nfs-document/download?nfsDocumentId=852510&isXmlType=1",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "ref a fev/26",
+      "value": "R$ 22.872,29"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "02/2026",
+      "createdAt": "02/02/2026 19:00:26",
+      "id": 812989,
+      "nfeLinkXml": "https://app.contaja.com.br/api/nfs-document/download?nfsDocumentId=812989&isXmlType=1",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "ref a jan/26",
+      "value": "R$ 22.872,29"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "01/2026",
+      "createdAt": "05/01/2026 13:09:07",
+      "id": 775748,
+      "nfeLinkXml": "https://app.contaja.com.br/api/nfs-document/download?nfsDocumentId=775748&isXmlType=1",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "ref a dez/25",
+      "value": "R$ 22.872,29"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "12/2025",
+      "createdAt": "02/12/2025 20:54:15",
+      "id": 740189,
+      "nfeLinkXml": "https://app.contaja.com.br/api/nfs-document/download?nfsDocumentId=740189&isXmlType=1",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "ref a nov/25",
+      "value": "R$ 22.872,29"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "11/2025",
+      "createdAt": "03/11/2025 12:15:25",
+      "id": 703607,
+      "nfeLinkXml": "https://api.notagateway.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/67a7c0bf-a8c7-4047-b19b-f7cb7e270c00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "Análise, exame, pesquisa, coleta, compilação e fornecimento de dados e informações de qualquer natureza, inclusive cadastro e similares.",
+      "value": "R$ 22.872,29"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "10/2025",
+      "createdAt": "06/10/2025 11:05:27",
+      "id": 673290,
+      "nfeLinkXml": "https://api.notagateway.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/64f8f7e2-1700-47f7-a9fa-296274110c00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 22.872,29"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "09/2025",
+      "createdAt": "02/09/2025 23:28:18",
+      "id": 639285,
+      "nfeLinkXml": "https://api.notagateway.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/d1157c7d-35b8-46b7-a4c1-258624f70b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 22.872,29"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "08/2025",
+      "createdAt": "11/08/2025 09:06:08",
+      "id": 621268,
+      "nfeLinkXml": "https://api.notagateway.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/23d07ba4-96cf-465a-a703-9a6f62e50b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 22.872,29"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "07/2025",
+      "createdAt": "01/07/2025 11:35:29",
+      "id": 577909,
+      "nfeLinkXml": "https://api.notagateway.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/84ddb928-0b81-480f-bf9d-26823fc50b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 21.112,88"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "07/2025",
+      "createdAt": "01/07/2025 11:33:51",
+      "id": 577907,
+      "nfeLinkXml": "https://api.notagateway.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/6a821282-0ee1-494c-b493-96473fc50b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "06/2025",
+      "createdAt": "04/06/2025 20:48:05",
+      "id": 553153,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/35549dfb-2f41-42da-9222-3e3b55b00b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "05/2025",
+      "createdAt": "01/05/2025 12:28:48",
+      "id": 521442,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/27a64410-0043-4832-8841-bad957950b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "04/2025",
+      "createdAt": "09/04/2025 09:53:45",
+      "id": 509347,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/7b18728e-bcb5-4f60-a1bc-9d8bf8830b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "03/2025",
+      "createdAt": "07/03/2025 10:49:13",
+      "id": 477418,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/73e8c311-1984-4173-ba4e-26d3116a0b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "02/2025",
+      "createdAt": "11/02/2025 23:09:41",
+      "id": 461730,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/2241cda3-b0fc-4887-9a8f-422584570b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "02/2025",
+      "createdAt": "06/02/2025 19:36:44",
+      "id": 454652,
+      "nfeLinkXml": null,
+      "nfsDocumentStatus": {
+        "color": "danger",
+        "description": "Negada",
+        "icon": null,
+        "id": 3,
+        "slug": "denied",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "02/2025",
+      "createdAt": "06/02/2025 19:34:35",
+      "id": 454650,
+      "nfeLinkXml": null,
+      "nfsDocumentStatus": {
+        "color": "danger",
+        "description": "Negada",
+        "icon": null,
+        "id": 3,
+        "slug": "denied",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "01/2025",
+      "createdAt": "13/01/2025 14:42:50",
+      "id": 438750,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/0967ac81-cf4a-45e7-99f8-e88873400b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "12/2024",
+      "createdAt": "02/12/2024 19:41:35",
+      "id": 398667,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/cee3201e-8073-4765-9c69-d1509c1f0b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "11/2024",
+      "createdAt": "11/11/2024 13:19:37",
+      "id": 387023,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/833ea73b-0378-4f62-adbd-5079e60e0b00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "10/2024",
+      "createdAt": "01/10/2024 13:41:16",
+      "id": 356263,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/8031d980-c957-4689-aa8e-f2b4b1ee0a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "09/2024",
+      "createdAt": "03/09/2024 11:22:17",
+      "id": 336360,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/b9ad8ae2-76b7-436b-9d81-f8a69dd80a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "08/2024",
+      "createdAt": "09/08/2024 17:51:09",
+      "id": 324779,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/640034b3-cdb6-45c3-b6fd-97d42ec50a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "07/2024",
+      "createdAt": "05/07/2024 19:25:21",
+      "id": 303313,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/d15a2537-2e24-43dc-bec5-2d31bba90a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "07/2024",
+      "createdAt": "05/07/2024 19:15:02",
+      "id": 303305,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/901fc3c0-cbb1-4afc-b39a-75c0b9a90a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388 | 17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 20.107,50"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "06/2024",
+      "createdAt": "03/06/2024 13:35:55",
+      "id": 276220,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/5df23fec-ed47-464a-8caa-fa1265900a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "05/2024",
+      "createdAt": "06/05/2024 19:34:24",
+      "id": 253673,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/1678f6b0-76dd-4bc0-b30b-1484967a0a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "04/2024",
+      "createdAt": "04/04/2024 01:24:28",
+      "id": 233117,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/e7cb0c4c-b7da-4ed2-8f8d-14f4d8600a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "03/2024",
+      "createdAt": "05/03/2024 10:49:51",
+      "id": 218018,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/567f8335-1504-42df-b82d-47f794490a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "02/2024",
+      "createdAt": "05/02/2024 15:12:22",
+      "id": 204275,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/51a58123-75d6-4a76-912f-35d5ef320a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "02/2024",
+      "createdAt": "05/02/2024 12:07:20",
+      "id": 204118,
+      "nfeLinkXml": null,
+      "nfsDocumentStatus": {
+        "color": "danger",
+        "description": "Negada",
+        "icon": null,
+        "id": 3,
+        "slug": "denied",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "01/2024",
+      "createdAt": "04/01/2024 12:04:09",
+      "id": 191039,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/1904a2fb-96e5-48a5-8f4c-d33cb0190a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "12/2023",
+      "createdAt": "06/12/2023 17:15:27",
+      "id": 179403,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/fb9cd54a-9322-4147-9c05-feeb11030a00/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "11/2023",
+      "createdAt": "07/11/2023 18:49:09",
+      "id": 167860,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/57ff2c72-f435-4c24-b0d1-653555ec0900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "10/2023",
+      "createdAt": "02/10/2023 13:09:11",
+      "id": 154637,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/31acc8c9-f3d4-40ec-b1ba-b2c0dbcf0900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "09/2023",
+      "createdAt": "04/09/2023 15:10:36",
+      "id": 145175,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/96261836-817a-4113-b5dd-0413ecb90900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+      "competency": "08/2023",
+      "createdAt": "02/08/2023 18:28:14",
+      "id": 134477,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/d72ce3c5-2b09-4d89-b116-5a3719a00900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "07/2023",
+      "createdAt": "03/07/2023 20:01:52",
+      "id": 123602,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/a042f124-8488-43b0-a4b4-1c5393880900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 19.150,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "07/2023",
+      "createdAt": "03/07/2023 20:00:49",
+      "id": 123601,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/35a2ffa3-5c94-4bef-ba8d-b42d93880900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 18.000,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "06/2023",
+      "createdAt": "02/06/2023 17:45:26",
+      "id": 112417,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/19398994-a07f-4276-bf45-e72024700900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 18.000,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "05/2023",
+      "createdAt": "06/05/2023 00:03:16",
+      "id": 99129,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/1a59ffb5-2e29-43d7-a0f1-b645585a0900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 18.000,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "04/2023",
+      "createdAt": "04/04/2023 12:23:52",
+      "id": 89121,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/547f3358-f675-4ef6-8716-ec6e9a410900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 18.000,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "03/2023",
+      "createdAt": "03/03/2023 18:34:49",
+      "id": 79817,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/9d0803eb-9f3a-4675-9879-38f6a8280900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 18.000,00"
+    },
+    {
+      "borrower": "MOB2CON SOLUCOES TECNOLOGICAS LTDA",
+      "competency": "02/2023",
+      "createdAt": "01/02/2023 13:28:31",
+      "id": 71089,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/0b16ed68-5750-48e1-8878-e530eb100900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 18.000,00"
+    },
+    {
+      "borrower": "CONTA JA CONTABILIDADE LTDA",
+      "competency": "01/2023",
+      "createdAt": "11/01/2023 15:13:18",
+      "id": 64469,
+      "nfeLinkXml": "https://api.enotasgw.com.br/file/570cfde4-0458-4d72-8847-113ee9d00600/9a290408-521d-4961-bf16-df436e000900/7f5aee05-53fe-4a90-a1b6-985979000900/xml",
+      "nfsDocumentStatus": {
+        "color": "success",
+        "description": "Autorizada",
+        "icon": null,
+        "id": 2,
+        "slug": "authorized",
+        "theme": null
+      },
+      "service": "Selecione o serviço170100388   17.01 - ANÁLISE, EXAME, PESQUISA, COLETA, COMPILAÇÃO E FORNECIMENTO DE DADOS E INFORMAÇÕES, INCLUSIVE CADASTRO E SIMILARES, EXCETO PESQUISA DE OPINIÃO PÚBLICA",
+      "value": "R$ 0,01"
+    }
+  ],
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 1,
+    "links": [
+      {
+        "active": false,
+        "label": "&laquo; Anterior",
+        "url": null
+      },
+      {
+        "active": true,
+        "label": "1",
+        "url": "https://app.contaja.com.br/api/nfs-document?page=1"
+      },
+      {
+        "active": false,
+        "label": "Próxima &raquo;",
+        "url": null
+      }
+    ],
+    "path": "https://app.contaja.com.br/api/nfs-document",
+    "per_page": 100,
+    "to": 48,
+    "total": 48
+  },
+  "sample": {
+    "borrower": "MOB2CON SOLUCOES TECNOLOGICAS S.A",
+    "competency": "06/2026",
+    "createdAt": "01/06/2026 21:06:40",
+    "id": 1001600,
+    "nfeLinkXml": "https://app.contaja.com.br/api/nfs-document/download?nfsDocumentId=1001600&isXmlType=1",
+    "nfsDocumentStatus": {
+      "color": "success",
+      "description": "Autorizada",
+      "icon": null,
+      "id": 2,
+      "slug": "authorized",
+      "theme": null
+    },
+    "service": "ref a mai/26",
+    "value": "R$ 25.000,00"
+  },
+  "sampleKeys": [
+    "id",
+    "borrower",
+    "service",
+    "value",
+    "createdAt",
+    "competency",
+    "nfsDocumentStatus",
+    "nfeLinkXml"
+  ],
+  "scrapedAt": "2026-06-04T21:50:42.467Z",
+  "total": 48
+}

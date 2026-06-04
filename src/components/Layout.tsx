@@ -24,12 +24,12 @@ import {
   Scale,
   PiggyBank,
   ShieldCheck,
-  Target,
   Landmark,
   Receipt,
   ShieldAlert,
   Coins,
   BarChart2,
+  Calculator,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -76,10 +76,10 @@ const menuItems = [
   { title: "Caixa", url: "/caixa", icon: PiggyBank },
   { title: "Fluxo mensal", url: "/fluxo-mensal", icon: BarChart2 },
   { title: "Reserva de Emergência", url: "/reserva-emergencia", icon: ShieldCheck },
-  { title: "Metas Financeiras", url: "/metas-financeiras", icon: Target },
   { title: "Aposentadoria", url: "/aposentadoria", icon: Landmark },
   { title: "Renda Passiva", url: "/renda-passiva", icon: Coins },
   { title: "Impostos", url: "/impostos", icon: Receipt },
+  { title: "Planejamento Tributário", url: "/planejamento-tributario", icon: Calculator },
   { title: "Seguros", url: "/seguros", icon: ShieldAlert },
 ];
 

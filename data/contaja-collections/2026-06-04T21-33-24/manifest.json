@@ -1,0 +1,104 @@
+{
+  "fonte": "contaja",
+  "url": "https://app.contaja.com.br/tributos-folhas",
+  "scrapedAt": "2026-06-04T21:33:24.666Z",
+  "empresa": {
+    "razaoSocial": "MAIA SERVICOS DE INFORMACAO NA INTERNET LTDA",
+    "cnpj": "49.106.223/0001-27"
+  },
+  "totalDocumentos": 120,
+  "totalComValor": 47,
+  "totalValorConhecidoBRL": 44254.89,
+  "resumoPorTipo": {
+    "HOLERITE": {
+      "count": 20,
+      "totalPago": 0,
+      "comValor": 0
+    },
+    "DARF - FOLHA": {
+      "count": 18,
+      "totalPago": 3027.6400000000003,
+      "comValor": 18
+    },
+    "DAS - SIMPLES NACIONAL": {
+      "count": 18,
+      "totalPago": 31445.63,
+      "comValor": 18
+    },
+    "Taxa de Localização e Fu...": {
+      "count": 1,
+      "totalPago": 0,
+      "comValor": 0
+    },
+    "DARF - FOLHA | Recálculo...": {
+      "count": 1,
+      "totalPago": 167.53,
+      "comValor": 1
+    },
+    "TAXA DE LOCALIZAÇÃO E F...": {
+      "count": 2,
+      "totalPago": 0,
+      "comValor": 0
+    },
+    "HOLERITE | HOLERITE": {
+      "count": 5,
+      "totalPago": 0,
+      "comValor": 0
+    },
+    "DAS - SIMPLES NACIONAL |...": {
+      "count": 5,
+      "totalPago": 8837.49,
+      "comValor": 5
+    },
+    "DARF - FOLHA | DARF FOLHA": {
+      "count": 5,
+      "totalPago": 776.5999999999999,
+      "comValor": 5
+    },
+    "DAS MENSAL": {
+      "count": 14,
+      "totalPago": 0,
+      "comValor": 0
+    },
+    "DARF FOLHA": {
+      "count": 11,
+      "totalPago": 0,
+      "comValor": 0
+    },
+    "Envelope de Pagamento...": {
+      "count": 12,
+      "totalPago": 0,
+      "comValor": 0
+    },
+    "DAS - MENSAL": {
+      "count": 1,
+      "totalPago": 0,
+      "comValor": 0
+    },
+    "Guia de pagamento": {
+      "count": 3,
+      "totalPago": 0,
+      "comValor": 0
+    },
+    "INSS": {
+      "count": 2,
+      "totalPago": 0,
+      "comValor": 0
+    },
+    "DAS - Mensal": {
+      "count": 2,
+      "totalPago": 0,
+      "comValor": 0
+    }
+  },
+  "paginasColetadas": [
+    {
+      "page": 1,
+      "rowCount": 100
+    },
+    {
+      "page": 2,
+      "rowCount": 20
+    }
+  ]
+}

@@ -13,7 +13,10 @@
     "test:watch": "vitest",
     "sync:xp": "node scripts/sync-xp-carteira.mjs",
     "sync:xp:login": "node scripts/sync-xp-carteira.mjs --login",
-    "sync:xp:browser": "node scripts/process-xp-browser-scrape.mjs --update-investimentos"
+    "sync:xp:browser": "node scripts/process-xp-browser-scrape.mjs --update-investimentos",
+    "sync:contaja:browser": "node scripts/process-contaja-browser-scrape.mjs",
+    "sync:contaja:api": "node scripts/process-contaja-api-scrape.mjs",
+    "sync:contaja:nf": "node scripts/process-contaja-nf-scrape.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

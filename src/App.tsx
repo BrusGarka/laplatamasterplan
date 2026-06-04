@@ -17,10 +17,10 @@ import CarrinhoByd from "./pages/CarrinhoByd";
 import Caixa from "./pages/Caixa";
 import FluxoMensal from "./pages/FluxoMensal";
 import ReservaEmergencia from "./pages/ReservaEmergencia";
-import MetasFinanceiras from "./pages/MetasFinanceiras";
 import Aposentadoria from "./pages/Aposentadoria";
 import RendaPassiva from "./pages/RendaPassiva";
 import Impostos from "./pages/Impostos";
+import PlanejamentoTributario from "./pages/PlanejamentoTributario";
 import Seguros from "./pages/Seguros";
 import NotFound from "./pages/NotFound";
 
@@ -50,10 +50,11 @@ const App = () => (
               <Route path="/fluxo-mensal" element={<FluxoMensal />} />
               <Route path="/fluxo-caixa" element={<Navigate to="/fluxo-mensal" replace />} />
               <Route path="/reserva-emergencia" element={<ReservaEmergencia />} />
-              <Route path="/metas-financeiras" element={<MetasFinanceiras />} />
+              <Route path="/metas-financeiras" element={<Navigate to="/sonhos" replace />} />
               <Route path="/aposentadoria" element={<Aposentadoria />} />
               <Route path="/renda-passiva" element={<RendaPassiva />} />
               <Route path="/impostos" element={<Impostos />} />
+              <Route path="/planejamento-tributario" element={<PlanejamentoTributario />} />
               <Route path="/seguros" element={<Seguros />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
