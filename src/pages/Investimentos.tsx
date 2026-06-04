@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Wallet, ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
+import { Wallet, ArrowUpDown, ArrowUp, ArrowDown, ChevronDown } from "lucide-react";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Table,
   TableBody,
@@ -13,14 +14,45 @@ import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { usePremissas } from "@/contexts/PremissasContext";
-import { useState, useMemo } from "react";
+import { useState, useMemo, Fragment } from "react";
 import { ativosRendaFixa, fundos } from "@/data/investimentos-data";
-import type { AtivoRendaFixa } from "@/data/investimentos-data";
+import type { AtivoRendaFixa, Fundo } from "@/data/investimentos-data";
+import {
+  buildGruposCarteira,
+  calcularResumosPorGrupo,
+  expandRowKey,
+  grupoEhSomenteFundos,
+  totalGrupo,
+  type CarteiraLinha,
+} from "@/lib/investimentos-groups";
 
 type Ativo = AtivoRendaFixa;
 
+const RF_COL_COUNT = 24;
+
 function formatBRL(value: number): string {
   return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function displayText(value?: string | null) {
+  if (!value?.trim()) return <span className="text-muted-foreground">—</span>;
+  return <span className="font-mono text-xs whitespace-nowrap">{value}</span>;
+}
+
+function pickMp(ativo: AtivoRendaFixa, key: string) {
+  return ativo.minhaPosicao?.[key];
+}
+
+function pickCar(ativo: AtivoRendaFixa, key: string) {
+  return ativo.caracteristicas?.[key];
+}
+
+function pickFundoMp(fundo: Fundo, key: string) {
+  return fundo.minhaPosicao?.[key];
+}
+
+function pickFundoCar(fundo: Fundo, key: string) {
+  return fundo.caracteristicas?.[key];
 }
 
 function getRiscoBadgeVariant(risco: string): "default" | "secondary" | "destructive" | "outline" {
@@ -194,11 +226,141 @@ function calcularRentabilidadeEsperada(
 type SortField = 'nome' | 'tipo' | 'taxa' | 'taxaEsperada' | 'vencimento' | 'valorAplicado' | 'posicaoAtual' | 'rendimento' | 'rentabilidadeEsperada' | 'risco' | null;
 type SortDirection = 'asc' | 'desc' | null;
 
+function compareAtivos(
+  a: Ativo,
+  b: Ativo,
+  field: SortField,
+  inflacao: number,
+  ptax: number,
+  marcacaoMercado: boolean
+): number {
+  if (!field) return 0;
+  let aValue: string | number;
+  let bValue: string | number;
+
+  switch (field) {
+    case "nome":
+      aValue = a.nome.toLowerCase();
+      bValue = b.nome.toLowerCase();
+      break;
+    case "tipo":
+      aValue = a.tipo.toLowerCase();
+      bValue = b.tipo.toLowerCase();
+      break;
+    case "taxa":
+    case "taxaEsperada":
+      aValue = parseTaxa(a.taxa, inflacao, ptax);
+      bValue = parseTaxa(b.taxa, inflacao, ptax);
+      break;
+    case "vencimento": {
+      const [diaA, mesA, anoA] = a.vencimento.split("/").map(Number);
+      const [diaB, mesB, anoB] = b.vencimento.split("/").map(Number);
+      aValue = new Date(anoA, mesA - 1, diaA).getTime();
+      bValue = new Date(anoB, mesB - 1, diaB).getTime();
+      break;
+    }
+    case "valorAplicado":
+      aValue = a.valorAplicado;
+      bValue = b.valorAplicado;
+      break;
+    case "posicaoAtual":
+      aValue =
+        marcacaoMercado && a.valorMercado !== undefined ? a.valorMercado : a.posicaoAtual;
+      bValue =
+        marcacaoMercado && b.valorMercado !== undefined ? b.valorMercado : b.posicaoAtual;
+      break;
+    case "rendimento":
+      if (marcacaoMercado) {
+        aValue =
+          (a.valorMercado !== undefined ? a.valorMercado : a.posicaoAtual) - a.valorAplicado;
+        bValue =
+          (b.valorMercado !== undefined ? b.valorMercado : b.posicaoAtual) - b.valorAplicado;
+      } else {
+        aValue = a.rendimento;
+        bValue = b.rendimento;
+      }
+      break;
+    case "rentabilidadeEsperada":
+      aValue = calcularRentabilidadeEsperada(a, inflacao, ptax).rentabilidadeEsperada;
+      bValue = calcularRentabilidadeEsperada(b, inflacao, ptax).rentabilidadeEsperada;
+      break;
+    case "risco":
+      aValue = a.riscoNumero;
+      bValue = b.riscoNumero;
+      break;
+    default:
+      return 0;
+  }
+
+  if (aValue < bValue) return -1;
+  if (aValue > bValue) return 1;
+  return 0;
+}
+
+function compareFundos(a: Fundo, b: Fundo, field: SortField): number {
+  if (!field) return 0;
+  let aValue: string | number;
+  let bValue: string | number;
+  switch (field) {
+    case "nome":
+      aValue = a.nome.toLowerCase();
+      bValue = b.nome.toLowerCase();
+      break;
+    case "valorAplicado":
+      aValue = a.aplicado;
+      bValue = b.aplicado;
+      break;
+    case "posicaoAtual":
+    case "rendimento":
+      aValue = a.atual;
+      bValue = b.atual;
+      break;
+    default:
+      aValue = a.nome.toLowerCase();
+      bValue = b.nome.toLowerCase();
+  }
+  if (aValue < bValue) return -1;
+  if (aValue > bValue) return 1;
+  return 0;
+}
+
+function sortLinhasGrupo(
+  linhas: CarteiraLinha[],
+  sortField: SortField,
+  sortDirection: SortDirection,
+  inflacao: number,
+  ptax: number,
+  marcacaoMercado: boolean
+): CarteiraLinha[] {
+  if (!sortField || !sortDirection) return linhas;
+  const dir = sortDirection === "asc" ? 1 : -1;
+  const somenteFundos = grupoEhSomenteFundos(linhas);
+  return [...linhas].sort((la, lb) => {
+    if (somenteFundos && la.tipo === "fundo" && lb.tipo === "fundo") {
+      return compareFundos(la.fundo, lb.fundo, sortField) * dir;
+    }
+    if (la.tipo === "rendaFixa" && lb.tipo === "rendaFixa") {
+      return compareAtivos(la.ativo, lb.ativo, sortField, inflacao, ptax, marcacaoMercado) * dir;
+    }
+    return 0;
+  });
+}
+
 export default function Investimentos() {
   const { inflacao, ptax } = usePremissas();
   const [sortField, setSortField] = useState<SortField>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>(null);
   const [marcacaoMercado, setMarcacaoMercado] = useState(false);
+  const [expandedRfRows, setExpandedRfRows] = useState<Set<string>>(new Set());
+
+  const toggleRfExpand = (key: string) => {
+    setExpandedRfRows((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  };
   
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -216,72 +378,26 @@ export default function Investimentos() {
     }
   };
 
-  const sortedAtivos = useMemo(() => {
-    if (!sortField || !sortDirection) return ativosRendaFixa;
-    
-    return [...ativosRendaFixa].sort((a, b) => {
-      let aValue: any;
-      let bValue: any;
-      
-      switch (sortField) {
-        case 'nome':
-          aValue = a.nome.toLowerCase();
-          bValue = b.nome.toLowerCase();
-          break;
-        case 'tipo':
-          aValue = a.tipo.toLowerCase();
-          bValue = b.tipo.toLowerCase();
-          break;
-        case 'taxa':
-          aValue = parseTaxa(a.taxa, inflacao, ptax);
-          bValue = parseTaxa(b.taxa, inflacao, ptax);
-          break;
-        case 'taxaEsperada':
-          aValue = parseTaxa(a.taxa, inflacao, ptax);
-          bValue = parseTaxa(b.taxa, inflacao, ptax);
-          break;
-        case 'vencimento':
-          const [diaA, mesA, anoA] = a.vencimento.split('/').map(Number);
-          const [diaB, mesB, anoB] = b.vencimento.split('/').map(Number);
-          aValue = new Date(anoA, mesA - 1, diaA).getTime();
-          bValue = new Date(anoB, mesB - 1, diaB).getTime();
-          break;
-        case 'valorAplicado':
-          aValue = a.valorAplicado;
-          bValue = b.valorAplicado;
-          break;
-        case 'posicaoAtual':
-          aValue = marcacaoMercado && a.valorMercado !== undefined ? a.valorMercado : a.posicaoAtual;
-          bValue = marcacaoMercado && b.valorMercado !== undefined ? b.valorMercado : b.posicaoAtual;
-          break;
-        case 'rendimento':
-          if (marcacaoMercado) {
-            aValue = (a.valorMercado !== undefined ? a.valorMercado : a.posicaoAtual) - a.valorAplicado;
-            bValue = (b.valorMercado !== undefined ? b.valorMercado : b.posicaoAtual) - b.valorAplicado;
-          } else {
-            aValue = a.rendimento;
-            bValue = b.rendimento;
-          }
-          break;
-        case 'rentabilidadeEsperada':
-          const rentA = calcularRentabilidadeEsperada(a, inflacao, ptax).rentabilidadeEsperada;
-          const rentB = calcularRentabilidadeEsperada(b, inflacao, ptax).rentabilidadeEsperada;
-          aValue = rentA;
-          bValue = rentB;
-          break;
-        case 'risco':
-          aValue = a.riscoNumero;
-          bValue = b.riscoNumero;
-          break;
-        default:
-          return 0;
-      }
-      
-      if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
-      return 0;
-    });
-  }, [sortField, sortDirection, inflacao, ptax, marcacaoMercado]);
+  const gruposCarteira = useMemo(
+    () => buildGruposCarteira(ativosRendaFixa, fundos),
+    []
+  );
+
+  const gruposExibicao = useMemo(
+    () =>
+      gruposCarteira.map((grupo) => ({
+        ...grupo,
+        linhas: sortLinhasGrupo(
+          grupo.linhas,
+          sortField,
+          sortDirection,
+          inflacao,
+          ptax,
+          marcacaoMercado
+        ),
+      })),
+    [gruposCarteira, sortField, sortDirection, inflacao, ptax, marcacaoMercado]
+  );
   
   // Calcular totais considerando marcação a mercado
   const totalRendaFixa = useMemo(() => {
@@ -293,6 +409,11 @@ export default function Investimentos() {
   
   const totalFundos = fundos.reduce((sum, f) => sum + f.atual, 0);
   const totalGeral = totalRendaFixa + totalFundos;
+
+  const resumosPorGrupo = useMemo(
+    () => calcularResumosPorGrupo(gruposCarteira, totalGeral, marcacaoMercado),
+    [gruposCarteira, totalGeral, marcacaoMercado]
+  );
   
   const totalRendimentoRendaFixa = useMemo(() => {
     return ativosRendaFixa.reduce((sum, a) => {
@@ -413,208 +534,426 @@ export default function Investimentos() {
           </Card>
         </div>
 
-        {/* Renda Fixa */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Ativos Financeiros – Renda Fixa (XP/SVN)</CardTitle>
-            <CardDescription>
-              Total em Renda Fixa: {formatBRL(totalRendaFixa)}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="rounded-md border">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead 
-                      className="cursor-pointer hover:bg-secondary/50 select-none"
-                      onClick={() => handleSort('nome')}
+        {/* Resumo por agrupamento XP */}
+        <div>
+          <p className="text-xs text-muted-foreground mb-3">
+            Por bloco da carteira (mesmos agrupamentos da grade XLS)
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {resumosPorGrupo.map((resumo) => (
+              <Card key={resumo.grupo} className="border-border/80">
+                <CardHeader className="pb-2">
+                  <div className="flex items-start justify-between gap-2">
+                    <CardTitle className="text-sm font-semibold leading-snug">
+                      {resumo.nomeGrupo}
+                    </CardTitle>
+                    <Badge variant={resumo.somenteFundos ? "secondary" : "outline"} className="shrink-0 text-[10px]">
+                      {resumo.somenteFundos ? "Fundos" : "RF"}
+                    </Badge>
+                  </div>
+                  {resumo.pctXp !== null && (
+                    <CardDescription className="text-xs">
+                      Alocação XP: {resumo.pctXp.toLocaleString("pt-BR", { maximumFractionDigits: 1 })}%
+                    </CardDescription>
+                  )}
+                </CardHeader>
+                <CardContent className="space-y-2 text-xs">
+                  <div className="text-xl font-bold tracking-tight">
+                    {formatBRL(resumo.posicao)}
+                  </div>
+                  <p className="text-muted-foreground">
+                    <span className="font-semibold text-foreground">{resumo.qtdPapeis}</span>
+                    {resumo.qtdPapeis === 1
+                      ? resumo.somenteFundos
+                        ? " fundo"
+                        : " papel"
+                      : resumo.somenteFundos
+                        ? " fundos"
+                        : " papéis"}
+                    {" · "}
+                    <span className="font-medium text-foreground">
+                      {resumo.pctRealCarteira.toLocaleString("pt-BR", { maximumFractionDigits: 1 })}%
+                    </span>{" "}
+                    da carteira
+                  </p>
+                  <p>
+                    Aplicado:{" "}
+                    <span className="font-mono font-medium">{formatBRL(resumo.aplicado)}</span>
+                  </p>
+                  <p>
+                    Rendimento:{" "}
+                    <span
+                      className={`font-mono font-semibold ${
+                        resumo.rendimento >= 0 ? "text-primary" : "text-destructive"
+                      }`}
                     >
-                      <div className="flex items-center">
-                        Ativo
-                        {getSortIcon('nome')}
-                      </div>
-                    </TableHead>
-                    <TableHead 
-                      className="cursor-pointer hover:bg-secondary/50 select-none"
-                      onClick={() => handleSort('tipo')}
-                    >
-                      <div className="flex items-center">
-                        Tipo
-                        {getSortIcon('tipo')}
-                      </div>
-                    </TableHead>
-                    <TableHead 
-                      className="cursor-pointer hover:bg-secondary/50 select-none"
-                      onClick={() => handleSort('taxa')}
-                    >
-                      <div className="flex items-center">
-                        Taxa (Compra)
-                        {getSortIcon('taxa')}
-                      </div>
-                    </TableHead>
-                    <TableHead 
-                      className="text-right cursor-pointer hover:bg-secondary/50 select-none"
-                      onClick={() => handleSort('taxaEsperada')}
-                    >
-                      <div className="flex items-center justify-end">
-                        Taxa Esperada
-                        {getSortIcon('taxaEsperada')}
-                      </div>
-                    </TableHead>
-                    <TableHead 
-                      className="cursor-pointer hover:bg-secondary/50 select-none"
-                      onClick={() => handleSort('vencimento')}
-                    >
-                      <div className="flex items-center">
-                        Vencimento
-                        {getSortIcon('vencimento')}
-                      </div>
-                    </TableHead>
-                    <TableHead 
-                      className="text-right cursor-pointer hover:bg-secondary/50 select-none"
-                      onClick={() => handleSort('valorAplicado')}
-                    >
-                      <div className="flex items-center justify-end">
-                        Valor Aplicado
-                        {getSortIcon('valorAplicado')}
-                      </div>
-                    </TableHead>
-                    <TableHead 
-                      className="text-right cursor-pointer hover:bg-secondary/50 select-none"
-                      onClick={() => handleSort('posicaoAtual')}
-                    >
-                      <div className="flex items-center justify-end">
-                        Posição Atual
-                        {getSortIcon('posicaoAtual')}
-                      </div>
-                    </TableHead>
-                    <TableHead 
-                      className="text-right cursor-pointer hover:bg-secondary/50 select-none"
-                      onClick={() => handleSort('rendimento')}
-                    >
-                      <div className="flex items-center justify-end">
-                        Rendimento
-                        {getSortIcon('rendimento')}
-                      </div>
-                    </TableHead>
-                    <TableHead 
-                      className="text-right cursor-pointer hover:bg-secondary/50 select-none"
-                      onClick={() => handleSort('rentabilidadeEsperada')}
-                    >
-                      <div className="flex items-center justify-end">
-                        Rentabilidade Esperada
-                        {getSortIcon('rentabilidadeEsperada')}
-                      </div>
-                    </TableHead>
-                    <TableHead 
-                      className="text-center cursor-pointer hover:bg-secondary/50 select-none"
-                      onClick={() => handleSort('risco')}
-                    >
-                      <div className="flex items-center justify-center">
-                        Risco
-                        {getSortIcon('risco')}
-                      </div>
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {sortedAtivos.map((ativo, idx) => {
-                    const { rentabilidadeEsperada } = calcularRentabilidadeEsperada(ativo, inflacao, ptax);
-                    const taxaEsperada = parseTaxa(ativo.taxa, inflacao, ptax);
-                    const valorExibido = marcacaoMercado && ativo.valorMercado !== undefined 
-                      ? ativo.valorMercado 
-                      : ativo.posicaoAtual;
-                    const rendimentoExibido = valorExibido - ativo.valorAplicado;
-                    const diferencaMarcacao = ativo.valorMercado !== undefined 
-                      ? ativo.valorMercado - ativo.posicaoAtual 
-                      : 0;
-                    
-                    return (
-                      <TableRow key={`${ativo.nome}-${idx}`}>
-                        <TableCell className="font-medium">{ativo.nome}</TableCell>
-                        <TableCell>{ativo.tipo}</TableCell>
-                        <TableCell className="font-mono text-xs">{ativo.taxa}</TableCell>
-                        <TableCell className="text-right font-mono text-xs font-semibold text-primary">
-                          {taxaEsperada.toFixed(2)}% a.a.
-                        </TableCell>
-                        <TableCell className="font-mono text-xs">{ativo.vencimento}</TableCell>
-                        <TableCell className="text-right font-mono">
-                          {formatBRL(ativo.valorAplicado)}
-                        </TableCell>
-                        <TableCell className="text-right font-mono font-semibold">
-                          <div className="flex flex-col items-end">
-                            <span>{formatBRL(valorExibido)}</span>
-                            {marcacaoMercado && ativo.valorMercado !== undefined && diferencaMarcacao !== 0 && (
-                              <span className={`text-xs ${
-                                diferencaMarcacao >= 0 ? "text-primary" : "text-destructive"
-                              }`}>
-                                ({diferencaMarcacao >= 0 ? "+" : ""}{formatBRL(diferencaMarcacao)})
-                              </span>
-                            )}
-                          </div>
-                        </TableCell>
-                        <TableCell className={`text-right font-mono ${
-                          rendimentoExibido >= 0 ? "text-primary" : "text-destructive"
-                        }`}>
-                          {rendimentoExibido >= 0 ? "+" : ""}{formatBRL(rendimentoExibido)}
-                        </TableCell>
-                        <TableCell className={`text-right font-mono ${
-                          rentabilidadeEsperada >= 0 ? "text-primary" : "text-destructive"
-                        }`}>
-                          {rentabilidadeEsperada >= 0 ? "+" : ""}{formatBRL(rentabilidadeEsperada)}
-                        </TableCell>
-                        <TableCell className="text-center">
-                          <Badge variant={getRiscoBadgeVariant(ativo.risco)}>
-                            {ativo.risco} ({ativo.riscoNumero})
-                          </Badge>
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </div>
-          </CardContent>
-        </Card>
+                      {resumo.rendimento >= 0 ? "+" : ""}
+                      {formatBRL(resumo.rendimento)}
+                    </span>
+                    {!resumo.somenteFundos && resumo.aplicado > 0 && (
+                      <span className="text-muted-foreground ml-1">
+                        ({resumo.rentabilidadeSobreAplicado.toLocaleString("pt-BR", {
+                          maximumFractionDigits: 2,
+                        })}
+                        % s/ aplicado)
+                      </span>
+                    )}
+                  </p>
+                  {resumo.somenteFundos && resumo.rentMediaLiquidaPct !== null && (
+                    <p className="text-muted-foreground">
+                      Rent. líquida média:{" "}
+                      <span className="font-semibold text-foreground">
+                        {resumo.rentMediaLiquidaPct.toLocaleString("pt-BR", {
+                          maximumFractionDigits: 2,
+                        })}
+                        %
+                      </span>
+                    </p>
+                  )}
+                  {resumo.pctXp !== null &&
+                    Math.abs(resumo.pctRealCarteira - resumo.pctXp) > 0.5 && (
+                      <p className="text-[10px] text-muted-foreground/80 pt-1 border-t border-border/50">
+                        % real ({resumo.pctRealCarteira.toLocaleString("pt-BR", { maximumFractionDigits: 1 })}%)
+                        difere do rótulo XP — normal após marcação ou atualização parcial.
+                      </p>
+                    )}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
 
-        {/* Fundos */}
+        {/* Carteira por agrupamentos XP */}
         <Card>
           <CardHeader>
-            <CardTitle>Fundos de Investimento (Liquidez)</CardTitle>
+            <CardTitle>Carteira XP — por agrupamento</CardTitle>
             <CardDescription>
-              Total em Fundos: {formatBRL(totalFundos)}
+              Mesma ordem e grupos da grade XLS ({gruposExibicao.length} blocos). Fundos ficam em{" "}
+              <span className="font-medium">20,8% | Pós-Fixado</span>, separados do bloco{" "}
+              <span className="font-medium">10% | Pós-Fixado</span> (renda fixa).
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {fundos.map((fundo, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center justify-between p-4 rounded-lg border bg-card"
-                >
-                  <div className="flex-1">
-                    <div className="font-semibold mb-1">{fundo.nome}</div>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <span>Aplicado: <span className="font-mono">{formatBRL(fundo.aplicado)}</span></span>
-                      <span>•</span>
-                      <span>Liquidez: <span className="font-semibold">{fundo.liquidez}</span></span>
-                      <span>•</span>
-                      <span>Risco: <Badge variant="secondary">{fundo.risco}</Badge></span>
+          <CardContent className="space-y-10">
+            {gruposExibicao.map((grupo) => {
+              const ehFundos = grupoEhSomenteFundos(grupo.linhas);
+              const subtotal = totalGrupo(grupo.linhas, marcacaoMercado);
+              const qtd = grupo.linhas.length;
+
+              return (
+                <section key={grupo.grupo} className="space-y-3">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-2">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-base font-semibold tracking-tight">{grupo.grupo}</h3>
+                      <Badge variant="outline" className="text-xs font-normal">
+                        {ehFundos ? "Fundos" : "Renda fixa"}
+                      </Badge>
                     </div>
+                    <p className="text-sm text-muted-foreground">
+                      {qtd} {qtd === 1 ? "linha" : "linhas"} · Subtotal{" "}
+                      <span className="font-mono font-semibold text-foreground">
+                        {formatBRL(subtotal)}
+                      </span>
+                    </p>
                   </div>
-                  <div className="text-right ml-4">
-                    <div className="text-xl font-bold">{formatBRL(fundo.atual)}</div>
-                    <div className={`text-sm font-mono ${
-                      fundo.atual >= fundo.aplicado ? "text-primary" : "text-destructive"
-                    }`}>
-                      {fundo.atual >= fundo.aplicado ? "+" : ""}
-                      {formatBRL(fundo.atual - fundo.aplicado)}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+
+                  {ehFundos ? (
+                    <ScrollArea className="w-full rounded-md border">
+                      <div className="min-w-[1700px]">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead
+                                className="min-w-[220px] cursor-pointer hover:bg-secondary/50 select-none"
+                                onClick={() => handleSort("nome")}
+                              >
+                                <div className="flex items-center">Fundo{getSortIcon("nome")}</div>
+                              </TableHead>
+                              <TableHead className="text-right">% Alocação</TableHead>
+                              <TableHead className="text-right">Posição</TableHead>
+                              <TableHead className="text-right">Rent. bruta %</TableHead>
+                              <TableHead className="text-right">Rent. líquida %</TableHead>
+                              <TableHead
+                                className="text-right cursor-pointer hover:bg-secondary/50 select-none"
+                                onClick={() => handleSort("valorAplicado")}
+                              >
+                                <div className="flex items-center justify-end">
+                                  Valor aplicado{getSortIcon("valorAplicado")}
+                                </div>
+                              </TableHead>
+                              <TableHead className="text-right">Valor líquido</TableHead>
+                              <TableHead
+                                className="text-right cursor-pointer hover:bg-secondary/50 select-none"
+                                onClick={() => handleSort("posicaoAtual")}
+                              >
+                                <div className="flex items-center justify-end">
+                                  Posição{getSortIcon("posicaoAtual")}
+                                </div>
+                              </TableHead>
+                              <TableHead className="text-right">Rend. bruto</TableHead>
+                              <TableHead className="text-right">Rend. líquido</TableHead>
+                              <TableHead className="text-right">IR</TableHead>
+                              <TableHead className="text-right">IOF</TableHead>
+                              <TableHead className="text-right">Em cotização</TableHead>
+                              <TableHead className="text-right">Rent. 12 meses</TableHead>
+                              <TableHead className="text-right">Rent. mês</TableHead>
+                              <TableHead>Cotização</TableHead>
+                              <TableHead>Liquidação</TableHead>
+                              <TableHead className="text-right">Taxa adm.</TableHead>
+                              <TableHead>Liquidez</TableHead>
+                              <TableHead className="text-center">Risco</TableHead>
+                              <TableHead className="text-right">Ganho/perda</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {grupo.linhas.map((linha) => {
+                              if (linha.tipo !== "fundo") return null;
+                              const fundo = linha.fundo;
+                              const ganho = fundo.atual - fundo.aplicado;
+                              return (
+                                <TableRow key={`${grupo.grupo}-${fundo.nome}`}>
+                                  <TableCell className="font-medium">{fundo.nome}</TableCell>
+                                  <TableCell className="text-right">{displayText(fundo.alocacaoPct)}</TableCell>
+                                  <TableCell className="text-right">{displayText(fundo.posicaoTaxaCompra)}</TableCell>
+                                  <TableCell className="text-right">{displayText(fundo.rentabilidadeBruta)}</TableCell>
+                                  <TableCell className="text-right">{displayText(fundo.rentabilidadeLiquida)}</TableCell>
+                                  <TableCell className="text-right font-mono">{formatBRL(fundo.aplicado)}</TableCell>
+                                  <TableCell className="text-right font-mono">
+                                    {fundo.valorLiquido != null && fundo.valorLiquido > 0
+                                      ? formatBRL(fundo.valorLiquido)
+                                      : displayText(pickFundoMp(fundo, "Valor líquido"))}
+                                  </TableCell>
+                                  <TableCell className="text-right font-mono font-semibold">
+                                    {formatBRL(fundo.atual)}
+                                  </TableCell>
+                                  <TableCell className="text-right">{displayText(pickFundoMp(fundo, "Rendimento bruto"))}</TableCell>
+                                  <TableCell className="text-right">{displayText(pickFundoMp(fundo, "Rendimento líquido"))}</TableCell>
+                                  <TableCell className="text-right">{displayText(pickFundoMp(fundo, "IR"))}</TableCell>
+                                  <TableCell className="text-right">{displayText(pickFundoMp(fundo, "IOF"))}</TableCell>
+                                  <TableCell className="text-right">{displayText(pickFundoMp(fundo, "Em cotização"))}</TableCell>
+                                  <TableCell className="text-right">{displayText(pickFundoCar(fundo, "Rent. 12 meses"))}</TableCell>
+                                  <TableCell className="text-right">{displayText(pickFundoCar(fundo, "Rent. mês"))}</TableCell>
+                                  <TableCell>{displayText(pickFundoCar(fundo, "Tempo resgate (Cotização)"))}</TableCell>
+                                  <TableCell>{displayText(pickFundoCar(fundo, "Tempo resgate (Liquidação)"))}</TableCell>
+                                  <TableCell className="text-right">{displayText(pickFundoCar(fundo, "Taxa administração"))}</TableCell>
+                                  <TableCell>{fundo.liquidez}</TableCell>
+                                  <TableCell className="text-center">
+                                    <Badge variant="secondary">{fundo.risco}</Badge>
+                                  </TableCell>
+                                  <TableCell
+                                    className={`text-right font-mono ${
+                                      ganho >= 0 ? "text-primary" : "text-destructive"
+                                    }`}
+                                  >
+                                    {ganho >= 0 ? "+" : ""}
+                                    {formatBRL(ganho)}
+                                  </TableCell>
+                                </TableRow>
+                              );
+                            })}
+                          </TableBody>
+                        </Table>
+                      </div>
+                      <ScrollBar orientation="horizontal" />
+                    </ScrollArea>
+                  ) : (
+                    <ScrollArea className="w-full rounded-md border">
+                      <div className="min-w-[2100px]">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead
+                        className="min-w-[200px] cursor-pointer hover:bg-secondary/50 select-none sticky left-0 bg-background z-10"
+                        onClick={() => handleSort("nome")}
+                      >
+                        <div className="flex items-center">
+                          Ativo
+                          {getSortIcon("nome")}
+                        </div>
+                      </TableHead>
+                      <TableHead className="cursor-pointer hover:bg-secondary/50 select-none" onClick={() => handleSort("tipo")}>
+                        <div className="flex items-center">Tipo{getSortIcon("tipo")}</div>
+                      </TableHead>
+                      <TableHead className="text-right">% Alocação</TableHead>
+                      <TableHead className="text-right">Pos. taxa compra</TableHead>
+                      <TableHead className="text-right cursor-pointer hover:bg-secondary/50 select-none" onClick={() => handleSort("valorAplicado")}>
+                        <div className="flex items-center justify-end">Valor aplicado{getSortIcon("valorAplicado")}</div>
+                      </TableHead>
+                      <TableHead className="cursor-pointer hover:bg-secondary/50 select-none" onClick={() => handleSort("taxa")}>
+                        <div className="flex items-center">Taxa compra{getSortIcon("taxa")}</div>
+                      </TableHead>
+                      <TableHead>Data aplicação</TableHead>
+                      <TableHead className="cursor-pointer hover:bg-secondary/50 select-none" onClick={() => handleSort("vencimento")}>
+                        <div className="flex items-center">Vencimento{getSortIcon("vencimento")}</div>
+                      </TableHead>
+                      <TableHead className="text-right">Valor líquido</TableHead>
+                      <TableHead className="text-right">Rend. bruto</TableHead>
+                      <TableHead className="text-right">Rend. líquido</TableHead>
+                      <TableHead className="text-right">Garantia</TableHead>
+                      <TableHead className="text-right">Quantidade</TableHead>
+                      <TableHead>Liquidez</TableHead>
+                      <TableHead>Juros</TableHead>
+                      <TableHead>Amortização</TableHead>
+                      <TableHead>Ticker / Código</TableHead>
+                      <TableHead>Rating</TableHead>
+                      <TableHead className="text-center">Eventos</TableHead>
+                      <TableHead className="text-right cursor-pointer hover:bg-secondary/50 select-none" onClick={() => handleSort("taxaEsperada")}>
+                        <div className="flex items-center justify-end">Taxa esperada{getSortIcon("taxaEsperada")}</div>
+                      </TableHead>
+                      <TableHead className="text-right cursor-pointer hover:bg-secondary/50 select-none" onClick={() => handleSort("posicaoAtual")}>
+                        <div className="flex items-center justify-end">Posição (líq.){getSortIcon("posicaoAtual")}</div>
+                      </TableHead>
+                      <TableHead className="text-right cursor-pointer hover:bg-secondary/50 select-none" onClick={() => handleSort("rendimento")}>
+                        <div className="flex items-center justify-end">Rendimento{getSortIcon("rendimento")}</div>
+                      </TableHead>
+                      <TableHead className="text-right cursor-pointer hover:bg-secondary/50 select-none" onClick={() => handleSort("rentabilidadeEsperada")}>
+                        <div className="flex items-center justify-end">Rent. esperada{getSortIcon("rentabilidadeEsperada")}</div>
+                      </TableHead>
+                      <TableHead className="text-center cursor-pointer hover:bg-secondary/50 select-none" onClick={() => handleSort("risco")}>
+                        <div className="flex items-center justify-center">Risco{getSortIcon("risco")}</div>
+                      </TableHead>
+                    </TableRow>
+                  </TableHeader>
+                          <TableBody>
+                            {grupo.linhas.map((linha) => {
+                              if (linha.tipo !== "rendaFixa") return null;
+                              const ativo = linha.ativo;
+                              const { rentabilidadeEsperada } = calcularRentabilidadeEsperada(
+                                ativo,
+                                inflacao,
+                                ptax
+                              );
+                              const taxaEsperada = parseTaxa(ativo.taxa, inflacao, ptax);
+                              const valorExibido =
+                                marcacaoMercado && ativo.valorMercado !== undefined
+                                  ? ativo.valorMercado
+                                  : ativo.posicaoAtual;
+                              const rendimentoExibido = valorExibido - ativo.valorAplicado;
+                              const diferencaMarcacao =
+                                ativo.valorMercado !== undefined
+                                  ? ativo.valorMercado - ativo.posicaoAtual
+                                  : 0;
+                              const eventos = ativo.eventos ?? [];
+                              const expandKey = expandRowKey(grupo.grupo, ativo);
+                              const isExpanded = expandedRfRows.has(expandKey);
+
+                              return (
+                                <Fragment key={expandKey}>
+                                  <TableRow>
+                                    <TableCell className="font-medium min-w-[200px] sticky left-0 bg-background z-10">
+                              {ativo.nome}
+                            </TableCell>
+                            <TableCell>{ativo.tipo}</TableCell>
+                            <TableCell className="text-right">{displayText(ativo.alocacaoPct)}</TableCell>
+                            <TableCell className="text-right">{displayText(ativo.posicaoTaxaCompra)}</TableCell>
+                            <TableCell className="text-right font-mono">{formatBRL(ativo.valorAplicado)}</TableCell>
+                            <TableCell className="font-mono text-xs">
+                              {displayText(ativo.taxaCompra ?? ativo.taxa)}
+                            </TableCell>
+                            <TableCell className="font-mono text-xs">{displayText(ativo.dataAplicacao)}</TableCell>
+                            <TableCell className="font-mono text-xs">{ativo.vencimento}</TableCell>
+                            <TableCell className="text-right">{displayText(pickMp(ativo, "Valor Líquido"))}</TableCell>
+                            <TableCell className="text-right">{displayText(pickMp(ativo, "Rendimento Bruto"))}</TableCell>
+                            <TableCell className="text-right">{displayText(pickMp(ativo, "Rendimento Líquido"))}</TableCell>
+                            <TableCell className="text-right">{displayText(pickMp(ativo, "Garantia"))}</TableCell>
+                            <TableCell className="text-right">{displayText(pickMp(ativo, "Quantidade"))}</TableCell>
+                            <TableCell>{displayText(pickCar(ativo, "Liquidez"))}</TableCell>
+                            <TableCell>{displayText(pickCar(ativo, "Juros"))}</TableCell>
+                            <TableCell>{displayText(pickCar(ativo, "Amortização"))}</TableCell>
+                            <TableCell>{displayText(pickCar(ativo, "Ticker/Código"))}</TableCell>
+                            <TableCell>{displayText(pickCar(ativo, "Rating"))}</TableCell>
+                            <TableCell className="text-center">
+                              {eventos.length > 0 ? (
+                                <button
+                                  type="button"
+                                  onClick={() => toggleRfExpand(expandKey)}
+                                  className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
+                                >
+                                  {eventos.length}
+                                  <ChevronDown className={`h-3 w-3 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                                </button>
+                              ) : (
+                                <span className="text-muted-foreground">—</span>
+                              )}
+                            </TableCell>
+                            <TableCell className="text-right font-mono text-xs font-semibold text-primary">
+                              {taxaEsperada.toFixed(2)}% a.a.
+                            </TableCell>
+                            <TableCell className="text-right font-mono font-semibold">
+                              <div className="flex flex-col items-end">
+                                <span>{formatBRL(valorExibido)}</span>
+                                {marcacaoMercado && ativo.valorMercado !== undefined && diferencaMarcacao !== 0 && (
+                                  <span
+                                    className={`text-xs ${
+                                      diferencaMarcacao >= 0 ? "text-primary" : "text-destructive"
+                                    }`}
+                                  >
+                                    ({diferencaMarcacao >= 0 ? "+" : ""}
+                                    {formatBRL(diferencaMarcacao)})
+                                  </span>
+                                )}
+                              </div>
+                            </TableCell>
+                            <TableCell
+                              className={`text-right font-mono ${
+                                rendimentoExibido >= 0 ? "text-primary" : "text-destructive"
+                              }`}
+                            >
+                              {rendimentoExibido >= 0 ? "+" : ""}
+                              {formatBRL(rendimentoExibido)}
+                            </TableCell>
+                            <TableCell
+                              className={`text-right font-mono ${
+                                rentabilidadeEsperada >= 0 ? "text-primary" : "text-destructive"
+                              }`}
+                            >
+                              {rentabilidadeEsperada >= 0 ? "+" : ""}
+                              {formatBRL(rentabilidadeEsperada)}
+                            </TableCell>
+                            <TableCell className="text-center">
+                              <Badge variant={getRiscoBadgeVariant(ativo.risco)}>
+                                {ativo.risco} ({ativo.riscoNumero})
+                              </Badge>
+                            </TableCell>
+                          </TableRow>
+                          {eventos.length > 0 && isExpanded && (
+                            <TableRow>
+                              <TableCell colSpan={RF_COL_COUNT} className="bg-muted/30 p-4">
+                                <p className="text-xs font-medium mb-2">Eventos</p>
+                                <Table>
+                                  <TableHeader>
+                                    <TableRow>
+                                      <TableHead>Data</TableHead>
+                                      <TableHead className="text-right">Juros</TableHead>
+                                      <TableHead className="text-right">Amortização</TableHead>
+                                      <TableHead className="text-right">Prêmio</TableHead>
+                                    </TableRow>
+                                  </TableHeader>
+                                  <TableBody>
+                                    {eventos.map((ev, evIdx) => (
+                                      <TableRow key={evIdx}>
+                                        <TableCell className="font-mono text-xs">{ev.data}</TableCell>
+                                        <TableCell className="text-right font-mono text-xs">{ev.juros}</TableCell>
+                                        <TableCell className="text-right font-mono text-xs">{ev.amortizacao}</TableCell>
+                                        <TableCell className="text-right font-mono text-xs">{ev.premio}</TableCell>
+                                      </TableRow>
+                                    ))}
+                                  </TableBody>
+                                </Table>
+                              </TableCell>
+                            </TableRow>
+                          )}
+                                </Fragment>
+                              );
+                            })}
+                          </TableBody>
+                        </Table>
+                      </div>
+                      <ScrollBar orientation="horizontal" />
+                    </ScrollArea>
+                  )}
+                </section>
+              );
+            })}
           </CardContent>
         </Card>
       </div>

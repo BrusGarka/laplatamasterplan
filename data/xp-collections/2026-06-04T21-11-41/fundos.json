@@ -1,0 +1,90 @@
+{
+  "saldo": "R$ 54.484,75",
+  "itens": [
+    {
+      "grupo": "20,8% | Pós-Fixado",
+      "nome": "Occam Liquidez FIC FIF RF CP RL",
+      "tipo": "fundo",
+      "posicaoAtual": "R$ 26.923,80",
+      "alocacaoPct": "10,26%",
+      "rentabilidadeLiquida": "3,69%",
+      "valorAplicado": "R$ 25.965,13",
+      "valorLiquido": "R$ 26.848,23",
+      "minhaPosicao": {
+        "Em cotização": "R$ 0,00",
+        "Rendimento bruto": "R$ 958,67",
+        "Rendimento líquido": "R$ 883,10",
+        "IR": "R$ 52,57",
+        "IOF": "R$ 23,00"
+      },
+      "caracteristicas": {
+        "Rent. 12 meses": "15,09%",
+        "Rent. mês": "0,11%",
+        "Tempo resgate (Cotização)": "D+0 (Dias Úteis)",
+        "Tempo resgate (Liquidação)": "D+1 (Dias Úteis)",
+        "Taxa administração": "0,4%"
+      },
+      "_rowCells": [
+        "Occam Liquidez FIC FIF RF CP RL",
+        "R$ 26.923,80",
+        "10,26%",
+        "3,4%",
+        "3,69%",
+        "R$ 25.965,13",
+        "R$ 26.848,23"
+      ]
+    },
+    {
+      "grupo": "20,8% | Pós-Fixado",
+      "nome": "SVN FIRF CP RL",
+      "tipo": "fundo",
+      "posicaoAtual": "R$ 14.167,81",
+      "alocacaoPct": "6,42%",
+      "rentabilidadeLiquida": "6,78%",
+      "valorAplicado": "R$ 13.268,15",
+      "valorLiquido": "R$ 14.120,08",
+      "_rowCells": [
+        "SVN FIRF CP RL",
+        "R$ 14.167,81",
+        "5,4%",
+        "6,42%",
+        "6,78%",
+        "R$ 13.268,15",
+        "R$ 14.120,08"
+      ]
+    },
+    {
+      "grupo": "20,8% | Pós-Fixado",
+      "nome": "XP Referenciado FIF RF Referenciado DI CP RL",
+      "tipo": "fundo",
+      "posicaoAtual": "R$ 13.393,14",
+      "alocacaoPct": "6,53%",
+      "rentabilidadeLiquida": "6,92%",
+      "valorAplicado": "R$ 12.526,31",
+      "valorLiquido": "R$ 13.344,34",
+      "minhaPosicao": {
+        "Em cotização": "R$ 0,00",
+        "Rendimento bruto": "R$ 866,83",
+        "Rendimento líquido": "R$ 818,03",
+        "IR": "R$ 48,80",
+        "IOF": "R$ 0,00"
+      },
+      "caracteristicas": {
+        "Rent. 12 meses": "14,79%",
+        "Rent. mês": "0,16%",
+        "Tempo resgate (Cotização)": "D+0 (Dias Úteis)",
+        "Tempo resgate (Liquidação)": "D+0 (Dias Úteis)",
+        "Taxa administração": "0,3%"
+      },
+      "_rowCells": [
+        "XP Referenciado FIF RF Referenciado DI CP RL",
+        "R$ 13.393,14",
+        "5,1%",
+        "6,53%",
+        "6,92%",
+        "R$ 12.526,31",
+        "R$ 13.344,34"
+      ]
+    }
+  ]
+}

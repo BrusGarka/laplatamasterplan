@@ -1,0 +1,29 @@
+{
+  "saldo": "R$ 54.484,75",
+  "itens": [
+    {
+      "nome": "XP Referenciado DI CP RL",
+      "posicaoAtual": "R$ 13.061,98",
+      "valorAplicado": "R$ 12.645,00",
+      "liquidez": "D+0",
+      "risco": 2,
+      "_fonte": "la-plata-anterior-ate-proxima-coleta"
+    },
+    {
+      "nome": "Occam Liquidez FIC FIF",
+      "posicaoAtual": "R$ 13.931,97",
+      "valorAplicado": "R$ 13.485,00",
+      "liquidez": "D+0",
+      "risco": 12,
+      "_fonte": "la-plata-anterior-ate-proxima-coleta"
+    },
+    {
+      "nome": "SVN FIRF CP RL",
+      "posicaoAtual": "R$ 13.818,82",
+      "valorAplicado": "R$ 13.393,00",
+      "liquidez": "D+5",
+      "risco": 11,
+      "_fonte": "la-plata-anterior-ate-proxima-coleta"
+    }
+  ]
+}

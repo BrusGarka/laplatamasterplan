@@ -1,0 +1,17 @@
+{
+  "scrapedAt": "2026-06-04T20:57:03.030Z",
+  "source": "browser-cdp",
+  "url": "https://experiencia.xpi.com.br/conta/#/carteira",
+  "posicaoPadrao": "taxa de compra",
+  "customerCode": "15739767",
+  "totais": {
+    "patrimonio": "R$ 262.381,93",
+    "rendaFixa": "R$ 207.897,18",
+    "fundos": "R$ 54.484,75"
+  },
+  "notas": [
+    "Renda fixa: 18 títulos (linha + campos da lista).",
+    "Collapse Minha Posição/Características: amostra completa apenas para NTN-B - AGO/2040 (demais exigem clique por linha no Playwright).",
+    "Fundos: saldo total na XP; linhas dos fundos não aparecem no DOM até expandir a seção — rodar sync:xp com Playwright após abrir Fundos."
+  ]
+}

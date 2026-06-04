@@ -1,0 +1,14 @@
+{
+  "scrapedAt": "2026-06-04T21:11:41.287Z",
+  "source": "browser-xls-expanded",
+  "url": "https://experiencia.xpi.com.br/conta/#/carteira",
+  "notas": [
+    "Dados mesclados: grade XLS (lista) + collapses expandidos na mesma [role=row].",
+    "Arquivo xls-grid.json = exportação estruturada da grade; use Exportar na XP para .xlsx bruto."
+  ],
+  "totais": {
+    "rendaFixaCalculado": 207897.18000000002,
+    "fundosCalculado": 54484.75,
+    "patrimonioCalculado": 262381.93000000005
+  }
+}

@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Sessão Playwright XP (credenciais)
+.xp-storage-state.json
+.xp-carteira-export-tmp.xlsx
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
