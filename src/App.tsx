@@ -22,6 +22,7 @@ import RendaPassiva from "./pages/RendaPassiva";
 import Impostos from "./pages/Impostos";
 import PlanejamentoTributario from "./pages/PlanejamentoTributario";
 import Seguros from "./pages/Seguros";
+import Assessor from "./pages/Assessor";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="/parametros" element={<Parametros />} />
               <Route path="/premissas" element={<Premissas />} />
               <Route path="/investimentos" element={<Investimentos />} />
+              <Route path="/assessor" element={<Assessor />} />
               <Route path="/patrimonio" element={<Patrimonio />} />
               <Route path="/sonhos" element={<Sonhos />} />
               <Route path="/sonhos/carrinho-byd" element={<CarrinhoByd />} />

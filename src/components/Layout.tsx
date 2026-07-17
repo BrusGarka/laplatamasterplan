@@ -30,6 +30,7 @@ import {
   Coins,
   BarChart2,
   Calculator,
+  Briefcase,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -57,6 +58,11 @@ const menuItems = [
     title: "Investimentos",
     url: "/investimentos",
     icon: Wallet,
+  },
+  {
+    title: "Assessor",
+    url: "/assessor",
+    icon: Briefcase,
   },
   {
     title: "Patrimônio",
