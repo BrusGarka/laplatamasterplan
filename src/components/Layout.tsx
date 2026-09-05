@@ -44,6 +44,8 @@ const menuItems = [
     url: "/",
     icon: LayoutDashboard,
   },
+  { title: "Caixa", url: "/caixa", icon: PiggyBank },
+  { title: "Fluxo mensal", url: "/fluxo-mensal", icon: BarChart2 },
   {
     title: "Master Plan",
     url: "/master-plan",
@@ -79,8 +81,6 @@ const menuItems = [
     url: "/premissas",
     icon: User,
   },
-  { title: "Caixa", url: "/caixa", icon: PiggyBank },
-  { title: "Fluxo mensal", url: "/fluxo-mensal", icon: BarChart2 },
   { title: "Reserva de Emergência", url: "/reserva-emergencia", icon: ShieldCheck },
   { title: "Aposentadoria", url: "/aposentadoria", icon: Landmark },
   { title: "Renda Passiva", url: "/renda-passiva", icon: Coins },
