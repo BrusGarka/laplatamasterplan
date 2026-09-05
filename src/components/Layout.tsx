@@ -44,6 +44,8 @@ const menuItems = [
     url: "/",
     icon: LayoutDashboard,
   },
+  { title: "Caixa", url: "/caixa", icon: PiggyBank },
+  { title: "Fluxo mensal", url: "/fluxo-mensal", icon: BarChart2 },
   {
     title: "Master Plan",
     url: "/master-plan",
