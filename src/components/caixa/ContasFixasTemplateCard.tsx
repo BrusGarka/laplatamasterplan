@@ -362,7 +362,7 @@ export function ContasFixasTemplateCard() {
                             l.debitoAutomatico && (
                               <Zap
                                 className="w-4 h-4 text-amber-500"
-                                title="Débito automático"
+                                aria-label="Débito automático"
                               />
                             )
                           )}
