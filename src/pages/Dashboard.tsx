@@ -11,8 +11,13 @@ import { usePremissas } from "@/contexts/PremissasContext";
 
 export default function Dashboard() {
   const { rentabilidade, inflacao, taxaReal } = usePremissas();
-  const projecaoFase1 = useMemo(() => gerarProjecaoPadrao(), []);
-  const projecaoUnificada = useMemo(() => gerarProjecaoUnificada(), []);
+  const taxaAnual = rentabilidade / 100;
+  const taxaRealAnual = taxaReal / 100;
+  const projecaoFase1 = useMemo(() => gerarProjecaoPadrao(taxaAnual), [taxaAnual]);
+  const projecaoUnificada = useMemo(
+    () => gerarProjecaoUnificada(taxaAnual, taxaRealAnual),
+    [taxaAnual, taxaRealAnual]
+  );
   const atual = projecaoFase1.find((d) => d.ano === 2026);
   const final2033 = projecaoFase1[projecaoFase1.length - 1];
   const anoMeta = projecaoFase1.find((d) => d.saldoFinal >= META);
@@ -67,6 +72,7 @@ export default function Dashboard() {
           patrimonioFase1={final2033.saldoFinal}
           idadeFimFase1={final2033.idade}
           anoFimFase1={final2033.ano}
+          taxaRealAnual={taxaRealAnual}
         />
 
         {/* Simulator */}

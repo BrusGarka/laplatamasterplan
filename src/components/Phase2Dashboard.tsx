@@ -18,12 +18,18 @@ interface Phase2DashboardProps {
   patrimonioFase1: number;
   idadeFimFase1: number;
   anoFimFase1: number;
+  taxaRealAnual?: number;
 }
 
-export function Phase2Dashboard({ patrimonioFase1, idadeFimFase1, anoFimFase1 }: Phase2DashboardProps) {
+export function Phase2Dashboard({
+  patrimonioFase1,
+  idadeFimFase1,
+  anoFimFase1,
+  taxaRealAnual,
+}: Phase2DashboardProps) {
   const projecao = useMemo(
-    () => gerarProjecaoFase2(patrimonioFase1, idadeFimFase1, anoFimFase1, 25),
-    [patrimonioFase1, idadeFimFase1, anoFimFase1]
+    () => gerarProjecaoFase2(patrimonioFase1, idadeFimFase1, anoFimFase1, 25, taxaRealAnual),
+    [patrimonioFase1, idadeFimFase1, anoFimFase1, taxaRealAnual]
   );
 
   const anoIFMinima = projecao.find(d => d.marco === "IF Mínima R$12k");
@@ -56,7 +62,7 @@ export function Phase2Dashboard({ patrimonioFase1, idadeFimFase1, anoFimFase1 }:
           <div>
             <h2 className="text-lg font-bold">Fase 2 — Hold & Independência</h2>
             <p className="text-xs text-muted-foreground">
-              Sem aportes após {anoFimFase1} • Juro real 6% a.a. • SWR 4,5%
+              Sem aportes após {anoFimFase1} • Juro real {((taxaRealAnual ?? 0.06) * 100).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}% a.a. • SWR 4,5%
             </p>
           </div>
         </div>

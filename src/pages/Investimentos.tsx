@@ -628,9 +628,8 @@ export default function Investimentos() {
           <CardHeader>
             <CardTitle>Carteira XP — por agrupamento</CardTitle>
             <CardDescription>
-              Mesma ordem e grupos da grade XLS ({gruposExibicao.length} blocos). Fundos ficam em{" "}
-              <span className="font-medium">20,8% | Pós-Fixado</span>, separados do bloco{" "}
-              <span className="font-medium">10% | Pós-Fixado</span> (renda fixa).
+              Mesma ordem e grupos da grade XLS ({gruposExibicao.length} blocos). Fundos ficam no
+              Pós-Fixado deles, separados do Pós-Fixado de renda fixa.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-10">

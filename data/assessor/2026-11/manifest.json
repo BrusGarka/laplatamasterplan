@@ -1,0 +1,49 @@
+{
+  "anoMes": "2026-11",
+  "assessor": "Cleiton Lucas Santana Lopes",
+  "conta": "15739767 Exclusive",
+  "dataReferencia": "2026-11-07",
+  "dataEmail": "2026-11-07",
+  "relatorioPdf": "",
+  "destaque": "Migração Comissão → Fee Fixo",
+  "slides": [
+    {
+      "arquivo": "/assessor/2026-11/slides/01-modelos-remuneracao.png",
+      "titulo": "01 · Modelos de remuneração"
+    },
+    {
+      "arquivo": "/assessor/2026-11/slides/02-fluxo-comissao-vs-fee.png",
+      "titulo": "02 · Fluxo Comissão vs Fee Fixo"
+    },
+    {
+      "arquivo": "/assessor/2026-11/slides/02-tabela-fee-por-faixa.png",
+      "titulo": "02 · Tabela de fee por faixa de patrimônio"
+    },
+    {
+      "arquivo": "/assessor/2026-11/slides/03-tendencia-mundial-eua.png",
+      "titulo": "03 · Tendência mundial (EUA)"
+    },
+    {
+      "arquivo": "/assessor/2026-11/slides/04-vantagens-fee-fixo.png",
+      "titulo": "04 · Vantagens do Fee Fixo"
+    },
+    {
+      "arquivo": "/assessor/2026-11/slides/05-contratacao-app-xp.png",
+      "titulo": "05 · Contratação pelo App XP"
+    },
+    {
+      "arquivo": "/assessor/2026-11/slides/06-cancelamento.png",
+      "titulo": "06 · Cancelamento sem burocracia"
+    }
+  ],
+  "resumo": {
+    "patrimonioTotal": 291600,
+    "rentabilidadeMes": 0,
+    "ganhoMes": 0,
+    "rentabilidadeAno": 0,
+    "percentualCDI": 0,
+    "feeMensalEstimado": 243,
+    "feeAnualPercentual": 1,
+    "observacaoResumo": "Patrimônio implícito no custo corrigido (R$ 243/mês = 1% a.a.). Sem XPerformance nesta competência — foco na troca de modelo."
+  }
+}

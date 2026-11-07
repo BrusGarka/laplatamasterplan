@@ -22,6 +22,7 @@ import RendaPassiva from "./pages/RendaPassiva";
 import Impostos from "./pages/Impostos";
 import PlanejamentoTributario from "./pages/PlanejamentoTributario";
 import Seguros from "./pages/Seguros";
+import Modelos from "./pages/Modelos";
 import Assessor from "./pages/Assessor";
 import NotFound from "./pages/NotFound";
 
@@ -58,6 +59,7 @@ const App = () => (
               <Route path="/impostos" element={<Impostos />} />
               <Route path="/planejamento-tributario" element={<PlanejamentoTributario />} />
               <Route path="/seguros" element={<Seguros />} />
+              <Route path="/modelos" element={<Modelos />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
               </Routes>

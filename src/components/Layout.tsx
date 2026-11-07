@@ -27,6 +27,7 @@ import {
   Landmark,
   Receipt,
   ShieldAlert,
+  Percent,
   Coins,
   BarChart2,
   Calculator,
@@ -87,6 +88,7 @@ const menuItems = [
   { title: "Impostos", url: "/impostos", icon: Receipt },
   { title: "Planejamento Tributário", url: "/planejamento-tributario", icon: Calculator },
   { title: "Seguros", url: "/seguros", icon: ShieldAlert },
+  { title: "Modelos", url: "/modelos", icon: Percent },
 ];
 
 export function Layout({ children }: LayoutProps) {

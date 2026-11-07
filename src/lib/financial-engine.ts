@@ -75,13 +75,14 @@ export function calcularAno(
   };
 }
 
-/** Gera projeção completa 2024-2033 com dados padrão */
-export function gerarProjecaoPadrao(): YearData[] {
+/** Gera projeção completa 2024-2033. Histórico fica congelado; o futuro usa a taxa nominal. */
+export function gerarProjecaoPadrao(taxaAnual: number = TAXA_ANUAL): YearData[] {
+  const taxaMensal = taxaAnual / 12;
   const tabela: YearData[] = [...DADOS_HISTORICOS];
   let saldoAnterior = DADOS_HISTORICOS[DADOS_HISTORICOS.length - 1].saldoFinal;
 
   for (const d of APORTES_FUTUROS) {
-    const r = calcularAno(saldoAnterior, d.pmtMes);
+    const r = calcularAno(saldoAnterior, d.pmtMes, taxaMensal);
     const entry: YearData = {
       ano: d.ano,
       idade: d.idade,
@@ -116,8 +117,11 @@ export interface UnifiedYearData {
 }
 
 /** Gera projeção unificada Fase 1 (2024-2033) + Fase 2 (2034-2058) */
-export function gerarProjecaoUnificada(): UnifiedYearData[] {
-  const fase1 = gerarProjecaoPadrao();
+export function gerarProjecaoUnificada(
+  taxaAnual: number = TAXA_ANUAL,
+  taxaRealAnual: number = TAXA_REAL_ANUAL
+): UnifiedYearData[] {
+  const fase1 = gerarProjecaoPadrao(taxaAnual);
   const tabela: UnifiedYearData[] = fase1.map(d => ({
     ...d,
     fase: 1 as const,
@@ -131,7 +135,7 @@ export function gerarProjecaoUnificada(): UnifiedYearData[] {
   for (let i = 1; i <= 25; i++) {
     const ano = ultimo.ano + i;
     const idade = ultimo.idade + i;
-    const rendimento = Math.round(patrimonio * TAXA_REAL_ANUAL);
+    const rendimento = Math.round(patrimonio * taxaRealAnual);
     const saldoFinal = patrimonio + rendimento;
     const rendaLiquidaMes = Math.round(((patrimonio * TAXA_RETIRADA) / 12) * (1 - IR_EFETIVO));
 
@@ -264,13 +268,14 @@ export function gerarProjecaoFase2(
   anosHorizonte: number = 25,
   taxaRealAnual: number = TAXA_REAL_ANUAL
 ): Phase2YearData[] {
+  const taxa = taxaRealAnual ?? TAXA_REAL_ANUAL;
   const tabela: Phase2YearData[] = [];
   let patrimonio = patrimonioInicial;
 
   for (let i = 0; i <= anosHorizonte; i++) {
     const ano = anoInicial + i;
     const idade = idadeInicial + i;
-    const rendimentoAnual = patrimonio * taxaRealAnual;
+    const rendimentoAnual = patrimonio * taxa;
     const rendaBrutaMes = (patrimonio * TAXA_RETIRADA) / 12;
     const rendaLiquidaMes = rendaBrutaMes * (1 - IR_EFETIVO);
 

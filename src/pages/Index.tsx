@@ -7,10 +7,17 @@ import { ProjectionCharts } from "@/components/ProjectionCharts";
 import { Phase2Dashboard } from "@/components/Phase2Dashboard";
 import { Simulator } from "@/components/Simulator";
 import { Shield } from "lucide-react";
+import { usePremissas } from "@/contexts/PremissasContext";
 
 const Index = () => {
-  const projecaoFase1 = useMemo(() => gerarProjecaoPadrao(), []);
-  const projecaoUnificada = useMemo(() => gerarProjecaoUnificada(), []);
+  const { rentabilidade, inflacao, taxaReal } = usePremissas();
+  const taxaAnual = rentabilidade / 100;
+  const taxaRealAnual = taxaReal / 100;
+  const projecaoFase1 = useMemo(() => gerarProjecaoPadrao(taxaAnual), [taxaAnual]);
+  const projecaoUnificada = useMemo(
+    () => gerarProjecaoUnificada(taxaAnual, taxaRealAnual),
+    [taxaAnual, taxaRealAnual]
+  );
   const atual = projecaoFase1.find((d) => d.ano === 2026);
   const final2033 = projecaoFase1[projecaoFase1.length - 1];
   const anoMeta = projecaoFase1.find((d) => d.saldoFinal >= META);
@@ -65,6 +72,7 @@ const Index = () => {
           patrimonioFase1={final2033.saldoFinal}
           idadeFimFase1={final2033.idade}
           anoFimFase1={final2033.ano}
+          taxaRealAnual={taxaRealAnual}
         />
 
         {/* Simulator */}
@@ -78,7 +86,9 @@ const Index = () => {
           className="text-center text-xs text-muted-foreground py-6 border-t border-border"
         >
           <p>⚠ Documento confidencial — uso exclusivo do cliente</p>
-          <p className="mt-1">Metodologia: aportes progressivos mensais • IPCA 4,5% + Juro Real 6%</p>
+          <p className="mt-1">
+            Metodologia: aportes progressivos mensais • IPCA {inflacao.toFixed(1)}% + Juro Real {taxaReal.toFixed(2)}%
+          </p>
         </motion.footer>
       </div>
     </div>

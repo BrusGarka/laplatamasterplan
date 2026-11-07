@@ -1,4 +1,5 @@
 import { UnifiedYearData, formatBRL, formatCompact } from "@/lib/financial-engine";
+import { usePremissas } from "@/contexts/PremissasContext";
 import { motion } from "framer-motion";
 
 interface ProjectionTableProps {
@@ -7,6 +8,12 @@ interface ProjectionTableProps {
 }
 
 export function ProjectionTable({ data, currentYear = 2026 }: ProjectionTableProps) {
+  const { taxaReal } = usePremissas();
+  const juroReal = taxaReal.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -17,7 +24,7 @@ export function ProjectionTable({ data, currentYear = 2026 }: ProjectionTablePro
       <div className="p-5 border-b border-border">
         <h2 className="text-lg font-semibold">Projeção Completa — Fase 1 & 2</h2>
         <p className="text-xs text-muted-foreground mt-1">
-          Fase 1: aportes progressivos (2024–2033) • Fase 2: hold sem aportes (2034+) • Juro real 6% a.a.
+          Fase 1: aportes progressivos (2024–2033) • Fase 2: hold sem aportes (2034+) • Juro real {juroReal}% a.a.
         </p>
       </div>
       <div className="overflow-x-auto">

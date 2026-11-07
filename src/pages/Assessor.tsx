@@ -71,6 +71,9 @@ export default function Assessor() {
 
   const podeVoltar = anoMes > limiteAnterior;
   const podeAvancar = anoMes < limiteProximo;
+  const temPdf = Boolean(mes?.relatorioPdf);
+  const temSlides = (mes?.slides?.length ?? 0) > 0;
+  const temFee = (mes?.resumo.feeMensalEstimado ?? 0) > 0;
 
   if (!mes) {
     return (
@@ -96,6 +99,7 @@ export default function Assessor() {
               <h1 className="text-2xl font-bold tracking-tight">Assessor</h1>
               <p className="text-sm text-muted-foreground">
                 {mes.assessor} · Conta {mes.conta}
+                {mes.destaque ? ` · ${mes.destaque}` : ""}
               </p>
             </div>
           </div>
@@ -148,44 +152,100 @@ export default function Assessor() {
               </p>
             </CardContent>
           </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-xs font-medium text-muted-foreground">
-                Rentabilidade do mês
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-xl font-bold">{formatPercent(mes.resumo.rentabilidadeMes)}</p>
-              <p className="text-xs text-muted-foreground mt-1">
-                {formatPercent(mes.resumo.percentualCDI)} do CDI
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-xs font-medium text-muted-foreground">Ganho do mês</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-xl font-bold">{formatBRL(mes.resumo.ganhoMes)}</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-xs font-medium text-muted-foreground">
-                Rentabilidade no ano
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-xl font-bold">{formatPercent(mes.resumo.rentabilidadeAno)}</p>
-            </CardContent>
-          </Card>
+          {temFee ? (
+            <>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xs font-medium text-muted-foreground">
+                    Fee estimado / mês
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-xl font-bold">
+                    {formatBRL(mes.resumo.feeMensalEstimado ?? 0)}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {mes.resumo.feeAnualPercentual?.toLocaleString("pt-BR", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                    % a.a.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xs font-medium text-muted-foreground">
+                    Fee estimado / ano
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-xl font-bold">
+                    {formatBRL((mes.resumo.feeMensalEstimado ?? 0) * 12)}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Antes do cashback elegível
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xs font-medium text-muted-foreground">
+                    Destaque
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm font-semibold leading-snug">
+                    {mes.destaque ?? "Sem XPerformance neste mês"}
+                  </p>
+                </CardContent>
+              </Card>
+            </>
+          ) : (
+            <>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xs font-medium text-muted-foreground">
+                    Rentabilidade do mês
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-xl font-bold">{formatPercent(mes.resumo.rentabilidadeMes)}</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {formatPercent(mes.resumo.percentualCDI)} do CDI
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xs font-medium text-muted-foreground">
+                    Ganho do mês
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-xl font-bold">{formatBRL(mes.resumo.ganhoMes)}</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-xs font-medium text-muted-foreground">
+                    Rentabilidade no ano
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-xl font-bold">{formatPercent(mes.resumo.rentabilidadeAno)}</p>
+                </CardContent>
+              </Card>
+            </>
+          )}
         </div>
 
         <Card>
           <CardHeader>
             <CardTitle className="capitalize">{labelMes(anoMes)}</CardTitle>
             <CardDescription>
-              Relatório XP, e-mail, WhatsApp e análise de decisão — competência{" "}
+              {temPdf ? "Relatório XP, " : temSlides ? "Slides, " : ""}
+              e-mail, WhatsApp e análise de decisão — competência{" "}
               {formatData(mes.dataReferencia)}
               {mes.dataEmail && ` · e-mail em ${formatData(mes.dataEmail)}`}
             </CardDescription>
@@ -195,7 +255,7 @@ export default function Assessor() {
               <TabsList className="mb-4">
                 <TabsTrigger value="relatorio" className="gap-1.5">
                   <FileText className="h-3.5 w-3.5" />
-                  Relatório
+                  {temPdf ? "Relatório" : temSlides ? "Slides" : "Material"}
                 </TabsTrigger>
                 <TabsTrigger value="email" className="gap-1.5">
                   <Mail className="h-3.5 w-3.5" />
@@ -214,27 +274,59 @@ export default function Assessor() {
               </TabsList>
 
               <TabsContent value="relatorio" className="space-y-4">
-                <div className="flex items-center justify-between gap-2">
+                {temPdf && (
+                  <>
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="text-sm text-muted-foreground">
+                        Relatório de Investimentos XP — XPerformance
+                      </p>
+                      <a
+                        href={mes.relatorioPdf}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
+                      >
+                        Abrir PDF
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    </div>
+                    <div className="rounded-md border overflow-hidden">
+                      <iframe
+                        title={`Relatório XP ${labelMes(anoMes)}`}
+                        src={`${mes.relatorioPdf}#toolbar=1`}
+                        className="w-full h-[720px]"
+                      />
+                    </div>
+                  </>
+                )}
+
+                {temSlides && (
+                  <div className="space-y-6">
+                    {!temPdf && (
+                      <p className="text-sm text-muted-foreground">
+                        Sem XPerformance nesta competência — slides da apresentação Fee Fixo.
+                      </p>
+                    )}
+                    {mes.slides?.map((slide) => (
+                      <figure key={slide.arquivo} className="space-y-2">
+                        <figcaption className="text-sm font-medium">{slide.titulo}</figcaption>
+                        <a href={slide.arquivo} target="_blank" rel="noopener noreferrer">
+                          <img
+                            src={slide.arquivo}
+                            alt={slide.titulo}
+                            className="w-full rounded-md border bg-background"
+                          />
+                        </a>
+                      </figure>
+                    ))}
+                  </div>
+                )}
+
+                {!temPdf && !temSlides && (
                   <p className="text-sm text-muted-foreground">
-                    Relatório de Investimentos XP — XPerformance
+                    Nenhum relatório ou slide disponível para este mês.
                   </p>
-                  <a
-                    href={mes.relatorioPdf}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
-                  >
-                    Abrir PDF
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                </div>
-                <div className="rounded-md border overflow-hidden">
-                  <iframe
-                    title={`Relatório XP ${labelMes(anoMes)}`}
-                    src={`${mes.relatorioPdf}#toolbar=1`}
-                    className="w-full h-[720px]"
-                  />
-                </div>
+                )}
               </TabsContent>
 
               <TabsContent value="email">
