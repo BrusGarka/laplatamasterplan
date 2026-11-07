@@ -25,6 +25,7 @@ import {
   PiggyBank,
   ShieldCheck,
   Landmark,
+  Layers,
   Receipt,
   ShieldAlert,
   Percent,
@@ -46,6 +47,7 @@ const menuItems = [
     icon: LayoutDashboard,
   },
   { title: "Caixa", url: "/caixa", icon: PiggyBank },
+  { title: "3 Fases", url: "/tres-fases", icon: Layers },
   { title: "Fluxo mensal", url: "/fluxo-mensal", icon: BarChart2 },
   {
     title: "Master Plan",

@@ -7,6 +7,7 @@ import { Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePremissas } from "@/contexts/PremissasContext";
 import { calcularRentabilidadeMediaPonderada } from "@/lib/investments-calculator";
+import { InflacaoAnosCard } from "@/components/InflacaoAnosCard";
 
 export default function Parametros() {
   const { inflacao, rentabilidade, ptax, setInflacao, setRentabilidade, setPtax, taxaReal } = usePremissas();
@@ -184,6 +185,8 @@ export default function Parametros() {
             </CardContent>
           </Card>
         </div>
+
+        <InflacaoAnosCard />
       </div>
     </div>
   );

@@ -111,9 +111,145 @@ export interface UnifiedYearData {
   rendimentoTotal: number;
   saldoFinal: number;
   pctMeta: number;
-  fase: 1 | 2;
+  fase: 1 | 2 | 3;
   rendaLiquidaMes?: number;
   marco?: string;
+}
+
+export const ANO_PROJECAO_INICIO = 2024;
+export const ANO_PROJECAO_FIM = 2084;
+export const ANO_FIM_FASE_1 = 2033;
+export const ANO_FIM_FASE_2 = 2043;
+export const IDADE_INICIAL = 30;
+export const APORTE_BASE = 100_000;
+export const IPCA_2024 = 4.83;
+export const IPCA_2025 = 4.26;
+
+export function inflacaoPadraoDoAno(ano: number, inflacaoPrevista: number): number {
+  if (ano === 2024) return IPCA_2024;
+  if (ano === 2025) return IPCA_2025;
+  return inflacaoPrevista;
+}
+
+export function serieInflacaoPadrao(inflacaoPrevista: number): Record<number, number> {
+  const serie: Record<number, number> = {};
+  for (let ano = ANO_PROJECAO_INICIO; ano <= ANO_PROJECAO_FIM; ano++) {
+    serie[ano] = inflacaoPadraoDoAno(ano, inflacaoPrevista);
+  }
+  return serie;
+}
+
+/** R$ 100 mil de 2024 corrigidos pela inflação acumulada dos anos anteriores. */
+export function aporteAnualCorrigido(
+  ano: number,
+  inflacaoPorAno: Readonly<Record<number, number>>
+): number {
+  let fator = 1;
+  for (let y = ANO_PROJECAO_INICIO; y < ano; y++) {
+    const taxa = inflacaoPorAno[y];
+    const pct = typeof taxa === "number" && Number.isFinite(taxa) ? taxa : 0;
+    fator *= 1 + pct / 100;
+  }
+  return Math.round(APORTE_BASE * fator);
+}
+
+function faseDoAno(ano: number): 1 | 2 | 3 {
+  if (ano <= ANO_FIM_FASE_1) return 1;
+  if (ano <= ANO_FIM_FASE_2) return 2;
+  return 3;
+}
+
+/**
+ * Fase 1 (2024–2033): aporta os R$ 100 mil corrigidos.
+ * Fase 2 (2034–2043): hold, sem aporte.
+ * Fase 3 (2044–2084): renda passiva (SWR). O rendimento financia a retirada;
+ * o patrimônio nominal é mantido — não há nova subida do monte.
+ * A coluna de aporte anual continua em todas as fases, como referência.
+ */
+export function gerarProjecaoTresFases(
+  inflacaoPorAno: Readonly<Record<number, number>>,
+  taxaAnual: number = TAXA_ANUAL,
+  taxaRealAnual: number = TAXA_REAL_ANUAL
+): UnifiedYearData[] {
+  const taxaMensal = taxaAnual / 12;
+  const tabela: UnifiedYearData[] = [];
+  let patrimonio = 0;
+  let ifMinimaFound = false;
+  let ifAlvoFound = false;
+
+  for (let ano = ANO_PROJECAO_INICIO; ano <= ANO_PROJECAO_FIM; ano++) {
+    const idade = IDADE_INICIAL + (ano - ANO_PROJECAO_INICIO);
+    const aporteAnual = aporteAnualCorrigido(ano, inflacaoPorAno);
+    const fase = faseDoAno(ano);
+    const saldoInicial = patrimonio;
+
+    if (fase === 1) {
+      const pmtMes = aporteAnual / 12;
+      const r = calcularAno(saldoInicial, pmtMes, taxaMensal);
+      tabela.push({
+        ano,
+        idade,
+        saldoInicial,
+        aporteAnual,
+        pmtMes: Math.round(pmtMes),
+        rendimentoTotal: r.rendimento,
+        saldoFinal: r.saldoFinal,
+        pctMeta: Math.round((r.saldoFinal / META) * 1000) / 10,
+        fase,
+      });
+      patrimonio = r.saldoFinal;
+      continue;
+    }
+
+    const rendimento = Math.round(patrimonio * taxaRealAnual);
+
+    if (fase === 2) {
+      const saldoFinal = patrimonio + rendimento;
+      tabela.push({
+        ano,
+        idade,
+        saldoInicial,
+        aporteAnual,
+        pmtMes: 0,
+        rendimentoTotal: rendimento,
+        saldoFinal,
+        pctMeta: Math.round((saldoFinal / META) * 1000) / 10,
+        fase,
+      });
+      patrimonio = saldoFinal;
+      continue;
+    }
+
+    const retiradaBrutaAnual = Math.round(patrimonio * TAXA_RETIRADA);
+    const rendaLiquidaMes = Math.round((retiradaBrutaAnual / 12) * (1 - IR_EFETIVO));
+    const saldoFinal = patrimonio;
+
+    let marco: string | undefined;
+    if (!ifMinimaFound && rendaLiquidaMes >= IF_MINIMA_RENDA) {
+      marco = "IF Mínima R$12k";
+      ifMinimaFound = true;
+    }
+    if (!ifAlvoFound && rendaLiquidaMes >= IF_ALVO_RENDA) {
+      marco = "IF Alvo R$15k";
+      ifAlvoFound = true;
+    }
+
+    tabela.push({
+      ano,
+      idade,
+      saldoInicial,
+      aporteAnual,
+      pmtMes: 0,
+      rendimentoTotal: rendimento,
+      saldoFinal,
+      pctMeta: Math.round((saldoFinal / META) * 1000) / 10,
+      fase,
+      rendaLiquidaMes,
+      marco,
+    });
+  }
+
+  return tabela;
 }
 
 /** Gera projeção unificada Fase 1 (2024-2033) + Fase 2 (2034-2058) */
