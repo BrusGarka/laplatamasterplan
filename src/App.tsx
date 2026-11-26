@@ -15,6 +15,7 @@ import Patrimonio from "./pages/Patrimonio";
 import Sonhos from "./pages/Sonhos";
 import CarrinhoByd from "./pages/CarrinhoByd";
 import Caixa from "./pages/Caixa";
+import CartaoInter from "./pages/CartaoInter";
 import TresFases from "./pages/TresFases";
 import FluxoMensal from "./pages/FluxoMensal";
 import ReservaEmergencia from "./pages/ReservaEmergencia";
@@ -50,6 +51,7 @@ const App = () => (
               <Route path="/sonhos" element={<Sonhos />} />
               <Route path="/sonhos/carrinho-byd" element={<CarrinhoByd />} />
               <Route path="/caixa" element={<Caixa />} />
+              <Route path="/cartao-inter" element={<CartaoInter />} />
               <Route path="/tres-fases" element={<TresFases />} />
               <Route path="/orcamento" element={<Navigate to="/caixa" replace />} />
               <Route path="/fluxo-mensal" element={<FluxoMensal />} />

@@ -33,6 +33,7 @@ import {
   BarChart2,
   Calculator,
   Briefcase,
+  CreditCard,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -47,6 +48,7 @@ const menuItems = [
     icon: LayoutDashboard,
   },
   { title: "Caixa", url: "/caixa", icon: PiggyBank },
+  { title: "Cartão Inter", url: "/cartao-inter", icon: CreditCard },
   { title: "3 Fases", url: "/tres-fases", icon: Layers },
   { title: "Fluxo mensal", url: "/fluxo-mensal", icon: BarChart2 },
   {
